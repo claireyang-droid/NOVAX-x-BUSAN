@@ -1,0 +1,1788 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>諾瓦材料科技 2026 員工旅遊 ｜ 釜山 × 慶州 × 蔚山</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Iansui&family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=Gowun+Batang:wght@400;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0f2438;
+    --ink-2:#16324a;
+    --celadon:#dbe7de;
+    --celadon-2:#c3d6c8;
+    --persimmon:#e2572b;
+    --persimmon-2:#c8481f;
+    --porcelain:#f8f5ee;
+    --gold:#c99a4a;
+    --line:rgba(15,36,56,0.14);
+    --shadow:0 18px 40px -20px rgba(15,36,56,0.35);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--porcelain);
+    color:var(--ink);
+    font-family:'Iansui','Noto Sans TC',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--persimmon);color:#fff;}
+  h1,h2,h3,h4{font-family:'Iansui','Noto Serif TC',serif;margin:0;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;cursor:pointer;}
+  .num{font-family:'Iansui','Fraunces',serif;}
+  .hidden{display:none !important;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:radial-gradient(1200px 600px at 15% -10%, #1c3a56 0%, var(--ink) 55%, #081422 100%);
+    color:var(--porcelain);
+    overflow:hidden;
+    padding:64px 24px 88px;
+    text-align:center;
+    border-radius:0 0 32px 32px;
+    box-shadow:0 24px 40px -24px rgba(8,20,34,0.55);
+  }
+  .hero-hangul{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Gowun Batang',serif;
+    font-size:min(22vw,220px);
+    font-weight:700;
+    color:rgba(255,255,255,0.05);
+    white-space:nowrap;
+    letter-spacing:0.04em;
+    pointer-events:none;
+    user-select:none;
+  }
+  .hero-eyebrow{
+    position:relative;
+    font-family:'Gowun Batang',serif;
+    font-size:17.5px;
+    letter-spacing:0.35em;
+    color:var(--gold);
+    margin-bottom:18px;
+  }
+  .hero-company{
+    position:relative;
+    font-size:17.5px;
+    letter-spacing:0.08em;
+    color:rgba(248,245,238,0.72);
+    margin-bottom:10px;
+  }
+  .hero h1{
+    position:relative;
+    font-size:clamp(30px,6vw,54px);
+    font-weight:900;
+    line-height:1.25;
+    margin-bottom:6px;
+  }
+  .hero .route{
+    position:relative;
+    font-family:'Iansui','Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(18px,3vw,26px);
+    color:var(--persimmon);
+    letter-spacing:0.04em;
+    margin-top:10px;
+  }
+  .hero .route span{ color:rgba(248,245,238,0.5); font-weight:400; padding:0 10px;}
+  .hero-scroll{
+    position:relative;
+    margin-top:38px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--persimmon);
+    color:#fff;
+    border:none;
+    padding:14px 28px;
+    border-radius:100px;
+    font-size:17.5px;
+    font-weight:700;
+    letter-spacing:0.02em;
+    box-shadow:0 14px 30px -10px rgba(226,87,43,0.6);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .hero-scroll:hover{transform:translateY(-2px);box-shadow:0 18px 34px -8px rgba(226,87,43,0.7);}
+
+  /* ---------- SECTIONS ---------- */
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px;}
+  section{padding:56px 0;}
+  .section-label{
+    font-family:'Iansui','Fraunces',serif;
+    font-size:15.5px;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--persimmon);
+    margin-bottom:10px;
+  }
+  .section-title{font-size:clamp(22px,4vw,30px);font-weight:700;margin-bottom:6px;}
+  .section-sub{color:rgba(15,36,56,0.6);font-size:17px;margin-bottom:28px;}
+
+  /* ---------- LOGIN ---------- */
+  .login-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:32px;
+    box-shadow:var(--shadow);
+  }
+  .login-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .login-row input{
+    flex:1;
+    min-width:200px;
+    padding:14px 16px;
+    border-radius:12px;
+    border:1.5px solid var(--line);
+    font-size:17.5px;
+    font-family:inherit;
+    background:var(--porcelain);
+  }
+  .login-row input:focus{outline:none;border-color:var(--persimmon);}
+  .login-btn{
+    background:var(--persimmon);
+    color:#fff;
+    border:none;
+    padding:14px 26px;
+    border-radius:12px;
+    font-size:17.5px;
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .login-btn:hover{background:var(--persimmon-2);}
+  .name-list{
+    margin-top:14px;
+    max-height:260px;
+    overflow-y:auto;
+    border-top:1px dashed var(--line);
+  }
+  .name-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 6px;
+    border-bottom:1px dashed var(--line);
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  .name-item:hover{background:var(--celadon);border-radius:8px;}
+  .name-item .batch-tag{
+    font-size:15px;
+    color:var(--ink-2);
+    background:var(--celadon);
+    padding:3px 10px;
+    border-radius:100px;
+  }
+  .login-hint{font-size:15.5px;color:rgba(15,36,56,0.5);margin-top:14px;}
+
+  /* ---------- ASSEMBLY INFO ---------- */
+  .assembly-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:16px;
+  }
+  .assembly-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:22px;
+    box-shadow:var(--shadow);
+  }
+  .ac-title{
+    font-family:'Iansui','Noto Serif TC',serif;
+    font-weight:700;
+    font-size:18.5px;
+    color:var(--ink);
+    margin-bottom:14px;
+    padding-bottom:10px;
+    border-bottom:1px dashed var(--line);
+  }
+  .ac-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    font-size:16px;
+    padding:8px 0;
+    flex-wrap:wrap;
+  }
+  .ac-row span{color:rgba(15,36,56,0.5);flex-shrink:0;}
+  .ac-row b{text-align:right;font-weight:700;}
+  .ac-row input{
+    padding:7px 10px;border-radius:8px;border:1.5px solid var(--line);font-size:15.5px;font-family:inherit;flex:1;min-width:100px;
+  }
+  .ac-save{
+    margin-top:14px;width:100%;
+    background:var(--persimmon);color:#fff;border:none;padding:10px;border-radius:10px;font-size:16px;font-weight:700;
+  }
+
+  /* ---------- INLINE ROOM NUMBER EDITING ---------- */
+  .room-inline-input{
+    width:64px;padding:8px 6px;border-radius:8px;border:1.5px solid var(--persimmon);
+    font-size:17px;font-family:inherit;text-align:center;
+    -webkit-appearance:none;appearance:none;touch-action:manipulation;
+    background:#fff9f5;
+  }
+  .room-inline-input-name{
+    padding:8px 10px;border-radius:8px;border:1.5px solid var(--persimmon);
+    font-size:16px;font-family:inherit;background:#fff9f5;
+    min-width:110px;touch-action:manipulation;
+  }
+  #roomSaveWrap{margin-top:16px;margin-bottom:90px;}
+  .room-save-hint{
+    font-size:15px;color:rgba(15,36,56,0.55);margin-bottom:10px;text-align:center;
+  }
+  #saveRoomNums{
+    width:100%;
+    background:var(--ink);color:#fff;border:none;padding:14px;border-radius:10px;font-size:16.5px;font-weight:700;
+    touch-action:manipulation;
+  }
+
+  /* ---------- DASHBOARD HEADER ---------- */
+  .welcome-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+    background:var(--ink);
+    color:var(--porcelain);
+    padding:18px 20px;
+    border-radius:16px;
+  }
+  .welcome-bar .who{font-size:17.5px;}
+  .welcome-bar .who b{font-family:'Iansui','Noto Serif TC',serif;font-size:19.5px;color:var(--gold);}
+  .admin-mode-tag{
+    display:inline-block;background:var(--persimmon);color:#fff;
+    font-size:14px;font-weight:700;padding:3px 10px;border-radius:100px;margin-left:6px;
+  }
+  .welcome-bar .actions{display:flex;gap:10px;}
+  .welcome-bar button{
+    background:rgba(255,255,255,0.12);
+    color:#fff;
+    border:1px solid rgba(255,255,255,0.25);
+    padding:8px 14px;
+    border-radius:100px;
+    font-size:15.5px;
+  }
+  .welcome-bar button:hover{background:rgba(255,255,255,0.22);}
+
+  .batch-strip{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:18px;
+  }
+  .stat-box{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px;
+    text-align:center;
+  }
+  .stat-box .label{font-size:15px;color:rgba(15,36,56,0.55);margin-bottom:4px;}
+  .stat-box .value{font-family:'Iansui','Fraunces',serif;font-weight:700;font-size:18.5px;}
+  .stat-box .value#statBatch{font-size:24px;color:var(--persimmon);}
+  @media (max-width:600px){.batch-strip{grid-template-columns:1fr 1fr;}}
+
+  .admin-batch-switch{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    margin-top:12px;
+    background:#fff;
+    border:1.5px dashed var(--persimmon);
+    border-radius:100px;
+    padding:10px 16px;
+  }
+  .admin-batch-switch span{font-size:15px;font-weight:700;color:var(--ink-2);}
+  .admin-batch-switch button{
+    background:var(--celadon);color:var(--ink-2);border:none;
+    padding:8px 16px;border-radius:100px;font-size:15px;font-weight:700;
+  }
+  .admin-batch-switch button.active{background:var(--persimmon);color:#fff;}
+
+  /* ---------- FLAT PAGE NAV ---------- */
+  .dash-nav{
+    position:sticky;
+    top:0;
+    z-index:40;
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    background:rgba(248,245,238,0.92);
+    backdrop-filter:blur(6px);
+    padding:14px 2px;
+    margin:0 -20px;
+    padding-left:20px;
+    padding-right:20px;
+    border-bottom:1px solid var(--line);
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .dash-nav::-webkit-scrollbar{display:none;}
+  .dash-nav-btn{
+    flex-shrink:0;
+    background:#fff;
+    border:1.5px solid var(--line);
+    color:rgba(15,36,56,0.6);
+    padding:10px 18px;
+    border-radius:100px;
+    font-size:16px;
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .dash-nav-btn.active{
+    background:var(--ink);
+    border-color:var(--ink);
+    color:#fff;
+  }
+  .dash-page{padding-top:32px;}
+
+  /* ---------- TICKET / FLIGHT CARD ---------- */
+  .ticket{
+    position:relative;
+    display:flex;
+    background:#fff;
+    border-radius:18px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    margin-bottom:18px;
+  }
+  .ticket-main{
+    flex:1;
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .ticket-route{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .ticket-city{text-align:center;}
+  .ticket-city .code{font-family:'Iansui','Fraunces',serif;font-size:30px;font-weight:700;color:var(--ink);}
+  .ticket-city .name{font-size:15px;color:rgba(15,36,56,0.55);margin-top:2px;}
+  .ticket-plane{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    color:var(--persimmon);
+    position:relative;
+  }
+  .ticket-plane .dash{flex:1;border-top:2px dashed var(--celadon-2);}
+  .ticket-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
+    font-size:15.5px;
+    color:rgba(15,36,56,0.65);
+    border-top:1px dashed var(--line);
+    padding-top:12px;
+  }
+  .ticket-meta b{color:var(--ink);font-weight:700;}
+  .ticket-stub{
+    width:96px;
+    background:var(--celadon);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    border-left:2px dashed rgba(15,36,56,0.2);
+  }
+  .ticket-stub .vert{
+    writing-mode:vertical-rl;
+    font-family:'Iansui','Fraunces',serif;
+    font-weight:700;
+    letter-spacing:0.1em;
+    font-size:15.5px;
+    color:var(--ink-2);
+  }
+  .ticket-stub::before,.ticket-stub::after{
+    content:'';
+    position:absolute;
+    left:-9px;
+    width:18px;height:18px;
+    background:var(--porcelain);
+    border-radius:50%;
+  }
+  .ticket-stub::before{top:-9px;}
+  .ticket-stub::after{bottom:-9px;}
+  .ticket-label{font-size:14.5px;letter-spacing:0.15em;color:var(--persimmon);font-weight:700;text-transform:uppercase;margin-bottom:2px;}
+
+  /* ---------- ITINERARY TIMELINE ---------- */
+  .day-card{
+    background:#fff;
+    border-radius:20px;
+    box-shadow:var(--shadow);
+    margin-bottom:22px;
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .day-head{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:20px 22px;
+    background:linear-gradient(120deg,var(--ink),var(--ink-2));
+    color:var(--porcelain);
+  }
+  .day-num{
+    font-family:'Iansui','Fraunces',serif;
+    font-size:36px;
+    font-weight:900;
+    color:var(--gold);
+    line-height:1;
+  }
+  .day-headline .day-date{font-size:15px;color:rgba(248,245,238,0.65);letter-spacing:0.06em;margin-bottom:2px;}
+  .day-headline h3{font-size:19.5px;}
+  .day-body{padding:22px;}
+  .stop-flow{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:18px;
+  }
+  .stop{
+    background:var(--celadon);
+    color:var(--ink-2);
+    font-size:15.5px;
+    padding:6px 12px;
+    border-radius:100px;
+    font-weight:500;
+  }
+  .stop-arrow{color:rgba(15,36,56,0.3);align-self:center;font-size:15px;}
+  .meal-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .meal-box{
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:12px;
+    text-align:center;
+  }
+  .meal-box .m-label{font-size:14.5px;color:var(--persimmon);letter-spacing:0.12em;font-weight:700;margin-bottom:6px;}
+  .meal-box .m-value{font-size:15.5px;font-weight:500;}
+  @media (max-width:560px){.meal-grid{grid-template-columns:1fr;}}
+  .hotel-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+    background:var(--porcelain);
+    border-radius:12px;
+    padding:14px 16px;
+    margin-bottom:10px;
+  }
+  .hotel-row .h-icon{font-size:20px;}
+  .hotel-row .h-info{flex:1;min-width:160px;}
+  .hotel-row .h-tier{font-size:14.5px;color:rgba(15,36,56,0.5);}
+  .hotel-row .h-name{font-weight:700;font-size:17px;}
+  .hotel-map-btns{display:flex;gap:8px;flex-wrap:wrap;}
+  .hotel-map-edit{margin-bottom:18px;}
+  .map-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:var(--ink);
+    color:#fff;
+    padding:8px 14px;
+    border-radius:100px;
+    font-size:15.5px;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .map-btn:hover{background:var(--persimmon);}
+  .map-btn.naver-btn{background:var(--ink);}
+  .map-btn.naver-btn:hover{background:var(--persimmon);}
+
+  /* photo gallery */
+  .gallery-title{font-size:15px;letter-spacing:0.15em;color:rgba(15,36,56,0.5);text-transform:uppercase;margin-bottom:10px;font-weight:700;}
+  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;}
+  .gallery-empty{
+    border:1.5px dashed var(--celadon-2);
+    border-radius:12px;
+    padding:22px;
+    text-align:center;
+    font-size:15.5px;
+    color:rgba(15,36,56,0.45);
+  }
+  .gallery-grid figure{margin:0;position:relative;border-radius:10px;overflow:hidden;background:var(--celadon);aspect-ratio:1/1;}
+  .gallery-grid img{width:100%;height:100%;object-fit:cover;}
+  .gallery-grid .rm-photo{
+    position:absolute;top:4px;right:4px;
+    background:rgba(15,36,56,0.7);
+    color:#fff;border:none;border-radius:50%;
+    width:22px;height:22px;font-size:15px;line-height:1;
+  }
+  .admin-add{
+    display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;
+  }
+  .admin-add input{
+    flex:1;min-width:180px;
+    padding:9px 12px;border-radius:8px;border:1.5px solid var(--line);font-size:15.5px;
+  }
+  .admin-add button{
+    background:var(--persimmon);color:#fff;border:none;padding:9px 16px;border-radius:8px;font-size:15.5px;font-weight:700;
+  }
+
+  /* ---------- SPOT FRAMES (當地現場搶先看) ---------- */
+  .spot-frames{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:14px;
+    margin-bottom:18px;
+  }
+  .spot-frame{
+    border:1.5px dashed var(--celadon-2);
+    border-radius:14px;
+    padding:14px;
+    background:var(--porcelain);
+  }
+  .spot-frame-label{
+    font-size:15.5px;font-weight:700;color:var(--ink-2);margin-bottom:10px;
+  }
+
+  /* ---------- DAY CONTENT EDIT (行程與餐食編輯) ---------- */
+  .day-edit-toggle{
+    display:inline-flex;align-items:center;gap:8px;
+    margin-top:12px;
+    background:#fff;
+    color:var(--persimmon);
+    border:1.5px solid var(--persimmon);
+    padding:11px 18px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:16px;
+  }
+  .day-edit-toggle:hover{background:var(--persimmon);color:#fff;}
+  .day-edit-panel{
+    margin-top:14px;
+    border:1.5px dashed var(--persimmon);
+    border-radius:16px;
+    padding:18px;
+    background:#fff9f5;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .day-edit-label{
+    font-size:13.5px;font-weight:700;color:var(--ink-2);margin-top:10px;
+  }
+  .day-edit-panel input[type="text"], .day-edit-panel textarea{
+    width:100%;padding:10px 12px;border-radius:8px;border:1.5px solid var(--line);
+    font-size:16px;font-family:inherit;background:#fff;
+  }
+  .day-edit-panel textarea{min-height:70px;resize:vertical;}
+  .day-edit-hotel-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px;}
+  .day-edit-hotel-row input{flex:1;min-width:130px;}
+  .saveDayEditBtn{
+    margin-top:14px;width:100%;
+    background:var(--ink);color:#fff;border:none;padding:14px;border-radius:10px;font-size:15.5px;font-weight:700;
+  }
+  .saveDayEditBtn:hover{background:var(--persimmon);}
+
+  /* ---------- FREE-TIME RECOMMENDATIONS ---------- */
+  .freetime-toggle{
+    display:inline-flex;align-items:center;gap:8px;
+    margin-top:18px;
+    background:var(--celadon);
+    color:var(--ink-2);
+    border:1.5px solid var(--celadon-2);
+    padding:11px 18px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:16px;
+  }
+  .freetime-toggle:hover{background:var(--celadon-2);}
+  .freetime-panel{
+    margin-top:16px;
+    border:1.5px dashed var(--celadon-2);
+    border-radius:16px;
+    padding:18px;
+    background:var(--porcelain);
+  }
+  .freetime-empty{font-size:15.5px;color:rgba(15,36,56,0.45);text-align:center;padding:16px;}
+  .ft-item{
+    display:flex;gap:14px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:14px;
+    margin-bottom:12px;
+    flex-wrap:wrap;
+  }
+  .ft-item .ft-img{
+    width:110px;height:110px;flex-shrink:0;
+    border-radius:10px;overflow:hidden;background:var(--celadon);
+  }
+  .ft-item .ft-img img{width:100%;height:100%;object-fit:cover;}
+  .ft-item .ft-body{flex:1;min-width:160px;display:flex;flex-direction:column;gap:8px;}
+  .ft-item .ft-desc{font-size:16px;color:var(--ink);line-height:1.55;}
+  .ft-item .ft-place{font-size:15px;color:rgba(15,36,56,0.5);}
+  .ft-btn-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+  .ft-link-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    border:none;padding:8px 14px;border-radius:100px;font-size:15.5px;font-weight:700;
+    background:var(--ink);color:#fff;text-decoration:none;
+  }
+  .ft-link-btn:hover{background:var(--persimmon);}
+  .ft-rm{
+    align-self:flex-start;
+    background:none;border:1px solid var(--line);color:rgba(15,36,56,0.5);
+    border-radius:8px;font-size:15px;padding:4px 10px;
+  }
+  .ft-add-form{
+    display:grid;gap:8px;
+    margin-top:10px;
+    border-top:1px dashed var(--line);
+    padding-top:14px;
+  }
+  .ft-add-form input, .ft-add-form textarea{
+    padding:9px 12px;border-radius:8px;border:1.5px solid var(--line);font-size:15.5px;font-family:inherit;width:100%;
+  }
+  .ft-add-form textarea{resize:vertical;min-height:56px;}
+  .ft-add-form button{
+    justify-self:start;
+    background:var(--ink);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:15.5px;font-weight:700;
+  }
+
+  /* ---------- TABLES ---------- */
+  .tab-switch{display:flex;gap:8px;margin-bottom:18px;}
+  .tab-switch button{
+    flex:1;
+    padding:12px;
+    border-radius:12px;
+    border:1.5px solid var(--line);
+    background:#fff;
+    font-weight:700;
+    font-size:16.5px;
+    color:rgba(15,36,56,0.55);
+  }
+  .tab-switch button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .table-wrap{background:#fff;border-radius:18px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--line);}
+  table{width:100%;border-collapse:collapse;font-size:16px;}
+  thead th{
+    background:var(--ink);color:var(--porcelain);
+    text-align:left;padding:12px 14px;font-weight:500;font-size:15px;letter-spacing:0.05em;
+  }
+  tbody td{padding:11px 14px;border-bottom:1px solid var(--line);}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr.room-group-start td{border-top:2px solid var(--celadon-2);}
+  tbody tr.me{background:rgba(226,87,43,0.09);}
+  tbody tr.me td:first-child{box-shadow:inset 4px 0 0 var(--persimmon);}
+  .pill{
+    display:inline-block;font-size:14.5px;padding:2px 8px;border-radius:100px;background:var(--celadon);color:var(--ink-2);font-weight:700;
+  }
+  .me-pill{background:var(--persimmon);color:#fff;}
+
+  footer{
+    text-align:center;padding:40px 20px 70px;
+    color:rgba(15,36,56,0.45);font-size:15.5px;
+    line-height:1.9;
+  }
+
+  /* admin fab */
+  /* ---------- CUSTOM MODAL / TOAST (iframe-safe, no native dialogs) ---------- */
+  .modal-mask{
+    position:fixed;inset:0;background:rgba(15,36,56,0.55);
+    display:flex;align-items:center;justify-content:center;
+    z-index:200;padding:20px;
+  }
+  .modal-box{
+    background:#fff;border-radius:16px;padding:26px;max-width:340px;width:100%;
+    box-shadow:0 20px 50px -12px rgba(0,0,0,0.4);
+  }
+  .modal-box h4{font-size:17.5px;margin-bottom:14px;color:var(--ink);}
+  .modal-box input{
+    width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);
+    font-size:17.5px;font-family:inherit;margin-bottom:6px;
+  }
+  .modal-box input:focus{outline:none;border-color:var(--persimmon);}
+  .modal-err{font-size:15.5px;color:var(--persimmon);min-height:16px;margin-bottom:8px;}
+  .modal-actions{display:flex;gap:10px;margin-top:10px;}
+  .modal-actions button{flex:1;padding:11px;border-radius:10px;font-size:16.5px;font-weight:700;border:none;}
+  .modal-actions .m-cancel{background:var(--celadon);color:var(--ink-2);}
+  .modal-actions .m-confirm{background:var(--persimmon);color:#fff;}
+  .toast{
+    position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);
+    background:var(--ink);color:#fff;padding:12px 22px;border-radius:100px;
+    font-size:16px;font-weight:500;box-shadow:0 14px 30px -10px rgba(15,36,56,0.5);
+    z-index:200;opacity:0;transition:opacity .25s ease, transform .25s ease;
+    pointer-events:none;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+
+<!-- ============================================================
+     FIREBASE（用來讓「大家共用同一份資料」在 GitHub / 任何地方都能運作）
+     ============================================================
+     使用步驟：
+     1. 到 https://console.firebase.google.com 建立一個新專案
+     2. 左側選單「建構」→「Firestore Database」→ 建立資料庫（位置選 asia-east1 或 asia-northeast1 皆可）
+     3. Firestore「規則」分頁貼上以下內容並發布（僅供內部小型活動使用，允許自由讀寫）：
+          rules_version = '2';
+          service cloud.firestore {
+            match /databases/{database}/documents {
+              match /travelData/{document=**} {
+                allow read, write: if true;
+              }
+            }
+          }
+     4. 左側齒輪「專案設定」→ 最下方「你的應用程式」→ 點 </> 網頁圖示 → 註冊應用程式
+     5. 複製出現的 firebaseConfig 物件，貼到下面 FIREBASE_CONFIG 裡取代預設值
+     ============================================================ -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+  // 請將下面整個物件換成你自己 Firebase 專案的設定
+  const FIREBASE_CONFIG = {
+    apiKey: "AIzaSyD8C_RUFChOlnF6gqYYSsyxvirk0g9AhWM",
+    authDomain: "novax-x-busan.firebaseapp.com",
+    projectId: "novax-x-busan",
+    storageBucket: "novax-x-busan.firebasestorage.app",
+    messagingSenderId: "956758206522",
+    appId: "1:956758206522:web:991c97f0bce7b9dc83ed03"
+  };
+  let firestoreDb = null;
+  try{
+    if(FIREBASE_CONFIG.projectId && FIREBASE_CONFIG.projectId !== "your-project-id"){
+      firebase.initializeApp(FIREBASE_CONFIG);
+      firestoreDb = firebase.firestore();
+    }
+  }catch(e){
+    console.error('Firebase 初始化失敗', e);
+  }
+</script>
+</head>
+<body>
+
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="hero-hangul">부산 · 경주 · 울산</div>
+  <div class="hero-eyebrow">2 0 2 6 · 여행</div>
+  <div class="hero-company">諾瓦材料科技股份有限公司</div>
+  <h1>2026 年海外員工旅遊</h1>
+  <div class="route">釜山 <span>×</span>慶州 <span>×</span>蔚山</div>
+</div>
+
+<div class="wrap">
+
+  <!-- ============ LOGIN ============ -->
+  <section id="login" style="padding-top:44px;">
+    <div class="section-label">Step 01</div>
+    <div class="section-title">輸入姓名，登入專屬行程</div>
+    <div class="section-sub">系統將依你所屬的梯次，自動帶入集合資訊、班機、每日行程、飯店與分房資訊。</div>
+    <div class="login-card">
+      <div class="login-row">
+        <input id="searchInput" type="text" placeholder="請輸入您的姓名（例如：楊聯智）" autocomplete="off">
+        <button id="loginBtn" class="login-btn">登入</button>
+      </div>
+      <div class="login-hint" id="loginError" style="color:var(--persimmon);display:none;"></div>
+      <div class="login-hint">請輸入與報名資料相同的姓名進行登入；找不到你的名字嗎？請聯繫行政承辦人員確認名單。</div>
+    </div>
+  </section>
+
+  <!-- ============ DASHBOARD ============ -->
+  <div id="dashboard" class="hidden">
+
+    <section style="padding-top:40px;">
+      <div class="welcome-bar">
+        <div class="who">歡迎回來，<b id="whoName"></b> <span id="adminModeTag" class="admin-mode-tag hidden">🔧 管理者模式</span></div>
+        <div class="actions">
+          <button id="logoutBtn">切換 / 登出</button>
+        </div>
+      </div>
+      <div class="batch-strip">
+        <div class="stat-box"><div class="label">所屬梯次</div><div class="value" id="statBatch"></div></div>
+        <div class="stat-box"><div class="label">旅遊日期</div><div class="value" id="statDate"></div></div>
+        <div class="stat-box"><div class="label">梯次人數</div><div class="value" id="statCount"></div></div>
+      </div>
+      <div class="admin-batch-switch hidden" id="adminBatchSwitch">
+        <span>✏️ 目前編輯梯次：</span>
+        <button data-batch="batch1">第一梯次</button>
+        <button data-batch="batch2">第二梯次</button>
+      </div>
+    </section>
+
+    <!-- FLAT PAGE NAV -->
+    <div class="dash-nav" id="dashNav">
+      <button class="dash-nav-btn active" data-target="assembly">📋 集合資訊</button>
+      <button class="dash-nav-btn" data-target="flights">✈️ 班機時刻</button>
+      <button class="dash-nav-btn" data-target="itinerary">📅 每日行程</button>
+      <button class="dash-nav-btn" data-target="rooms">🛏️ 分房 / 分組表</button>
+    </div>
+
+    <!-- ASSEMBLY INFO -->
+    <section id="assembly" class="dash-page">
+      <div class="section-label">集合資訊</div>
+      <div class="section-title">出發集合須知</div>
+      <div class="section-sub">以下為你所屬梯次的集合資訊，如有異動將由管理員更新。</div>
+      <div class="assembly-grid" id="assemblyGrid"></div>
+    </section>
+
+    <!-- FLIGHTS -->
+    <section id="flights" class="dash-page hidden">
+      <div class="section-label">Step 02</div>
+      <div class="section-title">班機時刻</div>
+      <div class="section-sub">獨立顯示去程與回程航班資訊，請預留機場報到時間。</div>
+      <div id="ticketWrap"></div>
+    </section>
+
+    <!-- ITINERARY -->
+    <section id="itinerary" class="dash-page hidden">
+      <div class="section-label">Step 03</div>
+      <div class="section-title">每日行程</div>
+      <div class="section-sub">框框區塊為管理員刊登「當地現場搶先看」照片的專屬欄位。</div>
+      <div id="dayList"></div>
+    </section>
+
+    <!-- ROOMS / MEALS -->
+    <section id="rooms" class="dash-page hidden">
+      <div class="section-label">Step 04</div>
+      <div class="section-title">分房表 &amp; 餐食分組表</div>
+      <div class="section-sub">已依你的名字自動標示所在房間與用餐分組（橘色標記為你本人）。</div>
+      <div class="tab-switch">
+        <button id="tabRoomBtn" class="active">🛏️ 分房表</button>
+        <button id="tabMealBtn">🍽️ 餐食分組表</button>
+      </div>
+      <div class="tab-switch" id="nightTabSwitch">
+        <button data-night="night12" class="active">第一、二晚</button>
+        <button data-night="night3">第三晚</button>
+        <button data-night="night4">第四晚</button>
+      </div>
+      <div class="table-wrap">
+        <table id="roomTable"></table>
+      </div>
+      <div id="roomSaveWrap"></div>
+    </section>
+
+    <footer>諾瓦材料科技股份有限公司<br>2026 員工旅遊管理系統 · 僅供本次活動使用</footer>
+  </div>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+/* =========================================================
+   DATA
+   ========================================================= */
+const ITINERARY = [
+  { title:'抵達釜山', stops:['抵達釜山','午餐','松島海上纜車','松島龍宮雲橋','白淺灘文化村','ARTE MUSEUM BUSAN','BIFF 國際電影廣場','晚餐 / 入住'],
+    breakfast:'X（去程航班）', lunch:'釜山豬肉湯飯', dinner:'韓式傳統菜包肉套餐',
+    highlights:['松島海上纜車','白淺灘文化村','BIFF 國際電影廣場'] },
+  { title:'海東龍宮寺・青沙浦', stops:['海東龍宮寺','BLUE LINE PARK 天空膠囊','青沙浦天空步道','午餐','西面地下街','海雲台晚餐','The Bay 101 夜景'],
+    breakfast:'飯店內用餐', lunch:'鳳雛安東粉絲燉雞', dinner:'味贊王韓式 BBQ',
+    highlights:['海東龍宮寺','青沙浦天空步道','The Bay 101 夜景'] },
+  { title:'佛國寺・石窟庵・慶州古蹟', stops:['佛國寺','石窟庵','午餐','皇理團路自由散策','瞻星臺','東宮與月池夜景','返回飯店'],
+    breakfast:'飯店內用餐', lunch:'真骨馬鈴薯燉大骨湯', dinner:'發放 15,000 KRW 自理',
+    hotels:[{name:'Lahan Select 慶州',tier:'五星級飯店'}], highlights:['佛國寺','石窟庵','瞻星臺'] },
+  { title:'艮絕岬・大王岩・蔚山', stops:['艮絕岬','大王岩公園 / 吊橋','午餐','長生浦鯨魚博物館','太和江十里竹林','LOTTE MART','晚餐 / 入住'],
+    breakfast:'飯店內用餐', lunch:'蔚山釜飯 / 烤魚定食', dinner:'蟹塔傳說',
+    hotels:[{name:'釜山樂天飯店',tier:'五星級飯店'}], highlights:['大王岩公園 / 吊橋','長生浦鯨魚博物館','太和江十里竹林'] },
+  { title:'甘川洞・札嘎其・賦歸', stops:['甘川洞文化村','彩妝保養品店','札嘎其海鮮市場','南浦洞 / 光復洞自由買賣','前往機場'],
+    breakfast:'飯店內用餐', lunch:'五香豬腳', dinner:'機場或簡餐自理',
+    hotels:[], highlights:['甘川洞文化村','札嘎其海鮮市場'] }
+];
+
+const BATCHES = {
+  batch1:{
+    id:'batch1', label:'第一梯次', start:'2026-09-12', dateRange:'2026/09/12 － 09/16（5天）', count:23,
+    flightOut:{airline:'長榮航空', no:'BR1194', time:'07:00 － 10:20', date:'2026/09/12'},
+    flightBack:{airline:'長榮航空', no:'BR163', time:'19:10 － 20:35', date:'2026/09/16'},
+    hotelOverride:{0:[{name:'Avani Central Busan',tier:'四星級飯店'}], 1:[{name:'Avani Central Busan',tier:'四星級飯店'}]},
+    groups:[
+      ['第一組',[[1,'楊聯智'],[2,'楊子鞍'],[3,'翁子軒']]],
+      ['第二組',[[4,'翁嘉琳'],[5,'翁孝怡'],[6,'翁新'],[7,'陳美容']]],
+      ['第三組',[[8,'林益興'],[9,'林馳鈞'],[10,'蔡純萍'],[11,'林靖鈞']]],
+      ['第四組',[[12,'陳國英'],[13,'陳芯頤'],[14,'廖小慧'],[15,'陳姿妤']]],
+      ['第五組',[[16,'郭雯玲'],[17,'郭雯芳'],[18,'黃少壕'],[19,'林廣']]],
+      ['第六組',[[20,'陳立怡'],[21,'簡志榮'],[22,'劉夢蓉'],[23,'毛月玲']]]
+    ],
+    rooms:[
+      [1,'一大床',['楊聯智']],
+      [2,'兩小床',['楊子鞍','翁子軒']],
+      [3,'兩小床',['翁嘉琳','翁孝怡']],
+      [4,'一大床',['翁新','陳美容']],
+      [5,'一大床',['林益興','林馳鈞']],
+      [6,'一大床',['蔡純萍','林靖鈞']],
+      [7,'兩小床',['陳國英','陳芯頤']],
+      [8,'兩小床',['廖小慧','陳姿妤']],
+      [9,'兩小床',['郭雯玲','郭雯芳']],
+      [10,'兩小床',['黃少壕','林廣']],
+      [11,'一大床',['陳立怡','簡志榮']],
+      [12,'兩小床',['劉夢蓉','毛月玲']]
+    ]
+  },
+  batch2:{
+    id:'batch2', label:'第二梯次', start:'2026-09-19', dateRange:'2026/09/19 － 09/23（5天）', count:30,
+    flightOut:{airline:'中華航空', no:'CI188', time:'07:55 － 11:15', date:'2026/09/19'},
+    flightBack:{airline:'中華航空', no:'CI187', time:'20:00 － 21:20', date:'2026/09/23'},
+    hotelOverride:{0:[{name:'Lavalse Hotel',tier:'四星級飯店'}], 1:[{name:'Lavalse Hotel',tier:'四星級飯店'}]},
+    groups:[
+      ['第一組',[[1,'林家綺'],[2,'楊采婕'],[3,'蔡佳玟'],[4,'簡秀娥']]],
+      ['第二組',[[5,'陳惠萍'],[6,'陳惠貞'],[7,'曹天杰'],[8,'鄧嘉芸']]],
+      ['第三組',[[9,'楊子誼'],[10,'謝泊勳'],[11,'謝善有'],[12,'吳文琪']]],
+      ['第四組',[[13,'黃置國'],[14,'黃宗德'],[15,'黃置振'],[16,'簡怡萱']]],
+      ['第五組',[[17,'彭如卿'],[18,'唐德軒'],[19,'莊裕銘'],[20,'楊嘉豪']]],
+      ['第六組',[[21,'周奕鋒'],[22,'曾祥瑞'],[23,'曾鵬地'],[24,'曾祥修']]],
+      ['第七組',[[25,'蔡勝閔'],[26,'翁雨薇'],[27,'蔡妤俙']]],
+      ['第八組',[[28,'李定儒'],[29,'陳修彩'],[30,'楊佳維']]]
+    ],
+    rooms:[
+      [1,'兩小床',['林家綺','楊采婕']],
+      [2,'兩小床',['蔡佳玟','簡秀娥']],
+      [3,'兩小床',['陳惠萍','陳惠貞']],
+      [4,'一大床',['曹天杰','鄧嘉芸']],
+      [5,'一大床',['楊子誼','謝泊勳']],
+      [6,'一大床',['謝善有','吳文琪']],
+      [7,'兩小床',['黃置國','黃宗德']],
+      [8,'一大床',['黃置振','簡怡萱']],
+      [9,'兩小床',['彭如卿','唐德軒']],
+      [10,'兩小床',['莊裕銘','楊嘉豪']],
+      [11,'兩小床',['周奕鋒','曾祥瑞']],
+      [12,'兩小床',['曾鵬地','曾祥修']],
+      [13,'一大床（三人房）',['蔡勝閔','翁雨薇','蔡妤俙']],
+      [14,'兩小床',['李定儒','陳修彩']],
+      [15,'一大床',['楊佳維']]
+    ]
+  }
+};
+
+const ADMIN_PASSCODE = '28088287';
+
+/* build name -> batch lookup */
+const NAME_INDEX = [];
+Object.values(BATCHES).forEach(b=>{
+  b.groups.forEach(([gname, members])=>{
+    members.forEach(([no,name])=>{
+      NAME_INDEX.push({name, batch:b.id, group:gname, no});
+    });
+  });
+});
+
+/* =========================================================
+   STATE
+   ========================================================= */
+let currentUser = null;   // {name, batch, group, no}
+let isAdmin = false;
+let activeTab = 'room';
+let activeNight = 'night12';
+
+const NIGHTS = [
+  {key:'night12', label:'第一、二晚（同一間飯店）'},
+  {key:'night3', label:'第三晚（慶州）'},
+  {key:'night4', label:'第四晚（蔚山／釜山樂天）'}
+];
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+function mapsLink(query){
+  return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(query + ' 대한민국');
+}
+function addDays(dateStr, n){
+  const d = new Date(dateStr + 'T00:00:00');
+  d.setDate(d.getDate()+n);
+  const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,'0'), day=String(d.getDate()).padStart(2,'0');
+  const week=['週日','週一','週二','週三','週四','週五','週六'][d.getDay()];
+  return `${y}/${m}/${day}（${week}）`;
+}
+function findRoomInfo(batch, name){
+  for(const r of batch.rooms){
+    if(r[2].includes(name)) return r;
+  }
+  return null;
+}
+const memoryStore = {};
+function sanitizeDocId(key){
+  return key.replace(/\//g, '_');
+}
+async function storageGet(key, shared){
+  if(!shared){
+    try{ return localStorage.getItem(key); }catch(e){ return memoryStore[key] ?? null; }
+  }
+  if(firestoreDb){
+    try{
+      const snap = await firestoreDb.collection('travelData').doc(sanitizeDocId(key)).get();
+      return snap.exists ? snap.data().value : null;
+    }catch(e){
+      console.error('Firestore 讀取失敗', key, e);
+    }
+  }
+  return Object.prototype.hasOwnProperty.call(memoryStore, key) ? memoryStore[key] : null;
+}
+async function storageSet(key, value, shared){
+  if(!shared){
+    try{ localStorage.setItem(key, value); return true; }catch(e){ memoryStore[key] = value; return true; }
+  }
+  if(firestoreDb){
+    try{
+      await firestoreDb.collection('travelData').doc(sanitizeDocId(key)).set({
+        value,
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      return true;
+    }catch(e){
+      console.error('Firestore 寫入失敗', key, e);
+    }
+  }
+  memoryStore[key] = value;
+  return true;
+}
+
+/* =========================================================
+   RENDER: ASSEMBLY INFO (集合資訊)
+   ========================================================= */
+async function renderAssemblyInfo(){
+  const grid = document.getElementById('assemblyGrid');
+  if(!grid) return;
+  grid.innerHTML = '';
+  if(!currentUser) return;
+  const b = BATCHES[currentUser.batch];
+  const meetTime = await storageGet(`meet:${b.id}:time`, true) || '';
+  const terminal = await storageGet(`meet:${b.id}:terminal`, true) || '';
+  const guideRaw = await storageGet(`guide:${b.id}`, true);
+  let guide = {name:'', phone:''};
+  try{ if(guideRaw) guide = JSON.parse(guideRaw); }catch(e){}
+  const dateStr = addDays(b.start, 0);
+  const card = document.createElement('div');
+  card.className='assembly-card';
+  if(isAdmin){
+    card.innerHTML = `
+      <div class="ac-title">${b.label}</div>
+      <div class="ac-row"><span>集合日期</span><b>${dateStr}</b></div>
+      <div class="ac-row"><span>集合時間</span><input type="text" id="meetTime-${b.id}" value="${meetTime}" placeholder="例：06:00 於第一航廈"></div>
+      <div class="ac-row"><span>集合地點</span><input type="text" id="meetTerm-${b.id}" value="${terminal}" placeholder="航廈（例：第一航廈）"></div>
+      <div class="ac-row"><span>導遊／領隊</span>
+         <input type="text" id="guideName-${b.id}" value="${guide.name||''}" placeholder="姓名" style="max-width:90px;">
+         <input type="text" id="guidePhone-${b.id}" value="${guide.phone||''}" placeholder="手機" style="max-width:120px;">
+      </div>
+      <button class="ac-save" data-batch="${b.id}">💾 儲存並公開給所有人</button>
+    `;
+  } else {
+    const guideText = guide.name
+      ? `${guide.name}${guide.phone ? '　' + guide.phone : '（手機未定，待管理員輸入）'}`
+      : '未定（姓名／手機未定，待管理員輸入）';
+    card.innerHTML = `
+      <div class="ac-title">${b.label}</div>
+      <div class="ac-row"><span>集合日期</span><b>${dateStr}</b></div>
+      <div class="ac-row"><span>集合時間</span><b>${meetTime || '未定，待管理員輸入'}</b></div>
+      <div class="ac-row"><span>集合地點</span><b>桃園機場（${terminal || '航廈未定，待管理員輸入'}）</b></div>
+      <div class="ac-row"><span>導遊／領隊</span><b>${guideText}</b></div>
+    `;
+  }
+  grid.appendChild(card);
+  if(isAdmin){
+    document.querySelectorAll('.ac-save').forEach(btn=>{
+      btn.addEventListener('click', ()=>saveAssembly(btn.dataset.batch));
+    });
+  }
+}
+async function saveAssembly(batchId){
+  const time = document.getElementById(`meetTime-${batchId}`).value.trim();
+  const term = document.getElementById(`meetTerm-${batchId}`).value.trim();
+  const gName = document.getElementById(`guideName-${batchId}`).value.trim();
+  const gPhone = document.getElementById(`guidePhone-${batchId}`).value.trim();
+  await storageSet(`meet:${batchId}:time`, time, true);
+  await storageSet(`meet:${batchId}:terminal`, term, true);
+  await storageSet(`guide:${batchId}`, JSON.stringify({name:gName, phone:gPhone}), true);
+  await renderAssemblyInfo();
+  if(currentUser && currentUser.batch===batchId){ renderTable(BATCHES[batchId]); }
+  showToast('✓ 已儲存並公開給所有人查看');
+}
+
+/* =========================================================
+   LOGIN / LOGOUT
+   ========================================================= */
+function attemptLogin(){
+  const val = document.getElementById('searchInput').value.trim();
+  const errBox = document.getElementById('loginError');
+  if(!val){
+    errBox.textContent = '請先輸入姓名';
+    errBox.style.display = 'block';
+    return;
+  }
+  if(val === '管理者'){
+    errBox.style.display = 'none';
+    showPasswordModal(adminLogin);
+    return;
+  }
+  const p = NAME_INDEX.find(x=>x.name===val);
+  if(!p){
+    errBox.textContent = '查無此姓名，請確認輸入是否與報名資料相同';
+    errBox.style.display = 'block';
+    return;
+  }
+  errBox.style.display = 'none';
+  login(p.name);
+}
+document.getElementById('loginBtn').addEventListener('click', attemptLogin);
+document.getElementById('searchInput').addEventListener('keydown', e=>{
+  if(e.key === 'Enter') attemptLogin();
+});
+document.getElementById('searchInput').addEventListener('input', ()=>{
+  document.getElementById('loginError').style.display = 'none';
+});
+
+async function login(name){
+  const p = NAME_INDEX.find(x=>x.name===name);
+  if(!p) return;
+  currentUser = {...p};
+  isAdmin = false;
+  await storageSet('lastUser', name, false);
+  document.getElementById('login').classList.add('hidden');
+  document.getElementById('dashboard').classList.remove('hidden');
+  switchDashPage('assembly');
+  renderDashboard();
+  applyAdminUI();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+async function adminLogin(){
+  isAdmin = true;
+  currentUser = {name:'管理者', batch:'batch1', group:'管理者帳號', no:0, isAdminAccount:true};
+  await storageSet('lastUser', '__ADMIN__', false);
+  document.getElementById('login').classList.add('hidden');
+  document.getElementById('dashboard').classList.remove('hidden');
+  switchDashPage('assembly');
+  renderDashboard();
+  applyAdminUI();
+  showToast('✓ 管理者登入成功，可編輯兩個梯次的內容');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function logout(){
+  currentUser = null;
+  isAdmin = false;
+  document.getElementById('login').classList.remove('hidden');
+  document.getElementById('dashboard').classList.add('hidden');
+  document.getElementById('searchInput').value='';
+  document.getElementById('loginError').style.display = 'none';
+  storageSet('lastUser', '', false);
+  applyAdminUI();
+  window.location.hash = '#login';
+}
+document.getElementById('logoutBtn').addEventListener('click', logout);
+
+/* ---- Admin batch switcher (管理者帳號可切換編輯梯次) ---- */
+document.getElementById('adminBatchSwitch').addEventListener('click', e=>{
+  const btn = e.target.closest('button[data-batch]');
+  if(!btn || !currentUser || !currentUser.isAdminAccount) return;
+  currentUser.batch = btn.dataset.batch;
+  renderDashboard();
+});
+
+/* =========================================================
+   FLAT PAGE NAV (dashboard tabs)
+   ========================================================= */
+function switchDashPage(target){
+  document.querySelectorAll('.dash-page').forEach(sec=>{
+    sec.classList.toggle('hidden', sec.id !== target);
+  });
+  document.querySelectorAll('.dash-nav-btn').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.target === target);
+  });
+  document.getElementById('dashboard').scrollIntoView({behavior:'smooth', block:'start'});
+}
+document.querySelectorAll('.dash-nav-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=> switchDashPage(btn.dataset.target));
+});
+
+/* =========================================================
+   RENDER: DASHBOARD
+   ========================================================= */
+function renderDashboard(){
+  const batch = BATCHES[currentUser.batch];
+  document.getElementById('whoName').textContent = `${currentUser.name}（${batch.label} · ${currentUser.group}）`;
+  document.getElementById('statBatch').textContent = batch.label;
+  document.getElementById('statDate').textContent = batch.dateRange;
+  document.getElementById('statCount').textContent = batch.count + ' 人';
+
+  const switcher = document.getElementById('adminBatchSwitch');
+  if(currentUser.isAdminAccount){
+    switcher.classList.remove('hidden');
+    switcher.querySelectorAll('button[data-batch]').forEach(b=>{
+      b.classList.toggle('active', b.dataset.batch === currentUser.batch);
+    });
+  } else {
+    switcher.classList.add('hidden');
+  }
+
+  renderAssemblyInfo();
+  renderTicket(batch);
+  renderDays(batch);
+  renderTable(batch);
+}
+
+/* ---- Flight ticket ---- */
+function renderTicket(batch){
+  const wrap = document.getElementById('ticketWrap');
+  wrap.innerHTML = '';
+  const legs = [
+    {label:'去程航班', from:['TPE','台北桃園'], to:['PUS','釜山金海'], f:batch.flightOut},
+    {label:'回程航班', from:['PUS','釜山金海'], to:['TPE','台北桃園'], f:batch.flightBack}
+  ];
+  legs.forEach(leg=>{
+    const el = document.createElement('div');
+    el.className='ticket';
+    el.innerHTML = `
+      <div class="ticket-main">
+        <div class="ticket-label">${leg.label} · ${leg.f.airline} ${leg.f.no}</div>
+        <div class="ticket-route">
+          <div class="ticket-city"><div class="code">${leg.from[0]}</div><div class="name">${leg.from[1]}</div></div>
+          <div class="ticket-plane"><div class="dash"></div><span>✈</span><div class="dash"></div></div>
+          <div class="ticket-city"><div class="code">${leg.to[0]}</div><div class="name">${leg.to[1]}</div></div>
+        </div>
+        <div class="ticket-meta">
+          <div>日期　<b>${leg.f.date}</b></div>
+          <div>時間　<b>${leg.f.time}</b></div>
+          <div>航班　<b>${leg.f.no}</b></div>
+        </div>
+      </div>
+      <div class="ticket-stub"><div class="vert">BOARDING</div></div>
+    `;
+    wrap.appendChild(el);
+  });
+}
+
+/* ---- Itinerary days ---- */
+async function renderDays(batch){
+  const list = document.getElementById('dayList');
+  list.innerHTML = '';
+  for(let i=0;i<ITINERARY.length;i++){
+    const day = ITINERARY[i];
+    const dateStr = addDays(batch.start, i);
+    const card = document.createElement('div');
+    card.className='day-card';
+
+    const baseHotels = (batch.hotelOverride && batch.hotelOverride[i]) ? batch.hotelOverride[i] : (day.hotels || []);
+
+    const overrideRaw = await storageGet(`dayedit:${batch.id}:day${i}`, true);
+    let override = {};
+    try{ override = overrideRaw ? JSON.parse(overrideRaw) : {}; }catch(e){ override = {}; }
+
+    const effTitle = override.title || day.title;
+    const effStops = (override.stops && override.stops.length) ? override.stops : day.stops;
+    const effBreakfast = override.breakfast || day.breakfast;
+    const effLunch = override.lunch || day.lunch;
+    const effDinner = override.dinner || day.dinner;
+    const effHotels = (override.hotels && override.hotels.length === baseHotels.length && baseHotels.length>0)
+      ? override.hotels : baseHotels;
+
+    const stopsHtml = effStops.map((s,idx)=>{
+      const arrow = idx < effStops.length-1 ? '<span class="stop-arrow">→</span>' : '';
+      return `<span class="stop">${s}</span>${arrow}`;
+    }).join('');
+
+    let hotelHtml = '';
+    if(effHotels.length){
+      const hotelBlocks = [];
+      for(let hIdx=0; hIdx<effHotels.length; hIdx++){
+        const h = effHotels[hIdx];
+        const mapKey = `hotelmap:${batch.id}:day${i}:hotel${hIdx}`;
+        const raw = await storageGet(mapKey, true);
+        let saved = {};
+        try{ saved = raw ? JSON.parse(raw) : {}; }catch(e){ saved = {}; }
+        const googleUrl = saved.google || mapsLink(h.name);
+        const naverUrl = saved.naver || ('https://map.naver.com/p/search/' + encodeURIComponent(h.name));
+        hotelBlocks.push(`
+          <div class="hotel-row">
+            <div class="h-icon">🏨</div>
+            <div class="h-info"><div class="h-tier">${h.tier}</div><div class="h-name">${h.name}</div></div>
+            <div class="hotel-map-btns">
+              <a id="hotelGoogleLink-${batch.id}-${i}-${hIdx}" class="map-btn" target="_blank" rel="noopener" href="${googleUrl}">📍 Google 地圖</a>
+              <a id="hotelNaverLink-${batch.id}-${i}-${hIdx}" class="map-btn naver-btn" target="_blank" rel="noopener" href="${naverUrl}">📍 Naver 地圖</a>
+            </div>
+          </div>
+          <div class="hotel-map-edit admin-add hidden" id="hotelMapEdit-${batch.id}-${i}-${hIdx}">
+            <input type="text" placeholder="Google 地圖連結" id="hotelGoogleInput-${batch.id}-${i}-${hIdx}" value="${googleUrl}">
+            <input type="text" placeholder="Naver 地圖連結" id="hotelNaverInput-${batch.id}-${i}-${hIdx}" value="${naverUrl}">
+            <button data-batch="${batch.id}" data-day="${i}" data-hotel="${hIdx}" class="saveHotelMapBtn">💾 儲存地圖連結</button>
+          </div>`);
+      }
+      hotelHtml = hotelBlocks.join('');
+    } else {
+      hotelHtml = `<div class="hotel-row"><div class="h-icon">🏠</div><div class="h-info"><div class="h-tier">賦歸日</div><div class="h-name">溫暖的家（搭機返台）</div></div></div>`;
+    }
+
+    const spotFramesHtml = (day.highlights||[]).map((spot,si)=>`
+      <div class="spot-frame">
+        <div class="spot-frame-label">📍 ${spot}</div>
+        <div class="gallery-grid" id="spotphotos-${batch.id}-${i}-${si}"></div>
+        <div class="admin-add hidden" id="spotAdd-${batch.id}-${i}-${si}">
+          <input type="file" accept="image/*" id="spotInput-${batch.id}-${i}-${si}">
+          <button data-batch="${batch.id}" data-day="${i}" data-spot="${si}" class="addSpotPhotoBtn">📤 上傳照片</button>
+        </div>
+      </div>
+    `).join('');
+
+    const hotelEditFieldsHtml = effHotels.map((h,hIdx)=>`
+      <div class="day-edit-hotel-row">
+        <input type="text" class="dayEditHotelName" data-hotel="${hIdx}" value="${h.name}" placeholder="飯店名稱">
+        <input type="text" class="dayEditHotelTier" data-hotel="${hIdx}" value="${h.tier}" placeholder="飯店等級">
+      </div>`).join('');
+
+    card.innerHTML = `
+      <div class="day-head">
+        <div class="day-num">${String(i+1).padStart(2,'0')}</div>
+        <div class="day-headline">
+          <div class="day-date">${dateStr}</div>
+          <h3>第${['一','二','三','四','五'][i]}天 ・ ${effTitle}</h3>
+        </div>
+      </div>
+      <div class="day-body">
+        <div class="stop-flow">${stopsHtml}</div>
+        <div class="meal-grid">
+          <div class="meal-box"><div class="m-label">早餐</div><div class="m-value">${effBreakfast}</div></div>
+          <div class="meal-box"><div class="m-label">午餐</div><div class="m-value">${effLunch}</div></div>
+          <div class="meal-box"><div class="m-label">晚餐</div><div class="m-value">${effDinner}</div></div>
+        </div>
+        ${hotelHtml}
+
+        <button class="day-edit-toggle admin-only-btn hidden" data-batch="${batch.id}" data-day="${i}">✏️ 編輯本日行程與餐食</button>
+        <div class="day-edit-panel hidden" id="dayEditPanel-${batch.id}-${i}">
+          <label class="day-edit-label">行程標題</label>
+          <input type="text" id="dayEditTitle-${batch.id}-${i}" value="${effTitle}">
+          <label class="day-edit-label">景點行程（請用「→」分隔每個地點）</label>
+          <textarea id="dayEditStops-${batch.id}-${i}">${effStops.join(' → ')}</textarea>
+          <label class="day-edit-label">早餐</label>
+          <input type="text" id="dayEditBreakfast-${batch.id}-${i}" value="${effBreakfast}">
+          <label class="day-edit-label">午餐</label>
+          <input type="text" id="dayEditLunch-${batch.id}-${i}" value="${effLunch}">
+          <label class="day-edit-label">晚餐</label>
+          <input type="text" id="dayEditDinner-${batch.id}-${i}" value="${effDinner}">
+          ${effHotels.length ? `<label class="day-edit-label">飯店資訊</label><div id="dayEditHotels-${batch.id}-${i}">${hotelEditFieldsHtml}</div>` : ''}
+          <button class="saveDayEditBtn" data-batch="${batch.id}" data-day="${i}">💾 儲存並公開給所有人</button>
+        </div>
+
+        <div class="gallery-title">當地現場搶先看</div>
+        <div class="spot-frames">${spotFramesHtml}</div>
+
+        <button class="freetime-toggle" data-batch="${batch.id}" data-day="${i}">🧭 推薦自由行程</button>
+        <div class="freetime-panel hidden" id="ftPanel-${batch.id}-${i}">
+          <div id="ftList-${batch.id}-${i}"></div>
+          <div class="ft-add-form hidden" id="ftAddForm-${batch.id}-${i}">
+            <input type="text" placeholder="連結名稱（例如：甘川洞文化村官方地圖）" id="ftName-${batch.id}-${i}">
+            <input type="text" placeholder="貼上連結網址" id="ftUrl-${batch.id}-${i}">
+            <input type="file" accept="image/*" placeholder="上傳圖片（選填）" id="ftImg-${batch.id}-${i}">
+            <button data-batch="${batch.id}" data-day="${i}" class="addFtBtn">新增推薦行程</button>
+          </div>
+        </div>
+      </div>
+    `;
+    list.appendChild(card);
+    for(let si=0; si<(day.highlights||[]).length; si++){
+      await renderSpotGallery(batch.id, i, si);
+    }
+    await renderFreetime(batch.id, i);
+  }
+  document.querySelectorAll('.addSpotPhotoBtn').forEach(btn=>{
+    btn.addEventListener('click', ()=>addSpotPhoto(btn.dataset.batch, parseInt(btn.dataset.day), parseInt(btn.dataset.spot)));
+  });
+  document.querySelectorAll('.addFtBtn').forEach(btn=>{
+    btn.addEventListener('click', ()=>addFreetime(btn.dataset.batch, parseInt(btn.dataset.day)));
+  });
+  document.querySelectorAll('.freetime-toggle').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const panel = document.getElementById(`ftPanel-${btn.dataset.batch}-${btn.dataset.day}`);
+      panel.classList.toggle('hidden');
+    });
+  });
+  document.querySelectorAll('.saveHotelMapBtn').forEach(btn=>{
+    btn.addEventListener('click', ()=>saveHotelMap(btn.dataset.batch, parseInt(btn.dataset.day), parseInt(btn.dataset.hotel)));
+  });
+  document.querySelectorAll('.day-edit-toggle').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const panel = document.getElementById(`dayEditPanel-${btn.dataset.batch}-${btn.dataset.day}`);
+      panel.classList.toggle('hidden');
+    });
+  });
+  document.querySelectorAll('.saveDayEditBtn').forEach(btn=>{
+    btn.addEventListener('click', ()=>saveDayEdit(btn.dataset.batch, parseInt(btn.dataset.day)));
+  });
+  applyAdminUI();
+}
+
+async function saveDayEdit(batchId, dayIdx){
+  const title = document.getElementById(`dayEditTitle-${batchId}-${dayIdx}`).value.trim();
+  const stopsRaw = document.getElementById(`dayEditStops-${batchId}-${dayIdx}`).value;
+  const stops = stopsRaw.split('→').map(s=>s.trim()).filter(Boolean);
+  const breakfast = document.getElementById(`dayEditBreakfast-${batchId}-${dayIdx}`).value.trim();
+  const lunch = document.getElementById(`dayEditLunch-${batchId}-${dayIdx}`).value.trim();
+  const dinner = document.getElementById(`dayEditDinner-${batchId}-${dayIdx}`).value.trim();
+  const hotelWrap = document.getElementById(`dayEditHotels-${batchId}-${dayIdx}`);
+  let hotels = null;
+  if(hotelWrap){
+    const names = hotelWrap.querySelectorAll('.dayEditHotelName');
+    const tiers = hotelWrap.querySelectorAll('.dayEditHotelTier');
+    hotels = [];
+    names.forEach((inp,idx)=>{
+      hotels.push({ name: inp.value.trim(), tier: tiers[idx] ? tiers[idx].value.trim() : '' });
+    });
+  }
+  const override = { title, stops, breakfast, lunch, dinner };
+  if(hotels) override.hotels = hotels;
+  await storageSet(`dayedit:${batchId}:day${dayIdx}`, JSON.stringify(override), true);
+  showToast('✓ 已儲存並公開給所有人查看');
+  await renderDays(BATCHES[batchId]);
+}
+
+async function saveHotelMap(batchId, dayIdx, hotelIdx){
+  const g = document.getElementById(`hotelGoogleInput-${batchId}-${dayIdx}-${hotelIdx}`).value.trim();
+  const n = document.getElementById(`hotelNaverInput-${batchId}-${dayIdx}-${hotelIdx}`).value.trim();
+  await storageSet(`hotelmap:${batchId}:day${dayIdx}:hotel${hotelIdx}`, JSON.stringify({google:g, naver:n}), true);
+  const gLink = document.getElementById(`hotelGoogleLink-${batchId}-${dayIdx}-${hotelIdx}`);
+  const nLink = document.getElementById(`hotelNaverLink-${batchId}-${dayIdx}-${hotelIdx}`);
+  if(gLink && g) gLink.href = g;
+  if(nLink && n) nLink.href = n;
+  showToast('✓ 已儲存地圖連結，所有人皆可看到');
+}
+
+/* ---- Free-time recommendations ---- */
+async function renderFreetime(batchId, dayIdx){
+  const key = `freetime:${batchId}:day${dayIdx}`;
+  const raw = await storageGet(key, true);
+  let items = [];
+  try{ items = raw ? JSON.parse(raw) : []; }catch(e){ items=[]; }
+  const listEl = document.getElementById(`ftList-${batchId}-${dayIdx}`);
+  if(!listEl) return;
+  if(items.length===0){
+    listEl.innerHTML = `<div class="freetime-empty">尚無推薦自由行程，敬請期待管理員刊登建議景點 🧭</div>`;
+  } else {
+    listEl.innerHTML = items.map((it,idx)=>`
+      <div class="ft-item">
+        ${it.img ? `<div class="ft-img"><img src="${it.img}" alt="${it.name||''}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>` : ''}
+        <div class="ft-body">
+          <div class="ft-btn-row">
+            ${it.url ? `<a class="ft-link-btn" href="${it.url}" target="_blank" rel="noopener">🔗 ${it.name || '前往連結'}</a>` : `<span class="ft-desc">${it.name||''}</span>`}
+            ${isAdmin ? `<button class="ft-rm" data-batch="${batchId}" data-day="${dayIdx}" data-idx="${idx}">刪除</button>` : ''}
+          </div>
+        </div>
+      </div>
+    `).join('');
+    listEl.querySelectorAll('.ft-rm').forEach(b=>{
+      b.addEventListener('click', ()=>removeFreetime(b.dataset.batch, parseInt(b.dataset.day), parseInt(b.dataset.idx)));
+    });
+  }
+}
+/* ---- Image upload helper: reads a file and returns a resized/compressed data URL ---- */
+function fileToCompressedDataURL(file, maxDim=1280, quality=0.72){
+  return new Promise((resolve, reject)=>{
+    if(!file.type || !file.type.startsWith('image/')){
+      reject(new Error('請選擇圖片檔案（jpg / jpeg / png 等）'));
+      return;
+    }
+    const reader = new FileReader();
+    reader.onerror = ()=> reject(new Error('讀取檔案失敗'));
+    reader.onload = ()=>{
+      const img = new Image();
+      img.onload = ()=>{
+        let { width, height } = img;
+        if(width > maxDim || height > maxDim){
+          if(width > height){ height = Math.round(height * maxDim / width); width = maxDim; }
+          else { width = Math.round(width * maxDim / height); height = maxDim; }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width; canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.onerror = ()=> reject(new Error('圖片格式無法讀取'));
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+async function addFreetime(batchId, dayIdx){
+  const name = document.getElementById(`ftName-${batchId}-${dayIdx}`).value.trim();
+  const url = document.getElementById(`ftUrl-${batchId}-${dayIdx}`).value.trim();
+  const imgInput = document.getElementById(`ftImg-${batchId}-${dayIdx}`);
+  const imgFile = imgInput.files && imgInput.files[0];
+  if(!name && !url) return;
+  let img = '';
+  if(imgFile){
+    try{
+      showToast('圖片處理中…');
+      img = await fileToCompressedDataURL(imgFile);
+    }catch(e){
+      showToast('❌ ' + e.message);
+      return;
+    }
+  }
+  const key = `freetime:${batchId}:day${dayIdx}`;
+  const raw = await storageGet(key, true);
+  let items = [];
+  try{ items = raw ? JSON.parse(raw) : []; }catch(e){ items=[]; }
+  items.push({name, url, img});
+  await storageSet(key, JSON.stringify(items), true);
+  document.getElementById(`ftName-${batchId}-${dayIdx}`).value='';
+  document.getElementById(`ftUrl-${batchId}-${dayIdx}`).value='';
+  imgInput.value='';
+  renderFreetime(batchId, dayIdx);
+  showToast('✓ 已新增推薦行程');
+}
+async function removeFreetime(batchId, dayIdx, idx){
+  const key = `freetime:${batchId}:day${dayIdx}`;
+  const raw = await storageGet(key, true);
+  let items = [];
+  try{ items = raw ? JSON.parse(raw) : []; }catch(e){ items=[]; }
+  items.splice(idx,1);
+  await storageSet(key, JSON.stringify(items), true);
+  renderFreetime(batchId, dayIdx);
+}
+
+async function renderSpotGallery(batchId, dayIdx, spotIdx){
+  const key = `photos:${batchId}:day${dayIdx}:spot${spotIdx}`;
+  const raw = await storageGet(key, true);
+  let photos = [];
+  try{ photos = raw ? JSON.parse(raw) : []; }catch(e){ photos=[]; }
+  const grid = document.getElementById(`spotphotos-${batchId}-${dayIdx}-${spotIdx}`);
+  if(!grid) return;
+  if(photos.length===0){
+    grid.innerHTML = `<div class="gallery-empty" style="grid-column:1/-1;">尚無照片，敬請期待管理員刊登現場花絮 📷</div>`;
+    return;
+  }
+  grid.innerHTML = photos.map((url,idx)=>`
+    <figure>
+      <img src="${url}" alt="景點照片" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'gallery-empty\\'>圖片載入失敗</div>'">
+      ${isAdmin ? `<button class="rm-photo" data-batch="${batchId}" data-day="${dayIdx}" data-spot="${spotIdx}" data-idx="${idx}">✕</button>` : ''}
+    </figure>
+  `).join('');
+  grid.querySelectorAll('.rm-photo').forEach(b=>{
+    b.addEventListener('click', ()=>removeSpotPhoto(b.dataset.batch, parseInt(b.dataset.day), parseInt(b.dataset.spot), parseInt(b.dataset.idx)));
+  });
+}
+
+async function addSpotPhoto(batchId, dayIdx, spotIdx){
+  const input = document.getElementById(`spotInput-${batchId}-${dayIdx}-${spotIdx}`);
+  const file = input.files && input.files[0];
+  if(!file) return;
+  let dataUrl;
+  try{
+    showToast('圖片處理中…');
+    dataUrl = await fileToCompressedDataURL(file);
+  }catch(e){
+    showToast('❌ ' + e.message);
+    return;
+  }
+  const key = `photos:${batchId}:day${dayIdx}:spot${spotIdx}`;
+  const raw = await storageGet(key, true);
+  let photos = [];
+  try{ photos = raw ? JSON.parse(raw) : []; }catch(e){ photos=[]; }
+  photos.push(dataUrl);
+  await storageSet(key, JSON.stringify(photos), true);
+  input.value='';
+  renderSpotGallery(batchId, dayIdx, spotIdx);
+  showToast('✓ 照片已上傳');
+}
+async function removeSpotPhoto(batchId, dayIdx, spotIdx, idx){
+  const key = `photos:${batchId}:day${dayIdx}:spot${spotIdx}`;
+  const raw = await storageGet(key, true);
+  let photos = [];
+  try{ photos = raw ? JSON.parse(raw) : []; }catch(e){ photos=[]; }
+  photos.splice(idx,1);
+  await storageSet(key, JSON.stringify(photos), true);
+  renderSpotGallery(batchId, dayIdx, spotIdx);
+}
+
+/* ---- Room / Meal table ---- */
+async function renderTable(batch){
+  const nightSwitch = document.getElementById('nightTabSwitch');
+  const saveWrap = document.getElementById('roomSaveWrap');
+  if(activeTab==='room'){
+    nightSwitch.classList.remove('hidden');
+    await renderRoomTable(batch, activeNight);
+  } else {
+    nightSwitch.classList.add('hidden');
+    saveWrap.innerHTML='';
+    renderMealTable(batch);
+  }
+}
+
+async function renderRoomTable(batch, nightKey){
+  const key = `roomnums:${batch.id}:${nightKey}`;
+  const raw = await storageGet(key, true);
+  let nums = [];
+  try{ nums = raw ? JSON.parse(raw) : []; }catch(e){ nums=[]; }
+  const guideRaw = await storageGet(`guide:${batch.id}`, true);
+  let guide = {name:'', phone:''};
+  try{ if(guideRaw) guide = JSON.parse(guideRaw); }catch(e){}
+
+  const table = document.getElementById('roomTable');
+  let rows = `<thead><tr><th>房號</th><th>房型</th><th>房客姓名</th></tr></thead><tbody>`;
+  batch.rooms.forEach((r,idx)=>{
+    const [no, type, members] = r;
+    const meIn = members.includes(currentUser.name);
+    const roomNoCell = isAdmin
+      ? `<input type="text" class="room-inline-input" data-idx="${idx}" value="${nums[idx]||''}" placeholder="房號">`
+      : (nums[idx] || '—');
+    rows += `<tr class="${meIn?'me':''}"><td class="num">${roomNoCell}</td><td>${type}</td><td>${
+      members.map(m=> m===currentUser.name ? `<span class="pill me-pill">${m} · 你</span>` : m).join('、')
+    }</td></tr>`;
+  });
+  const guideIdx = batch.rooms.length;
+  const guideNoCell = isAdmin
+    ? `<input type="text" class="room-inline-input" data-idx="${guideIdx}" value="${nums[guideIdx]||''}" placeholder="房號">`
+    : (nums[guideIdx] || '—');
+  const guideNameCell = isAdmin
+    ? `<span class="pill">導遊／領隊</span>　<input type="text" id="roomGuideNameInput" class="room-inline-input-name" value="${guide.name||''}" placeholder="姓名">`
+    : `<span class="pill">導遊／領隊</span>　${guide.name || '未定（待管理員輸入）'}`;
+  rows += `<tr style="background:var(--celadon);"><td class="num">${guideNoCell}</td><td>—</td><td>${guideNameCell}</td></tr>`;
+  rows += '</tbody>';
+  table.innerHTML = rows;
+
+  const saveWrap = document.getElementById('roomSaveWrap');
+  if(isAdmin){
+    const nightLabel = NIGHTS.find(n=>n.key===nightKey).label;
+    saveWrap.innerHTML = `
+      <div class="room-save-hint">✏️ 直接在上方表格輸入房號即可編輯（${nightLabel}），編輯完成後按下方按鈕公開給所有人</div>
+      <button id="saveRoomNums">💾 儲存並公開給所有人</button>
+    `;
+    document.getElementById('saveRoomNums').addEventListener('click', ()=>saveRoomNums(batch, nightKey));
+  } else {
+    saveWrap.innerHTML = '';
+  }
+}
+
+async function saveRoomNums(batch, nightKey){
+  const inputs = document.querySelectorAll('#roomTable .room-inline-input');
+  const arr = [];
+  inputs.forEach(inp=>{ arr[parseInt(inp.dataset.idx)] = inp.value.trim(); });
+  await storageSet(`roomnums:${batch.id}:${nightKey}`, JSON.stringify(arr), true);
+  const gNameInput = document.getElementById('roomGuideNameInput');
+  const gName = gNameInput ? gNameInput.value.trim() : '';
+  const existingGuideRaw = await storageGet(`guide:${batch.id}`, true);
+  let existingGuide = {name:'', phone:''};
+  try{ if(existingGuideRaw) existingGuide = JSON.parse(existingGuideRaw); }catch(e){}
+  await storageSet(`guide:${batch.id}`, JSON.stringify({name:gName, phone: existingGuide.phone||''}), true);
+  await renderRoomTable(batch, nightKey);
+  await renderAssemblyInfo();
+  showToast('✓ 已儲存並公開給所有人查看');
+}
+
+function renderMealTable(batch){
+  const table = document.getElementById('roomTable');
+  let rows = `<thead><tr><th>用餐組別</th><th>編號</th><th>姓名</th></tr></thead><tbody>`;
+  batch.groups.forEach(([gname, members])=>{
+    members.forEach(([no,name], idx)=>{
+      const meIn = name===currentUser.name;
+      rows += `<tr class="${meIn?'me':''} ${idx===0?'room-group-start':''}"><td>${idx===0?`<span class="pill">${gname}</span>`:''}</td><td class="num">${no}</td><td>${meIn?`<span class="pill me-pill">${name} · 你</span>`:name}</td></tr>`;
+    });
+  });
+  rows += '</tbody>';
+  table.innerHTML = rows;
+}
+
+document.getElementById('tabRoomBtn').addEventListener('click', ()=>{
+  activeTab='room';
+  document.getElementById('tabRoomBtn').classList.add('active');
+  document.getElementById('tabMealBtn').classList.remove('active');
+  renderTable(BATCHES[currentUser.batch]);
+});
+document.getElementById('tabMealBtn').addEventListener('click', ()=>{
+  activeTab='meal';
+  document.getElementById('tabMealBtn').classList.add('active');
+  document.getElementById('tabRoomBtn').classList.remove('active');
+  renderTable(BATCHES[currentUser.batch]);
+});
+document.querySelectorAll('#nightTabSwitch button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    activeNight = btn.dataset.night;
+    document.querySelectorAll('#nightTabSwitch button').forEach(x=>x.classList.remove('active'));
+    btn.classList.add('active');
+    renderTable(BATCHES[currentUser.batch]);
+  });
+});
+
+/* =========================================================
+   ADMIN MODE
+   ========================================================= */
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(()=> t.classList.remove('show'), 2600);
+}
+function showPasswordModal(onSuccess){
+  const mask = document.createElement('div');
+  mask.className='modal-mask';
+  mask.innerHTML = `
+    <div class="modal-box">
+      <h4>🔧 請輸入管理者密碼</h4>
+      <input type="password" id="adminPwInput" placeholder="密碼" autocomplete="off">
+      <div class="modal-err" id="adminPwErr"></div>
+      <div class="modal-actions">
+        <button class="m-cancel">取消</button>
+        <button class="m-confirm">確認</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(mask);
+  const input = mask.querySelector('#adminPwInput');
+  const err = mask.querySelector('#adminPwErr');
+  input.focus();
+  const submit = ()=>{
+    if(input.value === ADMIN_PASSCODE){
+      mask.remove();
+      onSuccess();
+    } else {
+      err.textContent = '密碼錯誤，請再試一次';
+      input.value='';
+      input.focus();
+    }
+  };
+  mask.querySelector('.m-cancel').onclick = ()=> mask.remove();
+  mask.querySelector('.m-confirm').onclick = submit;
+  input.addEventListener('keydown', e=>{ if(e.key==='Enter') submit(); });
+  mask.addEventListener('click', e=>{ if(e.target===mask) mask.remove(); });
+}
+function applyAdminUI(){
+  document.getElementById('adminModeTag').classList.toggle('hidden', !isAdmin);
+  document.querySelectorAll('[id^="spotAdd-"]').forEach(el=> el.classList.toggle('hidden', !isAdmin));
+  document.querySelectorAll('[id^="ftAddForm-"]').forEach(el=> el.classList.toggle('hidden', !isAdmin));
+  document.querySelectorAll('[id^="hotelMapEdit-"]').forEach(el=> el.classList.toggle('hidden', !isAdmin));
+  document.querySelectorAll('.admin-only-btn').forEach(el=> el.classList.toggle('hidden', !isAdmin));
+  if(!isAdmin){
+    document.querySelectorAll('[id^="dayEditPanel-"]').forEach(el=> el.classList.add('hidden'));
+  }
+  renderAssemblyInfo();
+  if(currentUser){
+    ITINERARY.forEach((day,i)=>{
+      (day.highlights||[]).forEach((spot,si)=> renderSpotGallery(currentUser.batch, i, si));
+      renderFreetime(currentUser.batch, i);
+    });
+    renderTable(BATCHES[currentUser.batch]);
+  }
+}
+
+/* =========================================================
+   INIT
+   ========================================================= */
+(async function init(){
+  const last = await storageGet('lastUser', false);
+  if(last === '__ADMIN__'){
+    adminLogin();
+  } else if(last && NAME_INDEX.find(p=>p.name===last)){
+    login(last);
+  }
+})();
+</script>
+</body>
+</html>
