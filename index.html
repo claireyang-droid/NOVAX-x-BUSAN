@@ -43,11 +43,13 @@
     background:radial-gradient(1200px 600px at 15% -10%, #1c3a56 0%, var(--ink) 55%, #081422 100%);
     color:var(--porcelain);
     overflow:hidden;
-    padding:64px 24px 88px;
+    padding:36px 24px 44px;
     text-align:center;
     border-radius:0 0 32px 32px;
     box-shadow:0 24px 40px -24px rgba(8,20,34,0.55);
+    transition:padding .2s ease;
   }
+  .hero.hero-compact{padding:16px 24px 20px;}
   .hero-hangul{
     position:absolute;
     inset:0;
@@ -107,7 +109,7 @@
   }
   .hero-scroll{
     position:relative;
-    margin-top:38px;
+    margin-top:22px;
     display:inline-flex;
     align-items:center;
     gap:10px;
@@ -863,38 +865,46 @@
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
   /* ---------- BOTTOM NAV ---------- */
-  .dash-page{padding-top:32px;padding-bottom:100px;}
+  .dash-page{padding-top:18px;padding-bottom:100px;}
   .bottom-nav{
     position:fixed;left:0;right:0;bottom:0;z-index:150;
-    display:flex;align-items:flex-end;justify-content:space-around;
+    display:flex;align-items:center;justify-content:space-around;
     background:#fff;
     border-top:1px solid var(--line);
-    padding:8px 6px 10px;
+    padding:0 6px 6px;
     box-shadow:0 -8px 24px -14px rgba(15,36,56,0.35);
+    overflow:visible;
   }
   .bottom-nav-btn{
     flex:1;
     display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
     background:none;border:none;
-    padding:6px 2px;
-    font-size:12.5px;
+    padding:6px 2px 0;
+    font-size:13.5px;
     color:rgba(15,36,56,0.5);
     font-weight:500;
   }
-  .bottom-nav-btn .icon{font-size:20px;line-height:1;}
+  .bottom-nav-btn .icon{font-size:21px;line-height:1;}
   .bottom-nav-btn.active{color:var(--persimmon);font-weight:700;}
-  .bottom-nav-home{position:relative;top:-20px;flex:0 0 auto;width:76px;color:var(--ink);}
+  .bottom-nav-home{
+    position:relative;
+    flex:0 0 auto;width:76px;color:var(--ink);
+    display:flex;flex-direction:column;align-items:center;
+    padding:29px 0 0;
+  }
   .bottom-nav-home .circle{
-    width:58px;height:58px;border-radius:50%;
+    position:absolute;left:50%;top:0;
+    transform:translate(-50%,-50%);
+    width:50px;height:50px;border-radius:50%;
     background:#fff;color:#fff;
     display:flex;align-items:center;justify-content:center;
     overflow:hidden;
     box-shadow:0 12px 26px -8px rgba(226,87,43,0.45);
-    border:4px solid var(--porcelain);
+    border:3px solid var(--porcelain);
     transition:border-color .18s ease;
   }
   .bottom-nav-home .circle img{width:78%;height:78%;object-fit:contain;}
-  .bottom-nav-home .home-label{font-size:12.5px;margin-top:4px;font-weight:700;}
+  .bottom-nav-home .home-label{font-size:14.5px;margin:0;font-weight:700;}
   .bottom-nav-home.active .circle{border-color:var(--persimmon);}
   .bottom-nav-home.active .home-label{color:var(--persimmon);}
 
@@ -937,21 +947,17 @@
   .roster-item .r-no{color:rgba(15,36,56,0.45);margin-right:5px;font-family:'Iansui','Fraunces',serif;flex-shrink:0;}
   @media (max-width:380px){.roster-list{grid-template-columns:repeat(2, 1fr);}}
 
-  /* ---------- FREE-TIME BUTTON RESTYLE (match daily itinerary "stop" look) ---------- */
-  .ft-btn-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  /* ---------- FREE-TIME BUTTON RESTYLE (match daily itinerary map-btn look, forced horizontal row) ---------- */
+  .ft-btn-row{
+    display:flex;flex-wrap:nowrap;gap:8px;align-items:center;
+    overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+    padding-bottom:2px;
+  }
+  .ft-btn-row::-webkit-scrollbar{display:none;}
   .ft-btn-row .ft-link-btn, .ft-btn-row .map-btn{
-    display:inline-flex;align-items:center;gap:6px;
-    background:var(--celadon) !important;
-    color:var(--ink-2) !important;
-    border:none;
-    padding:6px 13px;
-    border-radius:100px;
-    font-size:15.5px;
-    font-weight:500;
-    text-decoration:none;
+    flex:0 0 auto;
     white-space:nowrap;
   }
-  .ft-btn-row .ft-link-btn:hover, .ft-btn-row .map-btn:hover{background:var(--celadon-2) !important;}
   .ft-hours{
     display:inline-flex;align-items:center;gap:5px;
     font-size:14.5px;color:var(--ink-2);
@@ -1003,10 +1009,16 @@
     background:var(--porcelain);border:1px solid var(--line);
     border-radius:16px;padding:16px;
   }
+  .calc-expr{
+    text-align:right;font-family:'Iansui','Fraunces',serif;
+    font-size:16px;color:rgba(15,36,56,0.45);
+    padding:8px 10px 0;min-height:20px;line-height:1.3;
+    word-break:break-all;overflow-wrap:anywhere;
+  }
   .calc-display{
     text-align:right;font-family:'Iansui','Fraunces',serif;
     font-size:38px;font-weight:700;color:var(--ink);
-    padding:14px 10px 20px;line-height:1.1;
+    padding:2px 10px 20px;line-height:1.1;
     word-break:break-all;overflow-wrap:anywhere;
   }
   .calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
@@ -1105,11 +1117,11 @@
 
 
 <!-- ============ HERO ============ -->
-<div class="hero">
+<div class="hero" id="hero">
   <div class="hero-hangul">부산 · 경주 · 울산</div>
-  <div class="hero-eyebrow">2 0 2 6 · 여행</div>
+  <div class="hero-eyebrow" id="heroEyebrow">2 0 2 6 · 여행</div>
   <div class="hero-company">諾瓦材料科技股份有限公司</div>
-  <h1>2026 年海外員工旅遊</h1>
+  <h1 id="heroTitle">2026 年海外員工旅遊</h1>
   <div class="route">釜山 <span>×</span>慶州 <span>×</span>蔚山</div>
   <div class="hero-date hidden" id="heroDate"></div>
 </div>
@@ -1117,7 +1129,7 @@
 <div class="wrap">
 
   <!-- ============ LOGIN ============ -->
-  <section id="login" style="padding-top:44px;">
+  <section id="login" style="padding-top:20px;">
     <div class="section-label">Step 01</div>
     <div class="section-title">輸入姓名，登入專屬行程</div>
     <div class="section-sub">系統將依你所屬的梯次，自動帶入集合資訊、班機、每日行程、飯店與分房資訊。</div>
@@ -1135,7 +1147,7 @@
   <div id="dashboard" class="hidden">
 
     <!-- HOME -->
-    <section id="home" class="dash-page" style="padding-top:40px;">
+    <section id="home" class="dash-page" style="padding-top:14px;">
       <div class="welcome-bar">
         <div class="who">歡迎回來，<b id="whoName"></b> <span id="adminModeTag" class="admin-mode-tag hidden">🔧 管理者模式</span></div>
         <div class="actions">
@@ -1272,6 +1284,7 @@
         <div class="fx-card-title">🧮 計算機</div>
         <div class="fx-calc-sub">買東西時可以直接在這裡加加減減，方便加總花了多少錢。</div>
         <div class="calc-widget">
+          <div class="calc-expr" id="calcExpr"></div>
           <div class="calc-display" id="calcDisplay">0</div>
           <div class="calc-grid">
             <button type="button" class="calc-btn calc-fn" data-calc="back">⌫</button>
@@ -1699,6 +1712,9 @@ async function login(name){
   isAdmin = false;
   await storageSet('lastUser', name, false);
   document.getElementById('login').classList.add('hidden');
+  document.getElementById('heroTitle').classList.add('hidden');
+  document.getElementById('heroEyebrow').classList.add('hidden');
+  document.getElementById('hero').classList.add('hero-compact');
   document.getElementById('dashboard').classList.remove('hidden');
   document.getElementById('bottomNav').classList.remove('hidden');
   switchDashPage('home');
@@ -1711,6 +1727,9 @@ async function adminLogin(){
   currentUser = {name:'管理者', batch:'batch1', group:'管理者帳號', no:0, isAdminAccount:true};
   await storageSet('lastUser', '__ADMIN__', false);
   document.getElementById('login').classList.add('hidden');
+  document.getElementById('heroTitle').classList.add('hidden');
+  document.getElementById('heroEyebrow').classList.add('hidden');
+  document.getElementById('hero').classList.add('hero-compact');
   document.getElementById('dashboard').classList.remove('hidden');
   document.getElementById('bottomNav').classList.remove('hidden');
   switchDashPage('home');
@@ -1723,6 +1742,9 @@ function logout(){
   currentUser = null;
   isAdmin = false;
   document.getElementById('login').classList.remove('hidden');
+  document.getElementById('heroTitle').classList.remove('hidden');
+  document.getElementById('heroEyebrow').classList.remove('hidden');
+  document.getElementById('hero').classList.remove('hero-compact');
   document.getElementById('dashboard').classList.add('hidden');
   document.getElementById('bottomNav').classList.add('hidden');
   document.getElementById('heroDate').classList.add('hidden');
@@ -2019,8 +2041,8 @@ async function renderDays(batch){
             <input type="text" placeholder="營業時間（選填，例如：09:00－18:00）" id="ftHours-${batch.id}-${i}">
             <textarea placeholder="備注（選填）" id="ftNote-${batch.id}-${i}"></textarea>
             <input type="text" placeholder="連結網址（選填）" id="ftUrl-${batch.id}-${i}">
-            <input type="text" placeholder="Google map 連結（選填）" id="ftGoogle-${batch.id}-${i}">
-            <input type="text" placeholder="Naver map 連結（選填）" id="ftNaver-${batch.id}-${i}">
+            <input type="text" placeholder="Google 地圖連結（選填）" id="ftGoogle-${batch.id}-${i}">
+            <input type="text" placeholder="Naver 地圖連結（選填）" id="ftNaver-${batch.id}-${i}">
             <input type="file" accept="image/*" placeholder="上傳圖片（選填）" id="ftImg-${batch.id}-${i}">
             <button data-batch="${batch.id}" data-day="${i}" class="addFtBtn">新增推薦行程</button>
           </div>
@@ -2161,8 +2183,8 @@ async function renderFreetime(batchId, dayIdx){
           ${it.note ? `<div class="ft-note">${it.note}</div>` : ''}
           <div class="ft-btn-row">
             ${it.url ? `<a class="ft-link-btn" href="${it.url}" target="_blank" rel="noopener">🔗 更多資訊</a>` : ''}
-            ${it.google ? `<a class="map-btn" href="${it.google}" target="_blank" rel="noopener">📍 Google map</a>` : ''}
-            ${it.naver ? `<a class="map-btn naver-btn" href="${it.naver}" target="_blank" rel="noopener">📍 Naver map</a>` : ''}
+            ${it.google ? `<a class="map-btn" href="${it.google}" target="_blank" rel="noopener">📍 Google 地圖</a>` : ''}
+            ${it.naver ? `<a class="map-btn naver-btn" href="${it.naver}" target="_blank" rel="noopener">📍 Naver 地圖</a>` : ''}
             ${isAdmin ? `<button class="ft-edit-btn" data-batch="${batchId}" data-day="${dayIdx}" data-idx="${idx}">✏️ 編輯</button>` : ''}
             ${isAdmin ? `<button class="ft-rm" data-batch="${batchId}" data-day="${dayIdx}" data-idx="${idx}">刪除</button>` : ''}
           </div>
@@ -2171,8 +2193,8 @@ async function renderFreetime(batchId, dayIdx){
             <input type="text" placeholder="營業時間（選填）" id="ftEditHours-${batchId}-${dayIdx}-${idx}" value="${it.hours||''}">
             <textarea placeholder="備注（選填）" id="ftEditNote-${batchId}-${dayIdx}-${idx}">${it.note||''}</textarea>
             <input type="text" placeholder="連結網址（選填）" id="ftEditUrl-${batchId}-${dayIdx}-${idx}" value="${it.url||''}">
-            <input type="text" placeholder="Google map 連結（選填）" id="ftEditGoogle-${batchId}-${dayIdx}-${idx}" value="${it.google||''}">
-            <input type="text" placeholder="Naver map 連結（選填）" id="ftEditNaver-${batchId}-${dayIdx}-${idx}" value="${it.naver||''}">
+            <input type="text" placeholder="Google 地圖連結（選填）" id="ftEditGoogle-${batchId}-${dayIdx}-${idx}" value="${it.google||''}">
+            <input type="text" placeholder="Naver 地圖連結（選填）" id="ftEditNaver-${batchId}-${dayIdx}-${idx}" value="${it.naver||''}">
             <input type="file" accept="image/*" id="ftEditImg-${batchId}-${dayIdx}-${idx}">
             <button data-batch="${batchId}" data-day="${dayIdx}" data-idx="${idx}" class="saveFtEditBtn">💾 儲存修改</button>
           </div>
@@ -2747,6 +2769,8 @@ let calcDisplayVal = '0';
 let calcPrevVal = null;
 let calcPendingOp = null;
 let calcWaitingForOperand = false;
+let calcExprTokens = [];
+let calcJustEquals = false;
 
 function formatCalcDisplay(str){
   if(str === 'Error') return str;
@@ -2759,6 +2783,8 @@ function formatCalcDisplay(str){
 function renderCalcDisplay(){
   const el = document.getElementById('calcDisplay');
   if(el) el.textContent = formatCalcDisplay(calcDisplayVal);
+  const exprEl = document.getElementById('calcExpr');
+  if(exprEl) exprEl.textContent = calcExprTokens.join(' ');
   document.querySelectorAll('.calc-btn.calc-op').forEach(btn=>{
     btn.classList.toggle('calc-op-active', calcPendingOp === btn.dataset.calc && calcWaitingForOperand);
   });
@@ -2779,6 +2805,7 @@ function calcCleanNumber(n){
   return str;
 }
 function calcInputDigit(d){
+  if(calcJustEquals){ calcExprTokens = []; calcJustEquals = false; }
   if(calcDisplayVal === 'Error'){ calcDisplayVal = d; calcWaitingForOperand = false; }
   else if(calcWaitingForOperand){
     calcDisplayVal = d;
@@ -2788,6 +2815,7 @@ function calcInputDigit(d){
   }
 }
 function calcInputDecimal(){
+  if(calcJustEquals){ calcExprTokens = []; calcJustEquals = false; }
   if(calcWaitingForOperand || calcDisplayVal === 'Error'){
     calcDisplayVal = '0.';
     calcWaitingForOperand = false;
@@ -2804,6 +2832,8 @@ function calcClearAll(){
   calcPrevVal = null;
   calcPendingOp = null;
   calcWaitingForOperand = false;
+  calcExprTokens = [];
+  calcJustEquals = false;
 }
 function calcToggleSign(){
   if(calcDisplayVal === '0' || calcDisplayVal === 'Error') return;
@@ -2815,13 +2845,18 @@ function calcPercent(){
 }
 function calcHandleOperator(nextOp){
   if(calcDisplayVal === 'Error') return;
+  calcJustEquals = false;
   const inputValue = parseFloat(calcDisplayVal);
   if(calcPrevVal === null){
     calcPrevVal = inputValue;
+    calcExprTokens = [formatCalcDisplay(calcDisplayVal), nextOp];
   } else if(calcPendingOp && !calcWaitingForOperand){
     const result = calcCompute(calcPrevVal, inputValue, calcPendingOp);
+    calcExprTokens.push(formatCalcDisplay(calcDisplayVal), nextOp);
     calcDisplayVal = calcCleanNumber(result);
     calcPrevVal = (calcDisplayVal === 'Error') ? null : parseFloat(calcDisplayVal);
+  } else if(calcWaitingForOperand && calcExprTokens.length){
+    calcExprTokens[calcExprTokens.length-1] = nextOp;
   }
   calcWaitingForOperand = true;
   calcPendingOp = nextOp;
@@ -2830,10 +2865,12 @@ function calcHandleEquals(){
   if(calcDisplayVal === 'Error' || calcPendingOp === null || calcPrevVal === null) return;
   const inputValue = parseFloat(calcDisplayVal);
   const result = calcCompute(calcPrevVal, inputValue, calcPendingOp);
+  calcExprTokens.push(formatCalcDisplay(calcDisplayVal), '=');
   calcDisplayVal = calcCleanNumber(result);
   calcPrevVal = null;
   calcPendingOp = null;
   calcWaitingForOperand = true;
+  calcJustEquals = true;
 }
 document.querySelectorAll('.calc-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
