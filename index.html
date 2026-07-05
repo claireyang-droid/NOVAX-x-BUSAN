@@ -50,6 +50,21 @@
     transition:padding .2s ease;
   }
   .hero.hero-compact{padding:16px 24px 20px;}
+  /* 其餘分頁（非首頁）頂部只保留公司名稱中英文 */
+  .hero.hero-minimal{padding:14px 24px;}
+  .hero.hero-minimal .hero-hangul,
+  .hero.hero-minimal .route,
+  .hero.hero-minimal .hero-date{display:none;}
+  .hero.hero-minimal .hero-company{margin-bottom:1px;}
+  .hero-company-en{
+    position:relative;
+    display:none;
+    font-size:13px;
+    letter-spacing:0.05em;
+    color:rgba(248,245,238,0.6);
+    margin-top:0;
+  }
+  .hero.hero-minimal .hero-company-en{display:block;}
   .hero-hangul{
     position:absolute;
     inset:0;
@@ -138,6 +153,7 @@
     margin-bottom:10px;
   }
   .section-title{font-size:clamp(22px,4vw,30px);font-weight:700;margin-bottom:6px;}
+  .section-title-orange{color:var(--persimmon);}
   .section-sub{color:rgba(15,36,56,0.6);font-size:17px;margin-bottom:28px;}
 
   /* ---------- LOGIN ---------- */
@@ -195,6 +211,48 @@
     border-radius:100px;
   }
   .login-hint{font-size:15.5px;color:rgba(15,36,56,0.5);margin-top:14px;}
+
+  /* ---------- HOME PHOTO CAROUSEL WALL ---------- */
+  .home-photo-wall{margin-top:24px;}
+  .home-photo-wall-title{
+    font-family:'Iansui','Noto Serif TC',serif;
+    font-weight:700;
+    font-size:18px;
+    color:var(--ink);
+    margin-bottom:12px;
+  }
+  .home-photo-track-wrap{
+    overflow:hidden;
+    border-radius:18px;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 32px,#000 calc(100% - 32px),transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 32px,#000 calc(100% - 32px),transparent 100%);
+  }
+  .home-photo-track{
+    display:flex;
+    align-items:stretch;
+    gap:12px;
+    width:max-content;
+    animation:homePhotoScroll linear infinite;
+  }
+  .home-photo-track-wrap:hover .home-photo-track{animation-play-state:paused;}
+  .home-photo-item{
+    flex:0 0 auto;
+    width:230px;
+    height:145px;
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    box-shadow:var(--shadow);
+    background:var(--celadon);
+  }
+  .home-photo-item img{width:100%;height:100%;object-fit:cover;display:block;}
+  @keyframes homePhotoScroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  @media (max-width:520px){
+    .home-photo-item{width:170px;height:112px;}
+  }
 
   /* ---------- ASSEMBLY INFO ---------- */
   .assembly-grid{
@@ -743,10 +801,21 @@
     padding:9px 12px;border-radius:8px;border:1.5px solid var(--line);font-size:15.5px;font-family:inherit;width:100%;
   }
   .ft-add-form textarea{resize:vertical;min-height:56px;}
+  .ft-scope-label{
+    display:flex;align-items:center;gap:8px;font-size:15px;color:var(--ink-2);
+    background:var(--celadon);border-radius:8px;padding:9px 12px;cursor:pointer;
+  }
+  .ft-scope-label input{width:auto;flex:none;}
   .ft-add-form button{
     justify-self:start;
     background:var(--ink);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:15.5px;font-weight:700;
   }
+  .ft-scope-tag{
+    display:inline-block;font-size:12.5px;font-weight:700;border-radius:100px;
+    padding:2px 10px;margin-bottom:6px;
+  }
+  .ft-scope-tag.shared{background:var(--celadon);color:var(--ink-2);}
+  .ft-scope-tag.own{background:var(--persimmon);color:#fff;}
 
   /* ---------- TABLES ---------- */
   .tab-switch{display:flex;gap:8px;margin-bottom:18px;}
@@ -1121,6 +1190,7 @@
   <div class="hero-hangul">부산 · 경주 · 울산</div>
   <div class="hero-eyebrow" id="heroEyebrow">2 0 2 6 · 여행</div>
   <div class="hero-company">諾瓦材料科技股份有限公司</div>
+  <div class="hero-company-en">NOVAX Material &amp; Technology Inc.</div>
   <h1 id="heroTitle">2026 年海外員工旅遊</h1>
   <div class="route">釜山 <span>×</span>慶州 <span>×</span>蔚山</div>
   <div class="hero-date hidden" id="heroDate"></div>
@@ -1181,12 +1251,18 @@
           <div class="home-box-value" id="statCount"></div>
         </div>
       </div>
+
+      <div class="home-photo-wall hidden" id="homePhotoWall">
+        <div class="home-photo-wall-title">📷 行程精選照片牆</div>
+        <div class="home-photo-track-wrap">
+          <div class="home-photo-track" id="homePhotoTrack"></div>
+        </div>
+      </div>
     </section>
 
     <!-- ROSTER (從首頁「所屬梯次」框進入) -->
     <section id="roster" class="dash-page hidden">
       <button class="back-to-home-btn" data-back type="button">‹ 返回首頁</button>
-      <div class="section-label">梯次名單</div>
       <div class="section-title" id="rosterTitle">梯次名單</div>
       <div class="section-sub">以下為你所屬梯次的完整名單，橘色標記為你本人。</div>
       <div class="roster-list" id="rosterList"></div>
@@ -1194,8 +1270,7 @@
 
     <!-- INFO：集合資訊 / 班機時刻 / 行李檢查 -->
     <section id="info" class="dash-page hidden">
-      <div class="section-label">資訊</div>
-      <div class="section-title">出發前必看資訊</div>
+      <div class="section-title section-title-orange">出發前必看資訊</div>
       <div class="section-sub">以下為你所屬梯次的集合資訊，如有異動將由管理員更新。</div>
       <div class="tab-switch" id="infoTabSwitch">
         <button data-infotab="brief" class="active">📋 集合資訊</button>
@@ -1208,8 +1283,6 @@
       </div>
 
       <div id="infoTab-flight" class="hidden">
-        <div class="section-label">班機時刻</div>
-        <div class="section-sub">獨立顯示去程與回程航班資訊，請預留機場報到時間。</div>
         <div id="ticketWrap"></div>
       </div>
 
@@ -1222,8 +1295,7 @@
 
     <!-- ITINERARY -->
     <section id="itinerary" class="dash-page hidden">
-      <div class="section-label">行程</div>
-      <div class="section-title">每日行程</div>
+      <div class="section-title section-title-orange">每日行程</div>
       <div class="section-sub">框框區塊為管理員刊登「當地現場搶先看」照片的專屬欄位。</div>
       <div class="day-tab-switch" id="dayTabSwitch"></div>
       <div id="dayList"></div>
@@ -1232,7 +1304,6 @@
     <!-- MEALS（從首頁「所屬組別」框進入） -->
     <section id="rooms" class="dash-page hidden">
       <button class="back-to-home-btn" data-back type="button">‹ 返回首頁</button>
-      <div class="section-label">分組表</div>
       <div class="section-title">餐食分組表</div>
       <div class="section-sub">已依你的名字自動標示用餐分組（橘色標記為你本人）。</div>
       <div class="meal-group-grid" id="mealGroups"></div>
@@ -1241,7 +1312,6 @@
     <!-- ROOM TABLE（從首頁「住宿分房」框進入） -->
     <section id="roomInfoPage" class="dash-page hidden">
       <button class="back-to-home-btn" data-back type="button">‹ 返回首頁</button>
-      <div class="section-label">分房表</div>
       <div class="section-title">住宿分房表</div>
       <div class="section-sub">已依你的名字自動標示所在房間（橘色標記為你本人）。</div>
       <div class="tab-switch" id="nightTabSwitch">
@@ -1257,8 +1327,7 @@
 
     <!-- EXCHANGE RATE -->
     <section id="exchange" class="dash-page hidden">
-      <div class="section-label">匯率</div>
-      <div class="section-title">韓幣 ↔ 台幣</div>
+      <div class="section-title section-title-orange">韓幣 ↔ 台幣</div>
       <div class="section-sub">即時查詢匯率，換算後會自動記住最近 10 筆紀錄；下方還附上計算機，方便加總買東西花了多少。</div>
 
       <div class="fx-card">
@@ -1318,8 +1387,7 @@
 
     <!-- TRANSLATE -->
     <section id="translate" class="dash-page hidden">
-      <div class="section-label">翻譯</div>
-      <div class="section-title">中文 ↔ 韓文 即時翻譯</div>
+      <div class="section-title section-title-orange">中文 ↔ 韓文 即時翻譯</div>
       <div class="section-sub">可直接輸入文字，或按下麥克風用說的；翻譯結果也能按播放鍵用唸的。</div>
 
       <div class="tr-card">
@@ -1745,6 +1813,7 @@ function logout(){
   document.getElementById('heroTitle').classList.remove('hidden');
   document.getElementById('heroEyebrow').classList.remove('hidden');
   document.getElementById('hero').classList.remove('hero-compact');
+  document.getElementById('hero').classList.remove('hero-minimal');
   document.getElementById('dashboard').classList.add('hidden');
   document.getElementById('bottomNav').classList.add('hidden');
   document.getElementById('heroDate').classList.add('hidden');
@@ -1773,6 +1842,7 @@ function switchDashPage(target){
   document.querySelectorAll('.dash-page').forEach(sec=>{
     sec.classList.toggle('hidden', sec.id !== target);
   });
+  document.getElementById('hero').classList.toggle('hero-minimal', target !== 'home');
   const navTarget = NAV_PARENT_PAGE[target] || target;
   document.querySelectorAll('.bottom-nav-btn').forEach(btn=>{
     btn.classList.toggle('active', btn.dataset.target === navTarget);
@@ -1832,6 +1902,38 @@ function renderDashboard(){
   renderDays(batch);
   renderMealTable(batch);
   renderRoster();
+  renderHomePhotoWall();
+}
+
+/* ---- 首頁橫版照片輪播牆：彙整行程中所有「當地現場搶先看」與「推薦自由行程」照片 ---- */
+async function renderHomePhotoWall(){
+  const wall = document.getElementById('homePhotoWall');
+  const track = document.getElementById('homePhotoTrack');
+  if(!wall || !track || !currentUser) return;
+  const batchId = currentUser.batch;
+  const urls = [];
+  for(let i=0; i<ITINERARY.length; i++){
+    const day = ITINERARY[i];
+    for(let si=0; si<(day.highlights||[]).length; si++){
+      const raw = await storageGet(`photos:day${i}:spot${si}`, true);
+      let photos = [];
+      try{ photos = raw ? JSON.parse(raw) : []; }catch(e){ photos = []; }
+      photos.forEach(url=>{ if(url) urls.push(url); });
+    }
+    const sharedFt = await ftGetItems(batchId, i, 'shared');
+    const ownFt = await ftGetItems(batchId, i, 'own');
+    [...sharedFt, ...ownFt].forEach(it=>{ if(it && it.img) urls.push(it.img); });
+  }
+  if(urls.length === 0){
+    wall.classList.add('hidden');
+    track.innerHTML = '';
+    return;
+  }
+  const itemsHtml = urls.map(u=>`<div class="home-photo-item"><img src="${u}" alt="行程照片" loading="lazy"></div>`).join('');
+  // 內容重複一份以達成無縫循環輪播
+  track.innerHTML = itemsHtml + itemsHtml;
+  track.style.animationDuration = Math.max(urls.length * 4, 14) + 's';
+  wall.classList.remove('hidden');
 }
 
 /* ---- 梯次名單（首頁「所屬梯次」框點進去） ---- */
@@ -2044,6 +2146,7 @@ async function renderDays(batch){
             <input type="text" placeholder="Google 地圖連結（選填）" id="ftGoogle-${batch.id}-${i}">
             <input type="text" placeholder="Naver 地圖連結（選填）" id="ftNaver-${batch.id}-${i}">
             <input type="file" accept="image/*" placeholder="上傳圖片（選填）" id="ftImg-${batch.id}-${i}">
+            <label class="ft-scope-label"><input type="checkbox" id="ftScopeOwn-${batch.id}-${i}"> 僅本梯次限定（只有本梯次看得到，例如靠近本梯次飯店的景點）</label>
             <button data-batch="${batch.id}" data-day="${i}" class="addFtBtn">新增推薦行程</button>
           </div>
         </div>
@@ -2164,18 +2267,28 @@ async function saveSpotName(batchId, dayIdx, spotIdx){
 }
 
 /* ---- Free-time recommendations ---- */
+function ftKey(batchId, dayIdx, scope){
+  return scope === 'own' ? `freetime:${batchId}:day${dayIdx}` : `freetime:day${dayIdx}`;
+}
+async function ftGetItems(batchId, dayIdx, scope){
+  const raw = await storageGet(ftKey(batchId, dayIdx, scope), true);
+  try{ return raw ? JSON.parse(raw) : []; }catch(e){ return []; }
+}
 async function renderFreetime(batchId, dayIdx){
-  const key = `freetime:day${dayIdx}`;
-  const raw = await storageGet(key, true);
-  let items = [];
-  try{ items = raw ? JSON.parse(raw) : []; }catch(e){ items=[]; }
+  const sharedItems = await ftGetItems(batchId, dayIdx, 'shared');
+  const ownItems = await ftGetItems(batchId, dayIdx, 'own');
   const listEl = document.getElementById(`ftList-${batchId}-${dayIdx}`);
   if(!listEl) return;
-  if(items.length===0){
+  const combined = [
+    ...sharedItems.map((it,idx)=>({it, scope:'shared', idx})),
+    ...ownItems.map((it,idx)=>({it, scope:'own', idx}))
+  ];
+  if(combined.length===0){
     listEl.innerHTML = `<div class="freetime-empty">尚無推薦自由行程，敬請期待管理員刊登建議景點 🧭</div>`;
   } else {
-    listEl.innerHTML = items.map((it,idx)=>`
+    listEl.innerHTML = combined.map(({it, scope, idx})=>`
       <div class="ft-item">
+        <span class="ft-scope-tag ${scope}">${scope === 'own' ? '🏨 本梯次限定' : '🌐 兩梯次共用'}</span>
         ${it.img ? `<div class="ft-img"><img src="${it.img}" alt="${it.name||''}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>` : ''}
         <div class="ft-body">
           <div class="ft-name">${it.name || ''}</div>
@@ -2185,33 +2298,33 @@ async function renderFreetime(batchId, dayIdx){
             ${it.url ? `<a class="ft-link-btn" href="${it.url}" target="_blank" rel="noopener">🔗 更多資訊</a>` : ''}
             ${it.google ? `<a class="map-btn" href="${it.google}" target="_blank" rel="noopener">📍 Google 地圖</a>` : ''}
             ${it.naver ? `<a class="map-btn naver-btn" href="${it.naver}" target="_blank" rel="noopener">📍 Naver 地圖</a>` : ''}
-            ${isAdmin ? `<button class="ft-edit-btn" data-batch="${batchId}" data-day="${dayIdx}" data-idx="${idx}">✏️ 編輯</button>` : ''}
-            ${isAdmin ? `<button class="ft-rm" data-batch="${batchId}" data-day="${dayIdx}" data-idx="${idx}">刪除</button>` : ''}
+            ${isAdmin ? `<button class="ft-edit-btn" data-batch="${batchId}" data-day="${dayIdx}" data-scope="${scope}" data-idx="${idx}">✏️ 編輯</button>` : ''}
+            ${isAdmin ? `<button class="ft-rm" data-batch="${batchId}" data-day="${dayIdx}" data-scope="${scope}" data-idx="${idx}">刪除</button>` : ''}
           </div>
-          <div class="ft-edit-panel admin-add hidden" id="ftEditPanel-${batchId}-${dayIdx}-${idx}">
-            <input type="text" placeholder="連結名稱" id="ftEditName-${batchId}-${dayIdx}-${idx}" value="${it.name||''}">
-            <input type="text" placeholder="營業時間（選填）" id="ftEditHours-${batchId}-${dayIdx}-${idx}" value="${it.hours||''}">
-            <textarea placeholder="備注（選填）" id="ftEditNote-${batchId}-${dayIdx}-${idx}">${it.note||''}</textarea>
-            <input type="text" placeholder="連結網址（選填）" id="ftEditUrl-${batchId}-${dayIdx}-${idx}" value="${it.url||''}">
-            <input type="text" placeholder="Google 地圖連結（選填）" id="ftEditGoogle-${batchId}-${dayIdx}-${idx}" value="${it.google||''}">
-            <input type="text" placeholder="Naver 地圖連結（選填）" id="ftEditNaver-${batchId}-${dayIdx}-${idx}" value="${it.naver||''}">
-            <input type="file" accept="image/*" id="ftEditImg-${batchId}-${dayIdx}-${idx}">
-            <button data-batch="${batchId}" data-day="${dayIdx}" data-idx="${idx}" class="saveFtEditBtn">💾 儲存修改</button>
+          <div class="ft-edit-panel admin-add hidden" id="ftEditPanel-${batchId}-${dayIdx}-${scope}-${idx}">
+            <input type="text" placeholder="連結名稱" id="ftEditName-${batchId}-${dayIdx}-${scope}-${idx}" value="${it.name||''}">
+            <input type="text" placeholder="營業時間（選填）" id="ftEditHours-${batchId}-${dayIdx}-${scope}-${idx}" value="${it.hours||''}">
+            <textarea placeholder="備注（選填）" id="ftEditNote-${batchId}-${dayIdx}-${scope}-${idx}">${it.note||''}</textarea>
+            <input type="text" placeholder="連結網址（選填）" id="ftEditUrl-${batchId}-${dayIdx}-${scope}-${idx}" value="${it.url||''}">
+            <input type="text" placeholder="Google 地圖連結（選填）" id="ftEditGoogle-${batchId}-${dayIdx}-${scope}-${idx}" value="${it.google||''}">
+            <input type="text" placeholder="Naver 地圖連結（選填）" id="ftEditNaver-${batchId}-${dayIdx}-${scope}-${idx}" value="${it.naver||''}">
+            <input type="file" accept="image/*" id="ftEditImg-${batchId}-${dayIdx}-${scope}-${idx}">
+            <button data-batch="${batchId}" data-day="${dayIdx}" data-scope="${scope}" data-idx="${idx}" class="saveFtEditBtn">💾 儲存修改</button>
           </div>
         </div>
       </div>
     `).join('');
     listEl.querySelectorAll('.ft-rm').forEach(b=>{
-      b.addEventListener('click', ()=>removeFreetime(b.dataset.batch, parseInt(b.dataset.day), parseInt(b.dataset.idx)));
+      b.addEventListener('click', ()=>removeFreetime(b.dataset.batch, parseInt(b.dataset.day), b.dataset.scope, parseInt(b.dataset.idx)));
     });
     listEl.querySelectorAll('.ft-edit-btn').forEach(b=>{
       b.addEventListener('click', ()=>{
-        const panel = document.getElementById(`ftEditPanel-${b.dataset.batch}-${b.dataset.day}-${b.dataset.idx}`);
+        const panel = document.getElementById(`ftEditPanel-${b.dataset.batch}-${b.dataset.day}-${b.dataset.scope}-${b.dataset.idx}`);
         panel.classList.toggle('hidden');
       });
     });
     listEl.querySelectorAll('.saveFtEditBtn').forEach(b=>{
-      b.addEventListener('click', ()=>saveFreetimeEdit(b.dataset.batch, parseInt(b.dataset.day), parseInt(b.dataset.idx)));
+      b.addEventListener('click', ()=>saveFreetimeEdit(b.dataset.batch, parseInt(b.dataset.day), b.dataset.scope, parseInt(b.dataset.idx)));
     });
   }
 }
@@ -2254,6 +2367,8 @@ async function addFreetime(batchId, dayIdx){
   const hours = document.getElementById(`ftHours-${batchId}-${dayIdx}`).value.trim();
   const imgInput = document.getElementById(`ftImg-${batchId}-${dayIdx}`);
   const imgFile = imgInput.files && imgInput.files[0];
+  const scopeCheckbox = document.getElementById(`ftScopeOwn-${batchId}-${dayIdx}`);
+  const scope = (scopeCheckbox && scopeCheckbox.checked) ? 'own' : 'shared';
   if(!name && !url) return;
   let img = '';
   if(imgFile){
@@ -2265,10 +2380,8 @@ async function addFreetime(batchId, dayIdx){
       return;
     }
   }
-  const key = `freetime:day${dayIdx}`;
-  const raw = await storageGet(key, true);
-  let items = [];
-  try{ items = raw ? JSON.parse(raw) : []; }catch(e){ items=[]; }
+  const key = ftKey(batchId, dayIdx, scope);
+  const items = await ftGetItems(batchId, dayIdx, scope);
   items.push({name, url, img, google, naver, note, hours});
   await storageSet(key, JSON.stringify(items), true);
   document.getElementById(`ftName-${batchId}-${dayIdx}`).value='';
@@ -2278,31 +2391,28 @@ async function addFreetime(batchId, dayIdx){
   document.getElementById(`ftNote-${batchId}-${dayIdx}`).value='';
   document.getElementById(`ftHours-${batchId}-${dayIdx}`).value='';
   imgInput.value='';
+  if(scopeCheckbox) scopeCheckbox.checked = false;
   renderFreetime(batchId, dayIdx);
-  showToast('✓ 已新增推薦行程（兩梯次都會看到）');
+  showToast(scope === 'own' ? '✓ 已新增推薦行程（僅本梯次看得到）' : '✓ 已新增推薦行程（兩梯次都會看到）');
 }
-async function removeFreetime(batchId, dayIdx, idx){
-  const key = `freetime:day${dayIdx}`;
-  const raw = await storageGet(key, true);
-  let items = [];
-  try{ items = raw ? JSON.parse(raw) : []; }catch(e){ items=[]; }
+async function removeFreetime(batchId, dayIdx, scope, idx){
+  const key = ftKey(batchId, dayIdx, scope);
+  const items = await ftGetItems(batchId, dayIdx, scope);
   items.splice(idx,1);
   await storageSet(key, JSON.stringify(items), true);
   renderFreetime(batchId, dayIdx);
 }
-async function saveFreetimeEdit(batchId, dayIdx, idx){
-  const key = `freetime:day${dayIdx}`;
-  const raw = await storageGet(key, true);
-  let items = [];
-  try{ items = raw ? JSON.parse(raw) : []; }catch(e){ items=[]; }
+async function saveFreetimeEdit(batchId, dayIdx, scope, idx){
+  const key = ftKey(batchId, dayIdx, scope);
+  const items = await ftGetItems(batchId, dayIdx, scope);
   if(!items[idx]) return;
-  const name = document.getElementById(`ftEditName-${batchId}-${dayIdx}-${idx}`).value.trim();
-  const note = document.getElementById(`ftEditNote-${batchId}-${dayIdx}-${idx}`).value.trim();
-  const url = document.getElementById(`ftEditUrl-${batchId}-${dayIdx}-${idx}`).value.trim();
-  const google = document.getElementById(`ftEditGoogle-${batchId}-${dayIdx}-${idx}`).value.trim();
-  const naver = document.getElementById(`ftEditNaver-${batchId}-${dayIdx}-${idx}`).value.trim();
-  const hours = document.getElementById(`ftEditHours-${batchId}-${dayIdx}-${idx}`).value.trim();
-  const imgInput = document.getElementById(`ftEditImg-${batchId}-${dayIdx}-${idx}`);
+  const name = document.getElementById(`ftEditName-${batchId}-${dayIdx}-${scope}-${idx}`).value.trim();
+  const note = document.getElementById(`ftEditNote-${batchId}-${dayIdx}-${scope}-${idx}`).value.trim();
+  const url = document.getElementById(`ftEditUrl-${batchId}-${dayIdx}-${scope}-${idx}`).value.trim();
+  const google = document.getElementById(`ftEditGoogle-${batchId}-${dayIdx}-${scope}-${idx}`).value.trim();
+  const naver = document.getElementById(`ftEditNaver-${batchId}-${dayIdx}-${scope}-${idx}`).value.trim();
+  const hours = document.getElementById(`ftEditHours-${batchId}-${dayIdx}-${scope}-${idx}`).value.trim();
+  const imgInput = document.getElementById(`ftEditImg-${batchId}-${dayIdx}-${scope}-${idx}`);
   const imgFile = imgInput.files && imgInput.files[0];
   let img = items[idx].img || '';
   if(imgFile){
@@ -2317,7 +2427,7 @@ async function saveFreetimeEdit(batchId, dayIdx, idx){
   items[idx] = {name, note, url, google, naver, img, hours};
   await storageSet(key, JSON.stringify(items), true);
   renderFreetime(batchId, dayIdx);
-  showToast('✓ 已儲存修改（兩梯次都會看到）');
+  showToast(scope === 'own' ? '✓ 已儲存修改（僅本梯次看得到）' : '✓ 已儲存修改（兩梯次都會看到）');
 }
 
 async function renderSpotGallery(batchId, dayIdx, spotIdx){
