@@ -759,6 +759,27 @@
     color:rgba(15,36,56,0.55);
   }
   .tab-switch button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .day-tab-switch{
+    display:flex;gap:8px;margin-bottom:22px;
+    overflow-x:auto;-webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .day-tab-switch::-webkit-scrollbar{display:none;}
+  .day-tab-switch button{
+    flex:0 0 auto;
+    padding:12px 20px;
+    border-radius:12px;
+    border:1.5px solid var(--line);
+    background:#fff;
+    font-weight:700;
+    font-size:17.5px;
+    color:rgba(15,36,56,0.55);
+    white-space:nowrap;
+  }
+  .day-tab-switch button .day-tab-date{
+    display:block;font-size:14px;font-weight:500;opacity:.75;margin-top:2px;
+  }
+  .day-tab-switch button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
   .table-wrap{background:#fff;border-radius:18px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--line);}
   table{width:100%;border-collapse:collapse;font-size:16px;}
   thead th{
@@ -797,10 +818,11 @@
     padding:16px 18px;box-shadow:var(--shadow);margin-bottom:22px;
   }
   .baggage-info-title{font-family:'Iansui','Noto Serif TC',serif;font-weight:700;font-size:16.5px;color:var(--ink);margin-bottom:10px;}
-  .baggage-info-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:15.5px;border-bottom:1px dashed var(--line);}
+  .baggage-info-row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;font-size:15.5px;border-bottom:1px dashed var(--line);gap:12px;}
   .baggage-info-row:last-of-type{border-bottom:none;}
-  .baggage-info-row span{color:rgba(15,36,56,0.55);}
-  .baggage-info-row b{color:var(--ink);text-align:right;}
+  .baggage-info-row span{color:rgba(15,36,56,0.55);flex-shrink:0;}
+  .baggage-info-row b{color:var(--ink);text-align:right;line-height:1.5;}
+  .baggage-note{display:block;font-weight:500;font-size:13px;color:rgba(15,36,56,0.5);margin-top:2px;}
   .baggage-info-hint{font-size:13px;color:rgba(15,36,56,0.45);margin-top:8px;}
 
   footer{
@@ -975,6 +997,31 @@
   .fx-history-rm{background:none;border:none;color:rgba(15,36,56,0.4);font-size:15px;padding:2px 6px;}
   .fx-history-empty{font-size:15px;color:rgba(15,36,56,0.45);text-align:center;padding:14px;}
 
+  /* ---------- 計算機（加總買的東西） ---------- */
+  .fx-calc-sub{font-size:14.5px;color:rgba(15,36,56,0.55);margin-bottom:16px;line-height:1.6;}
+  .calc-widget{
+    background:var(--porcelain);border:1px solid var(--line);
+    border-radius:16px;padding:16px;
+  }
+  .calc-display{
+    text-align:right;font-family:'Iansui','Fraunces',serif;
+    font-size:38px;font-weight:700;color:var(--ink);
+    padding:14px 10px 20px;line-height:1.1;
+    word-break:break-all;overflow-wrap:anywhere;
+  }
+  .calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  .calc-btn{
+    padding:17px 0;border-radius:14px;border:none;
+    font-size:21px;font-weight:700;font-family:inherit;
+  }
+  .calc-btn.calc-fn{background:var(--celadon);color:var(--ink-2);}
+  .calc-btn.calc-fn:active{background:var(--celadon-2);}
+  .calc-btn.calc-num{background:#fff;color:var(--ink);border:1.5px solid var(--line);}
+  .calc-btn.calc-num:active{background:var(--celadon);}
+  .calc-btn.calc-op{background:var(--persimmon);color:#fff;}
+  .calc-btn.calc-op:active{background:var(--persimmon-2);}
+  .calc-btn.calc-op.calc-op-active{background:#fff;color:var(--persimmon);border:1.5px solid var(--persimmon);}
+
   /* ---------- TRANSLATION ---------- */
   .tr-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow);}
   .tr-lang-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
@@ -1064,7 +1111,7 @@
   <div class="hero-company">諾瓦材料科技股份有限公司</div>
   <h1>2026 年海外員工旅遊</h1>
   <div class="route">釜山 <span>×</span>慶州 <span>×</span>蔚山</div>
-  <div class="hero-date" id="heroDate"></div>
+  <div class="hero-date hidden" id="heroDate"></div>
 </div>
 
 <div class="wrap">
@@ -1137,16 +1184,19 @@
     <section id="info" class="dash-page hidden">
       <div class="section-label">資訊</div>
       <div class="section-title">出發前必看資訊</div>
+      <div class="section-sub">以下為你所屬梯次的集合資訊，如有異動將由管理員更新。</div>
       <div class="tab-switch" id="infoTabSwitch">
-        <button data-infotab="brief" class="active">📋 集合資訊 / 班機時刻</button>
+        <button data-infotab="brief" class="active">📋 集合資訊</button>
+        <button data-infotab="flight">✈️ 班機時刻</button>
         <button data-infotab="packing">🎒 行李檢查</button>
       </div>
 
       <div id="infoTab-brief">
-        <div class="section-sub">以下為你所屬梯次的集合資訊，如有異動將由管理員更新。</div>
         <div class="assembly-grid" id="assemblyGrid"></div>
+      </div>
 
-        <div class="section-label" style="margin-top:34px;">班機時刻</div>
+      <div id="infoTab-flight" class="hidden">
+        <div class="section-label">班機時刻</div>
         <div class="section-sub">獨立顯示去程與回程航班資訊，請預留機場報到時間。</div>
         <div id="ticketWrap"></div>
       </div>
@@ -1163,6 +1213,7 @@
       <div class="section-label">行程</div>
       <div class="section-title">每日行程</div>
       <div class="section-sub">框框區塊為管理員刊登「當地現場搶先看」照片的專屬欄位。</div>
+      <div class="day-tab-switch" id="dayTabSwitch"></div>
       <div id="dayList"></div>
     </section>
 
@@ -1196,7 +1247,7 @@
     <section id="exchange" class="dash-page hidden">
       <div class="section-label">匯率</div>
       <div class="section-title">韓幣 ↔ 台幣</div>
-      <div class="section-sub">即時查詢匯率，並可用下方計算機快速換算，系統會記住你最近 10 筆換算紀錄。</div>
+      <div class="section-sub">即時查詢匯率，換算後會自動記住最近 10 筆紀錄；下方還附上計算機，方便加總買東西花了多少。</div>
 
       <div class="fx-card">
         <div class="fx-card-title">💱 即時匯率換算（KRW → TWD）</div>
@@ -1213,23 +1264,42 @@
           </div>
         </div>
         <button class="fx-refresh-btn" id="fxRefreshBtn" type="button">🔄 重新整理匯率</button>
+        <div class="fx-history-title">最近 10 筆換算紀錄（換算後自動記錄，只存在你自己的裝置）</div>
+        <div id="calcHistoryList" class="fx-history-list"></div>
       </div>
 
       <div class="fx-card">
-        <div class="fx-card-title">🧮 換算計算機</div>
-        <div class="fx-calc-row">
-          <div class="fx-field">
-            <label>韓幣 KRW</label>
-            <input type="number" id="calcKrwInput" inputmode="decimal" placeholder="輸入韓幣">
-          </div>
-          <div class="fx-field">
-            <label>台幣 TWD</label>
-            <input type="number" id="calcTwdInput" inputmode="decimal" placeholder="輸入台幣">
+        <div class="fx-card-title">🧮 計算機</div>
+        <div class="fx-calc-sub">買東西時可以直接在這裡加加減減，方便加總花了多少錢。</div>
+        <div class="calc-widget">
+          <div class="calc-display" id="calcDisplay">0</div>
+          <div class="calc-grid">
+            <button type="button" class="calc-btn calc-fn" data-calc="back">⌫</button>
+            <button type="button" class="calc-btn calc-fn" data-calc="ac">AC</button>
+            <button type="button" class="calc-btn calc-fn" data-calc="percent">%</button>
+            <button type="button" class="calc-btn calc-op" data-calc="÷">÷</button>
+
+            <button type="button" class="calc-btn calc-num" data-calc="7">7</button>
+            <button type="button" class="calc-btn calc-num" data-calc="8">8</button>
+            <button type="button" class="calc-btn calc-num" data-calc="9">9</button>
+            <button type="button" class="calc-btn calc-op" data-calc="×">×</button>
+
+            <button type="button" class="calc-btn calc-num" data-calc="4">4</button>
+            <button type="button" class="calc-btn calc-num" data-calc="5">5</button>
+            <button type="button" class="calc-btn calc-num" data-calc="6">6</button>
+            <button type="button" class="calc-btn calc-op" data-calc="−">−</button>
+
+            <button type="button" class="calc-btn calc-num" data-calc="1">1</button>
+            <button type="button" class="calc-btn calc-num" data-calc="2">2</button>
+            <button type="button" class="calc-btn calc-num" data-calc="3">3</button>
+            <button type="button" class="calc-btn calc-op" data-calc="+">+</button>
+
+            <button type="button" class="calc-btn calc-fn" data-calc="sign">+/-</button>
+            <button type="button" class="calc-btn calc-num" data-calc="0">0</button>
+            <button type="button" class="calc-btn calc-num" data-calc=".">.</button>
+            <button type="button" class="calc-btn calc-op" data-calc="=">=</button>
           </div>
         </div>
-        <button class="fx-save-btn" id="calcSaveBtn" type="button">💾 記錄這筆換算</button>
-        <div class="fx-history-title">最近 10 筆換算紀錄（只存在你自己的裝置）</div>
-        <div id="calcHistoryList" class="fx-history-list"></div>
       </div>
     </section>
 
@@ -1267,7 +1337,7 @@
   </div>
 
   <!-- BOTTOM NAV -->
-  <nav class="bottom-nav" id="bottomNav">
+  <nav class="bottom-nav hidden" id="bottomNav">
     <button class="bottom-nav-btn" data-target="info" type="button"><span class="icon">📋</span>資訊</button>
     <button class="bottom-nav-btn" data-target="itinerary" type="button"><span class="icon">📅</span>行程</button>
     <button class="bottom-nav-btn bottom-nav-home active" data-target="home" type="button">
@@ -1395,11 +1465,11 @@ const NIGHTS = [
 /* ---- 各航空公司經濟艙行李限制（一般經濟艙票價，實際依機票艙等為準） ---- */
 const AIRLINE_BAGGAGE = {
   '長榮航空': {
-    checked:'2 件，每件 23 公斤（三邊合計不超過 158 公分）',
-    carry:'1 件 7 公斤（56×36×23 公分內，或三邊合計不超過 115 公分）'
+    checked:'2 件，每件 23 公斤<br><small class="baggage-note">（三邊合計不超過 158 公分）</small>',
+    carry:'1 件 7 公斤（56×36×23 公分內）<br><small class="baggage-note">（或三邊合計不超過 115 公分）</small>'
   },
   '中華航空': {
-    checked:'2 件，每件 23 公斤（三邊合計不超過 158 公分）',
+    checked:'2 件，每件 23 公斤<br><small class="baggage-note">（三邊合計不超過 158 公分）</small>',
     carry:'1 件 7 公斤（56×36×23 公分內）'
   }
 };
@@ -1630,6 +1700,7 @@ async function login(name){
   await storageSet('lastUser', name, false);
   document.getElementById('login').classList.add('hidden');
   document.getElementById('dashboard').classList.remove('hidden');
+  document.getElementById('bottomNav').classList.remove('hidden');
   switchDashPage('home');
   renderDashboard();
   applyAdminUI();
@@ -1641,6 +1712,7 @@ async function adminLogin(){
   await storageSet('lastUser', '__ADMIN__', false);
   document.getElementById('login').classList.add('hidden');
   document.getElementById('dashboard').classList.remove('hidden');
+  document.getElementById('bottomNav').classList.remove('hidden');
   switchDashPage('home');
   renderDashboard();
   applyAdminUI();
@@ -1652,6 +1724,8 @@ function logout(){
   isAdmin = false;
   document.getElementById('login').classList.remove('hidden');
   document.getElementById('dashboard').classList.add('hidden');
+  document.getElementById('bottomNav').classList.add('hidden');
+  document.getElementById('heroDate').classList.add('hidden');
   document.getElementById('searchInput').value='';
   document.getElementById('loginError').style.display = 'none';
   storageSet('lastUser', '', false);
@@ -1696,15 +1770,16 @@ document.getElementById('homeBatchBox').addEventListener('click', ()=> switchDas
 document.getElementById('homeGroupBox').addEventListener('click', ()=> switchDashPage('rooms'));
 document.getElementById('homeRoomBox').addEventListener('click', ()=> switchDashPage('roomInfoPage'));
 
-/* ---- Info page 內部分頁：集合資訊/班機 vs 行李檢查 ---- */
+/* ---- Info page 內部分頁：集合資訊 / 班機時刻 / 行李檢查 ---- */
 document.querySelectorAll('#infoTabSwitch button').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     document.querySelectorAll('#infoTabSwitch button').forEach(b=> b.classList.remove('active'));
     btn.classList.add('active');
-    const isPacking = btn.dataset.infotab === 'packing';
-    document.getElementById('infoTab-brief').classList.toggle('hidden', isPacking);
-    document.getElementById('infoTab-packing').classList.toggle('hidden', !isPacking);
-    if(isPacking) renderPacking();
+    const target = btn.dataset.infotab;
+    ['brief','flight','packing'].forEach(name=>{
+      document.getElementById('infoTab-' + name).classList.toggle('hidden', name !== target);
+    });
+    if(target === 'packing') renderPacking();
   });
 });
 
@@ -1715,6 +1790,7 @@ function renderDashboard(){
   const batch = BATCHES[currentUser.batch];
   document.getElementById('whoName').textContent = currentUser.name;
   document.getElementById('heroDate').textContent = batch.dateRange;
+  document.getElementById('heroDate').classList.remove('hidden');
   document.getElementById('statCount').textContent = batch.count + ' 人';
   document.getElementById('homeBatchValue').textContent = batch.label;
   document.getElementById('homeGroupValue').textContent = currentUser.group;
@@ -1808,11 +1884,14 @@ async function renderDays(batch){
   }
   await Promise.all(prefetchKeys.map(k=>storageGet(k, true)));
 
+  const dayDates = [];
   for(let i=0;i<ITINERARY.length;i++){
     const day = ITINERARY[i];
     const dateStr = addDays(batch.start, i);
+    dayDates.push(dateStr);
     const card = document.createElement('div');
     card.className='day-card';
+    card.id = `dayCard-${i}`;
 
     const baseHotels = (batch.hotelOverride && batch.hotelOverride[i]) ? batch.hotelOverride[i] : (day.hotels || []);
 
@@ -1950,6 +2029,32 @@ async function renderDays(batch){
     `;
     list.appendChild(card);
   }
+
+  // 依日期建立分頁列，一次只顯示一天，不用一直往下滑
+  const dayTabWrap = document.getElementById('dayTabSwitch');
+  if(dayTabWrap){
+    dayTabWrap.innerHTML = ITINERARY.map((day,i)=>`
+      <button type="button" class="day-tab-btn${i===0?' active':''}" data-day-tab="${i}">
+        第${['一','二','三','四','五'][i]}天<span class="day-tab-date">${dayDates[i].replace(/^\d{4}\//,'')}</span>
+      </button>
+    `).join('');
+    const showDay = (idx)=>{
+      document.querySelectorAll('.day-card').forEach(c=>{
+        c.classList.toggle('hidden', c.id !== `dayCard-${idx}`);
+      });
+      dayTabWrap.querySelectorAll('.day-tab-btn').forEach(b=>{
+        b.classList.toggle('active', parseInt(b.dataset.dayTab) === idx);
+      });
+    };
+    dayTabWrap.querySelectorAll('.day-tab-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        showDay(parseInt(btn.dataset.dayTab));
+        document.getElementById('itinerary').scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+    showDay(0);
+  }
+
   const galleryJobs = [];
   for(let i=0;i<ITINERARY.length;i++){
     const day = ITINERARY[i];
@@ -2558,6 +2663,7 @@ async function fetchExchangeRate(){
       const updated = data.time_last_update_utc ? new Date(data.time_last_update_utc) : new Date();
       infoEl.textContent = `1 KRW ≈ ${krwToTwdRate.toFixed(4)} TWD （更新時間：${updated.toLocaleString('zh-TW',{hour12:false})}）`;
       updateFxTopResult();
+      scheduleFxAutoSave();
     } else {
       infoEl.textContent = '⚠️ 匯率讀取失敗，請稍後再試一次';
     }
@@ -2577,35 +2683,30 @@ function updateFxTopResult(){
     resultEl.textContent = '--';
   }
 }
+let fxAutoSaveTimer = null;
+function scheduleFxAutoSave(){
+  if(fxAutoSaveTimer) clearTimeout(fxAutoSaveTimer);
+  fxAutoSaveTimer = setTimeout(async ()=>{
+    const krwEl = document.getElementById('fxKrwInput');
+    const krw = parseFloat(krwEl.value);
+    if(!krwToTwdRate || isNaN(krw)) return;
+    const twd = krw * krwToTwdRate;
+    let list = await getFxHistory();
+    // 同一筆金額若已是最新一筆就不重複記錄
+    if(list.length && Math.abs(list[0].krw - krw) < 0.0001) return;
+    list.unshift({krw, twd, time:Date.now()});
+    list = list.slice(0, 10);
+    await saveFxHistoryList(list);
+    renderFxHistory();
+  }, 900);
+}
 const fxKrwInputEl = document.getElementById('fxKrwInput');
-if(fxKrwInputEl) fxKrwInputEl.addEventListener('input', updateFxTopResult);
+if(fxKrwInputEl) fxKrwInputEl.addEventListener('input', ()=>{
+  updateFxTopResult();
+  scheduleFxAutoSave();
+});
 const fxRefreshBtnEl = document.getElementById('fxRefreshBtn');
 if(fxRefreshBtnEl) fxRefreshBtnEl.addEventListener('click', fetchExchangeRate);
-
-/* ---- 換算計算機（雙向自動換算） ---- */
-let calcSyncing = false;
-function calcFromKrw(){
-  if(calcSyncing || !krwToTwdRate) return;
-  calcSyncing = true;
-  const krwEl = document.getElementById('calcKrwInput');
-  const twdEl = document.getElementById('calcTwdInput');
-  const krw = parseFloat(krwEl.value);
-  if(!isNaN(krw)) twdEl.value = (krw * krwToTwdRate).toFixed(1);
-  calcSyncing = false;
-}
-function calcFromTwd(){
-  if(calcSyncing || !krwToTwdRate) return;
-  calcSyncing = true;
-  const krwEl = document.getElementById('calcKrwInput');
-  const twdEl = document.getElementById('calcTwdInput');
-  const twd = parseFloat(twdEl.value);
-  if(!isNaN(twd)) krwEl.value = (twd / krwToTwdRate).toFixed(0);
-  calcSyncing = false;
-}
-const calcKrwInputEl = document.getElementById('calcKrwInput');
-if(calcKrwInputEl) calcKrwInputEl.addEventListener('input', calcFromKrw);
-const calcTwdInputEl = document.getElementById('calcTwdInput');
-if(calcTwdInputEl) calcTwdInputEl.addEventListener('input', calcFromTwd);
 
 /* ---- 最近 10 筆換算紀錄（僅存在自己裝置） ---- */
 async function getFxHistory(){
@@ -2622,7 +2723,7 @@ async function renderFxHistory(){
   if(!wrap) return;
   const list = await getFxHistory();
   if(list.length === 0){
-    wrap.innerHTML = `<div class="fx-history-empty">尚無紀錄，換算後按「記錄這筆換算」即可保存最近 10 筆</div>`;
+    wrap.innerHTML = `<div class="fx-history-empty">尚無紀錄，輸入金額換算後會自動保存最近 10 筆</div>`;
     return;
   }
   wrap.innerHTML = list.map((it,idx)=>`
@@ -2640,18 +2741,115 @@ async function renderFxHistory(){
     });
   });
 }
-const calcSaveBtnEl = document.getElementById('calcSaveBtn');
-if(calcSaveBtnEl) calcSaveBtnEl.addEventListener('click', async ()=>{
-  const krw = parseFloat(document.getElementById('calcKrwInput').value);
-  const twd = parseFloat(document.getElementById('calcTwdInput').value);
-  if(isNaN(krw) || isNaN(twd)){ showToast('請先輸入金額'); return; }
-  let list = await getFxHistory();
-  list.unshift({krw, twd, time:Date.now()});
-  list = list.slice(0, 10);
-  await saveFxHistoryList(list);
-  renderFxHistory();
-  showToast('✓ 已記錄這筆換算');
+
+/* ---- 計算機（一般四則運算，方便加總買的東西） ---- */
+let calcDisplayVal = '0';
+let calcPrevVal = null;
+let calcPendingOp = null;
+let calcWaitingForOperand = false;
+
+function formatCalcDisplay(str){
+  if(str === 'Error') return str;
+  let neg = str.startsWith('-');
+  let s = neg ? str.slice(1) : str;
+  let [intPart, decPart] = s.split('.');
+  intPart = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return (neg?'-':'') + intPart + (decPart !== undefined ? '.' + decPart : '');
+}
+function renderCalcDisplay(){
+  const el = document.getElementById('calcDisplay');
+  if(el) el.textContent = formatCalcDisplay(calcDisplayVal);
+  document.querySelectorAll('.calc-btn.calc-op').forEach(btn=>{
+    btn.classList.toggle('calc-op-active', calcPendingOp === btn.dataset.calc && calcWaitingForOperand);
+  });
+}
+function calcCompute(a, b, op){
+  switch(op){
+    case '+': return a + b;
+    case '−': return a - b;
+    case '×': return a * b;
+    case '÷': return b === 0 ? NaN : a / b;
+    default: return b;
+  }
+}
+function calcCleanNumber(n){
+  if(!isFinite(n)) return 'Error';
+  // 避免浮點數誤差，最多保留 10 位有效數字
+  let str = parseFloat(n.toPrecision(10)).toString();
+  return str;
+}
+function calcInputDigit(d){
+  if(calcDisplayVal === 'Error'){ calcDisplayVal = d; calcWaitingForOperand = false; }
+  else if(calcWaitingForOperand){
+    calcDisplayVal = d;
+    calcWaitingForOperand = false;
+  } else {
+    calcDisplayVal = (calcDisplayVal === '0') ? d : (calcDisplayVal.length < 14 ? calcDisplayVal + d : calcDisplayVal);
+  }
+}
+function calcInputDecimal(){
+  if(calcWaitingForOperand || calcDisplayVal === 'Error'){
+    calcDisplayVal = '0.';
+    calcWaitingForOperand = false;
+    return;
+  }
+  if(!calcDisplayVal.includes('.')) calcDisplayVal += '.';
+}
+function calcBackspace(){
+  if(calcWaitingForOperand || calcDisplayVal === 'Error') return;
+  calcDisplayVal = calcDisplayVal.length > 1 ? calcDisplayVal.slice(0, -1) : '0';
+}
+function calcClearAll(){
+  calcDisplayVal = '0';
+  calcPrevVal = null;
+  calcPendingOp = null;
+  calcWaitingForOperand = false;
+}
+function calcToggleSign(){
+  if(calcDisplayVal === '0' || calcDisplayVal === 'Error') return;
+  calcDisplayVal = calcDisplayVal.startsWith('-') ? calcDisplayVal.slice(1) : '-' + calcDisplayVal;
+}
+function calcPercent(){
+  if(calcDisplayVal === 'Error') return;
+  calcDisplayVal = calcCleanNumber(parseFloat(calcDisplayVal) / 100);
+}
+function calcHandleOperator(nextOp){
+  if(calcDisplayVal === 'Error') return;
+  const inputValue = parseFloat(calcDisplayVal);
+  if(calcPrevVal === null){
+    calcPrevVal = inputValue;
+  } else if(calcPendingOp && !calcWaitingForOperand){
+    const result = calcCompute(calcPrevVal, inputValue, calcPendingOp);
+    calcDisplayVal = calcCleanNumber(result);
+    calcPrevVal = (calcDisplayVal === 'Error') ? null : parseFloat(calcDisplayVal);
+  }
+  calcWaitingForOperand = true;
+  calcPendingOp = nextOp;
+}
+function calcHandleEquals(){
+  if(calcDisplayVal === 'Error' || calcPendingOp === null || calcPrevVal === null) return;
+  const inputValue = parseFloat(calcDisplayVal);
+  const result = calcCompute(calcPrevVal, inputValue, calcPendingOp);
+  calcDisplayVal = calcCleanNumber(result);
+  calcPrevVal = null;
+  calcPendingOp = null;
+  calcWaitingForOperand = true;
+}
+document.querySelectorAll('.calc-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const key = btn.dataset.calc;
+    if(/^[0-9]$/.test(key)) calcInputDigit(key);
+    else if(key === '.') calcInputDecimal();
+    else if(key === 'back') calcBackspace();
+    else if(key === 'ac') calcClearAll();
+    else if(key === 'sign') calcToggleSign();
+    else if(key === 'percent') calcPercent();
+    else if(key === '=') calcHandleEquals();
+    else if(['+','−','×','÷'].includes(key)) calcHandleOperator(key);
+    renderCalcDisplay();
+  });
 });
+renderCalcDisplay();
 
 // 每 5 分鐘自動更新一次匯率（隨時保持最新）
 setInterval(()=>{
