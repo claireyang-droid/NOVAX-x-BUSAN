@@ -346,6 +346,75 @@
   }
   .dash-page{padding-top:32px;}
 
+  /* ---------- PACKING CHECKLIST ---------- */
+  .pack-category{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:16px;
+    box-shadow:var(--shadow);
+  }
+  .pack-cat-title{
+    font-family:'Iansui','Noto Serif TC',serif;
+    font-weight:700;
+    font-size:17px;
+    color:var(--ink);
+    margin-bottom:4px;
+  }
+  .pack-cat-progress{
+    font-size:13px;
+    color:rgba(15,36,56,0.5);
+    margin-bottom:14px;
+  }
+  .pack-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:11px 4px;
+    border-bottom:1px dashed var(--line);
+  }
+  .pack-item:last-of-type{border-bottom:none;}
+  .pack-item input[type="checkbox"]{
+    width:22px;height:22px;flex-shrink:0;accent-color:var(--persimmon);
+  }
+  .pack-item label{
+    flex:1;font-size:15.5px;color:var(--ink);cursor:pointer;
+  }
+  .pack-item.checked label{
+    color:rgba(15,36,56,0.4);
+    text-decoration:line-through;
+  }
+  .pack-item .pack-rm{
+    background:none;border:none;color:rgba(15,36,56,0.35);font-size:16px;padding:4px 8px;
+  }
+  .pack-edit-btn{
+    background:none;border:none;color:rgba(15,36,56,0.35);font-size:15px;padding:4px 6px;flex-shrink:0;
+  }
+  .pack-edit-input{
+    flex:1;padding:8px 10px;border-radius:8px;border:1.5px solid var(--persimmon);font-size:15.5px;font-family:inherit;background:#fff9f5;
+  }
+  .pack-add-row{
+    display:flex;gap:8px;margin-top:12px;
+  }
+  .pack-add-row input{
+    flex:1;padding:10px 12px;border-radius:8px;border:1.5px solid var(--line);font-size:15px;font-family:inherit;
+  }
+  .pack-add-row button{
+    background:var(--celadon);color:var(--ink-2);border:none;padding:10px 16px;border-radius:8px;font-size:14px;font-weight:700;
+  }
+  .pack-summary{
+    text-align:center;
+    background:var(--ink);
+    color:#fff;
+    padding:14px;
+    border-radius:14px;
+    font-size:15px;
+    font-weight:700;
+    margin-bottom:18px;
+  }
+  .pack-summary b{color:var(--gold);font-size:18px;}
+
   /* ---------- TICKET / FLIGHT CARD ---------- */
   .ticket{
     position:relative;
@@ -825,6 +894,7 @@
       <button class="dash-nav-btn" data-target="flights">✈️ 班機時刻</button>
       <button class="dash-nav-btn" data-target="itinerary">📅 每日行程</button>
       <button class="dash-nav-btn" data-target="rooms">🛏️ 分房 / 分組表</button>
+      <button class="dash-nav-btn" data-target="packing">🎒 行李檢查表</button>
     </div>
 
     <!-- ASSEMBLY INFO -->
@@ -869,6 +939,14 @@
         <table id="roomTable"></table>
       </div>
       <div id="roomSaveWrap"></div>
+    </section>
+
+    <!-- PACKING CHECKLIST -->
+    <section id="packing" class="dash-page hidden">
+      <div class="section-label">Step 05</div>
+      <div class="section-title">行李檢查表</div>
+      <div class="section-sub">9 月的釜山秋高氣爽、白天溫暖早晚微涼，建議「短袖＋薄外套」洋蔥式穿法。以下勾選只會存在你自己的手機裡，不會給別人看到，忘記帶什麼一目瞭然！</div>
+      <div id="packingList"></div>
     </section>
 
     <footer>諾瓦材料科技股份有限公司<br>2026 員工旅遊管理系統 · 僅供本次活動使用</footer>
@@ -990,6 +1068,41 @@ const NIGHTS = [
   {key:'night4', label:'第四晚（蔚山／釜山樂天）'}
 ];
 
+const PACKING_CATEGORIES = [
+  { id:'docs', title:'📋 必備證件與重要物品', items:[
+    {id:'passport', text:'護照（效期需滿 6 個月以上）'},
+    {id:'ticket', text:'回程機票確認單 & 飯店床位分配表'},
+    {id:'qcode', text:'Q-CODE 或紙本入境卡'},
+    {id:'cash', text:'韓幣現金 & 信用卡'},
+    {id:'wowpass', text:'WOWPASS 卡 / NAMANE 卡'}
+  ]},
+  { id:'clothes', title:'👚 九月穿搭與衣物（均溫約 20°C－26°C）', items:[
+    {id:'shortsleeve', text:'短袖上衣 / 薄襯衫'},
+    {id:'pants', text:'百搭長褲 / 長裙（海邊風大，避免短裙）'},
+    {id:'jacket', text:'輕便防風外套 / 薄針織衫（晚上看夜景吹海風必備）'},
+    {id:'shoes', text:'好走路的休閒鞋 / 球鞋（切勿穿新鞋）'},
+    {id:'pajamas', text:'睡衣 / 內著衣物'}
+  ]},
+  { id:'electronics', title:'🔌 3C 電子產品', items:[
+    {id:'phonecharger', text:'手機 & 充電線'},
+    {id:'powerbank', text:'行動電源（不能託運，需隨身帶上機）'},
+    {id:'adapter', text:'韓國轉接頭（220V，4.8mm 雙圓頭）'},
+    {id:'multiplug', text:'多孔充電頭 / 延長線'},
+    {id:'sim', text:'網卡 / eSIM / WiFi 機'}
+  ]},
+  { id:'medicine', title:'🧴 藥品與個人保養（秋季偏乾燥）', items:[
+    {id:'meds', text:'個人常備藥（感冒藥、腸胃藥、暈車暈船藥）'},
+    {id:'sunscreen', text:'防曬乳 / 墨鏡 / 遮陽帽'},
+    {id:'lotion', text:'保濕乳液 / 護唇膏'},
+    {id:'umbrella', text:'隨身雨具（折疊傘或輕便雨衣）'}
+  ]},
+  { id:'toiletries', title:'🏨 盥洗與個人用品', items:[
+    {id:'toothbrush', text:'牙刷 / 牙膏（韓國飯店多不提供一次性備品）'},
+    {id:'skincare', text:'卸妝 / 洗面乳 / 基礎保養品'},
+    {id:'bag', text:'空購物袋 / 折疊行李袋（防戰利品爆滿）'}
+  ]}
+];
+
 /* =========================================================
    HELPERS
    ========================================================= */
@@ -1010,6 +1123,8 @@ function findRoomInfo(batch, name){
   return null;
 }
 const memoryStore = {};
+const readCache = {};      // 快取已讀取過的共用資料，避免重複打 Firestore
+const inFlight = {};       // 避免同一個 key 短時間內被重複同時查詢
 function sanitizeDocId(key){
   return key.replace(/\//g, '_');
 }
@@ -1017,20 +1132,33 @@ async function storageGet(key, shared){
   if(!shared){
     try{ return localStorage.getItem(key); }catch(e){ return memoryStore[key] ?? null; }
   }
-  if(firestoreDb){
-    try{
-      const snap = await firestoreDb.collection('travelData').doc(sanitizeDocId(key)).get();
-      return snap.exists ? snap.data().value : null;
-    }catch(e){
-      console.error('Firestore 讀取失敗', key, e);
+  if(Object.prototype.hasOwnProperty.call(readCache, key)) return readCache[key];
+  if(inFlight[key]) return inFlight[key];
+  const job = (async ()=>{
+    if(firestoreDb){
+      try{
+        const snap = await firestoreDb.collection('travelData').doc(sanitizeDocId(key)).get();
+        const val = snap.exists ? snap.data().value : null;
+        readCache[key] = val;
+        return val;
+      }catch(e){
+        console.error('Firestore 讀取失敗', key, e);
+      }
     }
-  }
-  return Object.prototype.hasOwnProperty.call(memoryStore, key) ? memoryStore[key] : null;
+    const fallback = Object.prototype.hasOwnProperty.call(memoryStore, key) ? memoryStore[key] : null;
+    readCache[key] = fallback;
+    return fallback;
+  })();
+  inFlight[key] = job;
+  const result = await job;
+  delete inFlight[key];
+  return result;
 }
 async function storageSet(key, value, shared){
   if(!shared){
     try{ localStorage.setItem(key, value); return true; }catch(e){ memoryStore[key] = value; return true; }
   }
+  readCache[key] = value; // 樂觀更新快取，讓畫面立即反映最新內容
   if(firestoreDb){
     try{
       await firestoreDb.collection('travelData').doc(sanitizeDocId(key)).set({
@@ -1055,9 +1183,11 @@ async function renderAssemblyInfo(){
   grid.innerHTML = '';
   if(!currentUser) return;
   const b = BATCHES[currentUser.batch];
-  const meetTime = await storageGet(`meet:${b.id}:time`, true) || '';
-  const terminal = await storageGet(`meet:${b.id}:terminal`, true) || '';
-  const guideRaw = await storageGet(`guide:${b.id}`, true);
+  const [meetTime, terminal, guideRaw] = await Promise.all([
+    storageGet(`meet:${b.id}:time`, true),
+    storageGet(`meet:${b.id}:terminal`, true),
+    storageGet(`guide:${b.id}`, true)
+  ]);
   let guide = {name:'', phone:''};
   try{ if(guideRaw) guide = JSON.parse(guideRaw); }catch(e){}
   const dateStr = addDays(b.start, 0);
@@ -1067,8 +1197,8 @@ async function renderAssemblyInfo(){
     card.innerHTML = `
       <div class="ac-title">${b.label}</div>
       <div class="ac-row"><span>集合日期</span><b>${dateStr}</b></div>
-      <div class="ac-row"><span>集合時間</span><input type="text" id="meetTime-${b.id}" value="${meetTime}" placeholder="例：06:00 於第一航廈"></div>
-      <div class="ac-row"><span>集合地點</span><input type="text" id="meetTerm-${b.id}" value="${terminal}" placeholder="航廈（例：第一航廈）"></div>
+      <div class="ac-row"><span>集合時間</span><input type="text" id="meetTime-${b.id}" value="${meetTime||''}" placeholder="例：06:00 於第一航廈"></div>
+      <div class="ac-row"><span>集合地點</span><input type="text" id="meetTerm-${b.id}" value="${terminal||''}" placeholder="航廈（例：第一航廈）"></div>
       <div class="ac-row"><span>導遊／領隊</span>
          <input type="text" id="guideName-${b.id}" value="${guide.name||''}" placeholder="姓名" style="max-width:90px;">
          <input type="text" id="guidePhone-${b.id}" value="${guide.phone||''}" placeholder="手機" style="max-width:120px;">
@@ -1196,6 +1326,7 @@ function switchDashPage(target){
   document.querySelectorAll('.dash-nav-btn').forEach(btn=>{
     btn.classList.toggle('active', btn.dataset.target === target);
   });
+  if(target === 'packing'){ renderPacking(); }
   document.getElementById('dashboard').scrollIntoView({behavior:'smooth', block:'start'});
 }
 document.querySelectorAll('.dash-nav-btn').forEach(btn=>{
@@ -1263,6 +1394,22 @@ function renderTicket(batch){
 async function renderDays(batch){
   const list = document.getElementById('dayList');
   list.innerHTML = '';
+
+  // 先平行預先抓取所有需要的資料（避免一筆一筆等待，大幅縮短開啟時間）
+  const prefetchKeys = [];
+  for(let i=0;i<ITINERARY.length;i++){
+    const day = ITINERARY[i];
+    prefetchKeys.push(`dayedit:${batch.id}:day${i}`);
+    const baseHotelsForFetch = (batch.hotelOverride && batch.hotelOverride[i]) ? batch.hotelOverride[i] : (day.hotels || []);
+    for(let hIdx=0; hIdx<baseHotelsForFetch.length; hIdx++){
+      prefetchKeys.push(`hotelmap:${batch.id}:day${i}:hotel${hIdx}`);
+    }
+    for(let si=0; si<(day.highlights||[]).length; si++){
+      prefetchKeys.push(`spotname:${batch.id}:day${i}:spot${si}`);
+    }
+  }
+  await Promise.all(prefetchKeys.map(k=>storageGet(k, true)));
+
   for(let i=0;i<ITINERARY.length;i++){
     const day = ITINERARY[i];
     const dateStr = addDays(batch.start, i);
@@ -1396,11 +1543,16 @@ async function renderDays(batch){
       </div>
     `;
     list.appendChild(card);
-    for(let si=0; si<(day.highlights||[]).length; si++){
-      await renderSpotGallery(batch.id, i, si);
-    }
-    await renderFreetime(batch.id, i);
   }
+  const galleryJobs = [];
+  for(let i=0;i<ITINERARY.length;i++){
+    const day = ITINERARY[i];
+    for(let si=0; si<(day.highlights||[]).length; si++){
+      galleryJobs.push(renderSpotGallery(batch.id, i, si));
+    }
+    galleryJobs.push(renderFreetime(batch.id, i));
+  }
+  await Promise.all(galleryJobs);
   document.querySelectorAll('.addSpotPhotoBtn').forEach(btn=>{
     btn.addEventListener('click', ()=>addSpotPhoto(btn.dataset.batch, parseInt(btn.dataset.day), parseInt(btn.dataset.spot)));
   });
@@ -1641,10 +1793,12 @@ async function renderTable(batch){
 
 async function renderRoomTable(batch, nightKey){
   const key = `roomnums:${batch.id}:${nightKey}`;
-  const raw = await storageGet(key, true);
+  const [raw, guideRaw] = await Promise.all([
+    storageGet(key, true),
+    storageGet(`guide:${batch.id}`, true)
+  ]);
   let nums = [];
   try{ nums = raw ? JSON.parse(raw) : []; }catch(e){ nums=[]; }
-  const guideRaw = await storageGet(`guide:${batch.id}`, true);
   let guide = {name:'', phone:''};
   try{ if(guideRaw) guide = JSON.parse(guideRaw); }catch(e){}
 
@@ -1711,6 +1865,144 @@ function renderMealTable(batch){
   });
   rows += '</tbody>';
   table.innerHTML = rows;
+}
+
+/* =========================================================
+   PACKING CHECKLIST（個人專屬，只存在自己這台裝置上）
+   ========================================================= */
+async function getPackingState(){
+  if(!currentUser) return {checked:{}, custom:{}, overrides:{}};
+  const key = `packing:${currentUser.name}`;
+  const raw = await storageGet(key, false);
+  let state = {checked:{}, custom:{}, overrides:{}};
+  try{ if(raw) state = JSON.parse(raw); }catch(e){}
+  if(!state.checked) state.checked = {};
+  if(!state.custom) state.custom = {};
+  if(!state.overrides) state.overrides = {};
+  return state;
+}
+async function savePackingState(state){
+  if(!currentUser) return;
+  const key = `packing:${currentUser.name}`;
+  await storageSet(key, JSON.stringify(state), false);
+}
+
+async function renderPacking(){
+  const wrap = document.getElementById('packingList');
+  if(!wrap || !currentUser) return;
+  const state = await getPackingState();
+
+  let totalItems = 0, totalChecked = 0;
+  const catHtml = PACKING_CATEGORIES.map(cat=>{
+    const customItems = state.custom[cat.id] || [];
+    const allItems = [...cat.items, ...customItems.map(t=>({id:t.id, text:t.text, custom:true}))];
+    let checkedCount = 0;
+    const itemsHtml = allItems.map(item=>{
+      const isChecked = !!state.checked[item.id];
+      if(isChecked) checkedCount++;
+      const displayText = (state.overrides && state.overrides[item.id]) || item.text;
+      return `
+        <div class="pack-item ${isChecked?'checked':''}">
+          <input type="checkbox" id="pack-${item.id}" data-id="${item.id}" ${isChecked?'checked':''}>
+          <label class="pack-label" id="pack-label-${item.id}" for="pack-${item.id}">${displayText}</label>
+          <input type="text" class="pack-edit-input hidden" id="pack-edit-${item.id}" value="${displayText}">
+          <button class="pack-edit-btn" data-id="${item.id}" title="編輯文字">✏️</button>
+          ${item.custom ? `<button class="pack-rm" data-cat="${cat.id}" data-id="${item.id}">✕</button>` : ''}
+        </div>`;
+    }).join('');
+    totalItems += allItems.length;
+    totalChecked += checkedCount;
+    return `
+      <div class="pack-category">
+        <div class="pack-cat-title">${cat.title}</div>
+        <div class="pack-cat-progress">已準備 ${checkedCount} / ${allItems.length} 項</div>
+        ${itemsHtml}
+        <div class="pack-add-row">
+          <input type="text" placeholder="新增自己的項目…" id="packAddInput-${cat.id}">
+          <button data-cat="${cat.id}" class="packAddBtn">＋ 新增</button>
+        </div>
+      </div>`;
+  }).join('');
+
+  wrap.innerHTML = `
+    <div class="pack-summary">目前已準備 <b>${totalChecked}</b> / ${totalItems} 項</div>
+    ${catHtml}
+  `;
+
+  wrap.querySelectorAll('input[type="checkbox"]').forEach(cb=>{
+    cb.addEventListener('change', ()=>togglePackingItem(cb.dataset.id, cb.checked));
+  });
+  wrap.querySelectorAll('.pack-edit-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = btn.dataset.id;
+      const label = document.getElementById(`pack-label-${id}`);
+      const input = document.getElementById(`pack-edit-${id}`);
+      label.classList.add('hidden');
+      input.classList.remove('hidden');
+      input.focus();
+      input.select();
+    });
+  });
+  wrap.querySelectorAll('.pack-edit-input').forEach(input=>{
+    const id = input.id.replace('pack-edit-','');
+    const confirmEdit = ()=> savePackingItemText(id, input.value.trim());
+    input.addEventListener('keydown', e=>{
+      if(e.key==='Enter'){ input.blur(); }
+      if(e.key==='Escape'){ renderPacking(); }
+    });
+    input.addEventListener('blur', confirmEdit);
+  });
+  wrap.querySelectorAll('.packAddBtn').forEach(btn=>{
+    btn.addEventListener('click', ()=>addPackingItem(btn.dataset.cat));
+  });
+  wrap.querySelectorAll('.pack-rm').forEach(btn=>{
+    btn.addEventListener('click', ()=>removePackingItem(btn.dataset.cat, btn.dataset.id));
+  });
+}
+
+async function togglePackingItem(itemId, isChecked){
+  const state = await getPackingState();
+  state.checked[itemId] = isChecked;
+  await savePackingState(state);
+  renderPacking();
+}
+
+async function savePackingItemText(itemId, newText){
+  if(!newText){ renderPacking(); return; }
+  const state = await getPackingState();
+  if(itemId.startsWith('custom-')){
+    const catId = itemId.split('-')[1];
+    if(state.custom[catId]){
+      const entry = state.custom[catId].find(it=>it.id===itemId);
+      if(entry) entry.text = newText;
+    }
+  } else {
+    state.overrides[itemId] = newText;
+  }
+  await savePackingState(state);
+  renderPacking();
+}
+
+async function addPackingItem(catId){
+  const input = document.getElementById(`packAddInput-${catId}`);
+  const text = input.value.trim();
+  if(!text) return;
+  const state = await getPackingState();
+  if(!state.custom[catId]) state.custom[catId] = [];
+  const newId = `custom-${catId}-${Date.now()}`;
+  state.custom[catId].push({id:newId, text});
+  await savePackingState(state);
+  renderPacking();
+}
+
+async function removePackingItem(catId, itemId){
+  const state = await getPackingState();
+  if(state.custom[catId]){
+    state.custom[catId] = state.custom[catId].filter(it=>it.id !== itemId);
+  }
+  delete state.checked[itemId];
+  await savePackingState(state);
+  renderPacking();
 }
 
 document.getElementById('tabRoomBtn').addEventListener('click', ()=>{
