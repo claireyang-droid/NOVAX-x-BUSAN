@@ -95,6 +95,16 @@
     margin-top:10px;
   }
   .hero .route span{ color:rgba(248,245,238,0.5); font-weight:400; padding:0 10px;}
+  .hero-date{
+    position:relative;
+    margin-top:14px;
+    font-family:'Iansui','Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(20px,4vw,28px);
+    letter-spacing:0.04em;
+    color:rgba(248,245,238,0.92);
+    min-height:1.4em;
+  }
   .hero-scroll{
     position:relative;
     margin-top:38px;
@@ -765,6 +775,34 @@
   }
   .me-pill{background:var(--persimmon);color:#fff;}
 
+  /* ---------- MEAL GROUP CARDS（一排兩組） ---------- */
+  .meal-group-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .meal-group-card{
+    background:#fff;border:1px solid var(--line);border-radius:16px;
+    padding:14px 12px;box-shadow:var(--shadow);
+  }
+  .meal-group-card.me{border-color:var(--persimmon);box-shadow:0 0 0 2px rgba(226,87,43,0.15), var(--shadow);}
+  .meal-group-title{
+    font-family:'Iansui','Noto Serif TC',serif;font-weight:700;font-size:15.5px;color:var(--ink);
+    margin-bottom:8px;padding-bottom:6px;border-bottom:1px dashed var(--line);
+  }
+  .meal-member{font-size:14px;padding:3px 0;color:var(--ink);}
+  .meal-member .m-no{color:rgba(15,36,56,0.4);margin-right:4px;font-family:'Iansui','Fraunces',serif;}
+  .meal-member.me{color:var(--persimmon);font-weight:700;}
+  @media (max-width:380px){.meal-group-grid{gap:8px;} .meal-group-card{padding:10px 8px;}}
+
+  /* ---------- BAGGAGE INFO（行李檢查頁最上方） ---------- */
+  .baggage-info-card{
+    background:#fff;border:1px solid var(--gold);border-radius:16px;
+    padding:16px 18px;box-shadow:var(--shadow);margin-bottom:22px;
+  }
+  .baggage-info-title{font-family:'Iansui','Noto Serif TC',serif;font-weight:700;font-size:16.5px;color:var(--ink);margin-bottom:10px;}
+  .baggage-info-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:15.5px;border-bottom:1px dashed var(--line);}
+  .baggage-info-row:last-of-type{border-bottom:none;}
+  .baggage-info-row span{color:rgba(15,36,56,0.55);}
+  .baggage-info-row b{color:var(--ink);text-align:right;}
+  .baggage-info-hint{font-size:13px;color:rgba(15,36,56,0.45);margin-top:8px;}
+
   footer{
     text-align:center;padding:40px 20px 70px;
     color:rgba(15,36,56,0.45);font-size:15.5px;
@@ -801,6 +839,178 @@
     pointer-events:none;
   }
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  /* ---------- BOTTOM NAV ---------- */
+  .dash-page{padding-top:32px;padding-bottom:100px;}
+  .bottom-nav{
+    position:fixed;left:0;right:0;bottom:0;z-index:150;
+    display:flex;align-items:flex-end;justify-content:space-around;
+    background:#fff;
+    border-top:1px solid var(--line);
+    padding:8px 6px 10px;
+    box-shadow:0 -8px 24px -14px rgba(15,36,56,0.35);
+  }
+  .bottom-nav-btn{
+    flex:1;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+    background:none;border:none;
+    padding:6px 2px;
+    font-size:12.5px;
+    color:rgba(15,36,56,0.5);
+    font-weight:500;
+  }
+  .bottom-nav-btn .icon{font-size:20px;line-height:1;}
+  .bottom-nav-btn.active{color:var(--persimmon);font-weight:700;}
+  .bottom-nav-home{position:relative;top:-20px;flex:0 0 auto;width:76px;color:var(--ink);}
+  .bottom-nav-home .circle{
+    width:58px;height:58px;border-radius:50%;
+    background:#fff;color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+    box-shadow:0 12px 26px -8px rgba(226,87,43,0.45);
+    border:4px solid var(--porcelain);
+    transition:border-color .18s ease;
+  }
+  .bottom-nav-home .circle img{width:78%;height:78%;object-fit:contain;}
+  .bottom-nav-home .home-label{font-size:12.5px;margin-top:4px;font-weight:700;}
+  .bottom-nav-home.active .circle{border-color:var(--persimmon);}
+  .bottom-nav-home.active .home-label{color:var(--persimmon);}
+
+  /* ---------- HOME PAGE BOXES（2x2 橫長方形方塊） ---------- */
+  .home-box-grid{
+    display:grid;grid-template-columns:repeat(2, 1fr);gap:12px;margin-top:18px;
+  }
+  .home-box{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:#fff;border:1px solid var(--line);border-radius:18px;
+    padding:16px 12px;text-align:center;box-shadow:var(--shadow);
+    font-family:inherit;
+  }
+  .home-box:hover{border-color:var(--persimmon);}
+  .home-box-static{cursor:default;}
+  .home-box-static:hover{border-color:var(--line);}
+  .home-box-label{font-size:14px;color:rgba(15,36,56,0.55);margin-bottom:6px;}
+  .home-box-value{font-family:'Iansui','Fraunces',serif;font-weight:700;font-size:22px;color:var(--persimmon);margin-bottom:6px;}
+  .home-box-hint{font-size:12.5px;color:rgba(15,36,56,0.4);}
+  @media (max-width:420px){.home-box-value{font-size:19px;} .home-box-grid{gap:9px;}}
+
+  .back-to-home-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    background:var(--celadon);color:var(--ink-2);border:none;
+    padding:9px 16px;border-radius:100px;font-size:15.5px;font-weight:700;
+    margin-bottom:18px;
+  }
+  .back-to-home-btn:hover{background:var(--celadon-2);}
+
+  /* ---------- ROSTER ---------- */
+  .roster-list{
+    display:grid;grid-template-columns:repeat(3, 1fr);gap:8px;
+  }
+  .roster-item{
+    display:flex;align-items:center;
+    padding:10px 8px;border:1px solid var(--line);border-radius:10px;
+    background:#fff;font-size:14.5px;box-shadow:0 4px 10px -6px rgba(15,36,56,0.2);
+  }
+  .roster-item.me{background:rgba(226,87,43,0.09);border-color:var(--persimmon);box-shadow:0 4px 10px -6px rgba(226,87,43,0.3);}
+  .roster-item .r-no{color:rgba(15,36,56,0.45);margin-right:5px;font-family:'Iansui','Fraunces',serif;flex-shrink:0;}
+  @media (max-width:380px){.roster-list{grid-template-columns:repeat(2, 1fr);}}
+
+  /* ---------- FREE-TIME BUTTON RESTYLE (match daily itinerary "stop" look) ---------- */
+  .ft-btn-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .ft-btn-row .ft-link-btn, .ft-btn-row .map-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    background:var(--celadon) !important;
+    color:var(--ink-2) !important;
+    border:none;
+    padding:6px 13px;
+    border-radius:100px;
+    font-size:15.5px;
+    font-weight:500;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .ft-btn-row .ft-link-btn:hover, .ft-btn-row .map-btn:hover{background:var(--celadon-2) !important;}
+  .ft-hours{
+    display:inline-flex;align-items:center;gap:5px;
+    font-size:14.5px;color:var(--ink-2);
+    background:var(--porcelain);
+    border:1px dashed var(--celadon-2);
+    padding:3px 10px;border-radius:100px;
+    margin-bottom:2px;width:fit-content;
+  }
+
+  /* ---------- EXCHANGE RATE ---------- */
+  .fx-card{
+    background:#fff;border:1px solid var(--line);border-radius:18px;
+    padding:22px;box-shadow:var(--shadow);margin-bottom:20px;
+  }
+  .fx-card-title{font-family:'Iansui','Noto Serif TC',serif;font-weight:700;font-size:18px;margin-bottom:14px;}
+  .fx-rate-line{font-size:15px;color:rgba(15,36,56,0.6);margin-bottom:16px;line-height:1.6;}
+  .fx-convert-row, .fx-calc-row{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;}
+  .fx-field{flex:1;min-width:120px;display:flex;flex-direction:column;gap:6px;}
+  .fx-field label{font-size:14px;color:rgba(15,36,56,0.5);font-weight:700;}
+  .fx-field input{
+    padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);
+    font-size:18px;font-family:inherit;background:var(--porcelain);
+  }
+  .fx-field input:focus{outline:none;border-color:var(--persimmon);}
+  .fx-eq{font-size:20px;color:rgba(15,36,56,0.4);padding-bottom:12px;}
+  .fx-result{
+    padding:12px 14px;border-radius:10px;background:var(--celadon);
+    font-size:18px;font-weight:700;color:var(--ink-2);min-height:22px;
+  }
+  .fx-refresh-btn, .fx-save-btn{
+    margin-top:16px;width:100%;
+    background:var(--ink);color:#fff;border:none;padding:12px;border-radius:10px;
+    font-size:16px;font-weight:700;
+  }
+  .fx-refresh-btn:hover, .fx-save-btn:hover{background:var(--persimmon);}
+  .fx-history-title{font-size:14.5px;font-weight:700;color:rgba(15,36,56,0.55);margin:18px 0 10px;}
+  .fx-history-list{display:flex;flex-direction:column;gap:8px;}
+  .fx-history-item{
+    display:flex;justify-content:space-between;align-items:center;
+    background:var(--porcelain);border:1px solid var(--line);border-radius:10px;
+    padding:10px 14px;font-size:15.5px;
+  }
+  .fx-history-rm{background:none;border:none;color:rgba(15,36,56,0.4);font-size:15px;padding:2px 6px;}
+  .fx-history-empty{font-size:15px;color:rgba(15,36,56,0.45);text-align:center;padding:14px;}
+
+  /* ---------- TRANSLATION ---------- */
+  .tr-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow);}
+  .tr-lang-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  .tr-lang-row select{
+    flex:1;padding:11px 12px;border-radius:10px;border:1.5px solid var(--line);
+    font-size:16px;font-family:inherit;background:var(--porcelain);
+  }
+  .tr-lang-row select:disabled{color:rgba(15,36,56,0.55);}
+  #trSwapBtn{
+    flex-shrink:0;background:var(--celadon);color:var(--ink-2);border:none;
+    width:40px;height:40px;border-radius:50%;font-size:18px;
+  }
+  .tr-card textarea{
+    width:100%;min-height:90px;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);
+    font-size:17px;font-family:inherit;resize:vertical;background:var(--porcelain);
+  }
+  .tr-card textarea:focus{outline:none;border-color:var(--persimmon);}
+  .tr-btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+  .tr-btn-row button{
+    flex:1;min-width:110px;
+    background:var(--celadon);color:var(--ink-2);border:none;
+    padding:11px 10px;border-radius:10px;font-size:15px;font-weight:700;
+  }
+  .tr-btn-row button.tr-translate-btn{background:var(--persimmon);color:#fff;}
+  .tr-btn-row button.tr-translate-btn:hover{background:var(--persimmon-2);}
+  .tr-btn-row button.listening{background:var(--persimmon);color:#fff;}
+  .tr-result-label{font-size:14px;font-weight:700;color:rgba(15,36,56,0.5);margin-top:18px;margin-bottom:8px;}
+  .tr-result-box{
+    background:var(--porcelain);border:1.5px dashed var(--celadon-2);border-radius:12px;
+    padding:14px;min-height:50px;font-size:18px;line-height:1.6;color:var(--ink);
+  }
+  #trSpeakResultBtn{
+    margin-top:12px;width:100%;background:var(--ink);color:#fff;border:none;
+    padding:11px;border-radius:10px;font-size:15.5px;font-weight:700;
+  }
+  #trSpeakResultBtn:hover{background:var(--persimmon);}
 </style>
 
 <!-- ============================================================
@@ -854,6 +1064,7 @@
   <div class="hero-company">諾瓦材料科技股份有限公司</div>
   <h1>2026 年海外員工旅遊</h1>
   <div class="route">釜山 <span>×</span>慶州 <span>×</span>蔚山</div>
+  <div class="hero-date" id="heroDate"></div>
 </div>
 
 <div class="wrap">
@@ -876,67 +1087,100 @@
   <!-- ============ DASHBOARD ============ -->
   <div id="dashboard" class="hidden">
 
-    <section style="padding-top:40px;">
+    <!-- HOME -->
+    <section id="home" class="dash-page" style="padding-top:40px;">
       <div class="welcome-bar">
         <div class="who">歡迎回來，<b id="whoName"></b> <span id="adminModeTag" class="admin-mode-tag hidden">🔧 管理者模式</span></div>
         <div class="actions">
           <button id="logoutBtn">切換 / 登出</button>
         </div>
       </div>
-      <div class="batch-strip">
-        <div class="stat-box"><div class="label">所屬梯次</div><div class="value" id="statBatch"></div></div>
-        <div class="stat-box"><div class="label">旅遊日期</div><div class="value" id="statDate"></div></div>
-        <div class="stat-box"><div class="label">梯次人數</div><div class="value" id="statCount"></div></div>
-      </div>
       <div class="admin-batch-switch hidden" id="adminBatchSwitch">
         <span>✏️ 目前編輯梯次：</span>
         <button data-batch="batch1">第一梯次</button>
         <button data-batch="batch2">第二梯次</button>
       </div>
+
+      <div class="home-box-grid">
+        <button class="home-box" id="homeBatchBox" type="button">
+          <div class="home-box-label">所屬梯次</div>
+          <div class="home-box-value" id="homeBatchValue"></div>
+          <div class="home-box-hint">點我看梯次名單 ›</div>
+        </button>
+        <button class="home-box" id="homeGroupBox" type="button">
+          <div class="home-box-label">所屬組別</div>
+          <div class="home-box-value" id="homeGroupValue"></div>
+          <div class="home-box-hint">點我看分組表 ›</div>
+        </button>
+        <button class="home-box" id="homeRoomBox" type="button">
+          <div class="home-box-label">分房表</div>
+          <div class="home-box-value">🛏️</div>
+          <div class="home-box-hint">點我看分房表 ›</div>
+        </button>
+        <div class="home-box home-box-static">
+          <div class="home-box-label">梯次人數</div>
+          <div class="home-box-value" id="statCount"></div>
+        </div>
+      </div>
     </section>
 
-    <!-- FLAT PAGE NAV -->
-    <div class="dash-nav" id="dashNav">
-      <button class="dash-nav-btn active" data-target="assembly">📋 集合資訊</button>
-      <button class="dash-nav-btn" data-target="flights">✈️ 班機時刻</button>
-      <button class="dash-nav-btn" data-target="itinerary">📅 每日行程</button>
-      <button class="dash-nav-btn" data-target="rooms">🛏️ 分房 / 分組表</button>
-      <button class="dash-nav-btn" data-target="packing">🎒 行李檢查表</button>
-    </div>
-
-    <!-- ASSEMBLY INFO -->
-    <section id="assembly" class="dash-page">
-      <div class="section-label">集合資訊</div>
-      <div class="section-title">出發集合須知</div>
-      <div class="section-sub">以下為你所屬梯次的集合資訊，如有異動將由管理員更新。</div>
-      <div class="assembly-grid" id="assemblyGrid"></div>
+    <!-- ROSTER (從首頁「所屬梯次」框進入) -->
+    <section id="roster" class="dash-page hidden">
+      <button class="back-to-home-btn" data-back type="button">‹ 返回首頁</button>
+      <div class="section-label">梯次名單</div>
+      <div class="section-title" id="rosterTitle">梯次名單</div>
+      <div class="section-sub">以下為你所屬梯次的完整名單，橘色標記為你本人。</div>
+      <div class="roster-list" id="rosterList"></div>
     </section>
 
-    <!-- FLIGHTS -->
-    <section id="flights" class="dash-page hidden">
-      <div class="section-label">Step 02</div>
-      <div class="section-title">班機時刻</div>
-      <div class="section-sub">獨立顯示去程與回程航班資訊，請預留機場報到時間。</div>
-      <div id="ticketWrap"></div>
+    <!-- INFO：集合資訊 / 班機時刻 / 行李檢查 -->
+    <section id="info" class="dash-page hidden">
+      <div class="section-label">資訊</div>
+      <div class="section-title">出發前必看資訊</div>
+      <div class="tab-switch" id="infoTabSwitch">
+        <button data-infotab="brief" class="active">📋 集合資訊 / 班機時刻</button>
+        <button data-infotab="packing">🎒 行李檢查</button>
+      </div>
+
+      <div id="infoTab-brief">
+        <div class="section-sub">以下為你所屬梯次的集合資訊，如有異動將由管理員更新。</div>
+        <div class="assembly-grid" id="assemblyGrid"></div>
+
+        <div class="section-label" style="margin-top:34px;">班機時刻</div>
+        <div class="section-sub">獨立顯示去程與回程航班資訊，請預留機場報到時間。</div>
+        <div id="ticketWrap"></div>
+      </div>
+
+      <div id="infoTab-packing" class="hidden">
+        <div id="packingBaggageInfo"></div>
+        <div class="section-sub">9 月的釜山秋高氣爽、白天溫暖早晚微涼，建議「短袖＋薄外套」洋蔥式穿法。以下勾選只會存在你自己的手機裡，不會給別人看到，忘記帶什麼一目瞭然！</div>
+        <div id="packingList"></div>
+      </div>
     </section>
 
     <!-- ITINERARY -->
     <section id="itinerary" class="dash-page hidden">
-      <div class="section-label">Step 03</div>
+      <div class="section-label">行程</div>
       <div class="section-title">每日行程</div>
       <div class="section-sub">框框區塊為管理員刊登「當地現場搶先看」照片的專屬欄位。</div>
       <div id="dayList"></div>
     </section>
 
-    <!-- ROOMS / MEALS -->
+    <!-- MEALS（從首頁「所屬組別」框進入） -->
     <section id="rooms" class="dash-page hidden">
-      <div class="section-label">Step 04</div>
-      <div class="section-title">分房表 &amp; 餐食分組表</div>
-      <div class="section-sub">已依你的名字自動標示所在房間與用餐分組（橘色標記為你本人）。</div>
-      <div class="tab-switch">
-        <button id="tabRoomBtn" class="active">🛏️ 分房表</button>
-        <button id="tabMealBtn">🍽️ 餐食分組表</button>
-      </div>
+      <button class="back-to-home-btn" data-back type="button">‹ 返回首頁</button>
+      <div class="section-label">分組表</div>
+      <div class="section-title">餐食分組表</div>
+      <div class="section-sub">已依你的名字自動標示用餐分組（橘色標記為你本人）。</div>
+      <div class="meal-group-grid" id="mealGroups"></div>
+    </section>
+
+    <!-- ROOM TABLE（從首頁「住宿分房」框進入） -->
+    <section id="roomInfoPage" class="dash-page hidden">
+      <button class="back-to-home-btn" data-back type="button">‹ 返回首頁</button>
+      <div class="section-label">分房表</div>
+      <div class="section-title">住宿分房表</div>
+      <div class="section-sub">已依你的名字自動標示所在房間（橘色標記為你本人）。</div>
       <div class="tab-switch" id="nightTabSwitch">
         <button data-night="night12" class="active">第一、二晚</button>
         <button data-night="night3">第三晚</button>
@@ -948,16 +1192,90 @@
       <div id="roomSaveWrap"></div>
     </section>
 
-    <!-- PACKING CHECKLIST -->
-    <section id="packing" class="dash-page hidden">
-      <div class="section-label">Step 05</div>
-      <div class="section-title">行李檢查表</div>
-      <div class="section-sub">9 月的釜山秋高氣爽、白天溫暖早晚微涼，建議「短袖＋薄外套」洋蔥式穿法。以下勾選只會存在你自己的手機裡，不會給別人看到，忘記帶什麼一目瞭然！</div>
-      <div id="packingList"></div>
+    <!-- EXCHANGE RATE -->
+    <section id="exchange" class="dash-page hidden">
+      <div class="section-label">匯率</div>
+      <div class="section-title">韓幣 ↔ 台幣</div>
+      <div class="section-sub">即時查詢匯率，並可用下方計算機快速換算，系統會記住你最近 10 筆換算紀錄。</div>
+
+      <div class="fx-card">
+        <div class="fx-card-title">💱 即時匯率換算（KRW → TWD）</div>
+        <div class="fx-rate-line" id="fxRateInfo">讀取匯率中…</div>
+        <div class="fx-convert-row">
+          <div class="fx-field">
+            <label>韓幣 KRW</label>
+            <input type="number" id="fxKrwInput" inputmode="decimal" placeholder="輸入金額" value="10000">
+          </div>
+          <div class="fx-eq">≈</div>
+          <div class="fx-field">
+            <label>台幣 TWD</label>
+            <div class="fx-result" id="fxTwdResult">--</div>
+          </div>
+        </div>
+        <button class="fx-refresh-btn" id="fxRefreshBtn" type="button">🔄 重新整理匯率</button>
+      </div>
+
+      <div class="fx-card">
+        <div class="fx-card-title">🧮 換算計算機</div>
+        <div class="fx-calc-row">
+          <div class="fx-field">
+            <label>韓幣 KRW</label>
+            <input type="number" id="calcKrwInput" inputmode="decimal" placeholder="輸入韓幣">
+          </div>
+          <div class="fx-field">
+            <label>台幣 TWD</label>
+            <input type="number" id="calcTwdInput" inputmode="decimal" placeholder="輸入台幣">
+          </div>
+        </div>
+        <button class="fx-save-btn" id="calcSaveBtn" type="button">💾 記錄這筆換算</button>
+        <div class="fx-history-title">最近 10 筆換算紀錄（只存在你自己的裝置）</div>
+        <div id="calcHistoryList" class="fx-history-list"></div>
+      </div>
+    </section>
+
+    <!-- TRANSLATE -->
+    <section id="translate" class="dash-page hidden">
+      <div class="section-label">翻譯</div>
+      <div class="section-title">中文 ↔ 韓文 即時翻譯</div>
+      <div class="section-sub">可直接輸入文字，或按下麥克風用說的；翻譯結果也能按播放鍵用唸的。</div>
+
+      <div class="tr-card">
+        <div class="tr-lang-row">
+          <select id="trSourceLang">
+            <option value="zh-TW">中文</option>
+            <option value="ko">한국어（韓文）</option>
+          </select>
+          <button id="trSwapBtn" type="button" title="交換語言">⇄</button>
+          <select id="trTargetLang" disabled>
+            <option value="ko">한국어（韓文）</option>
+            <option value="zh-TW">中文</option>
+          </select>
+        </div>
+        <textarea id="trInputText" placeholder="輸入想翻譯的文字…"></textarea>
+        <div class="tr-btn-row">
+          <button id="trMicBtn" type="button">🎤 語音輸入</button>
+          <button id="trSpeakInputBtn" type="button">🔊 播放原文</button>
+          <button id="trTranslateBtn" type="button" class="tr-translate-btn">翻譯 →</button>
+        </div>
+        <div class="tr-result-label">翻譯結果</div>
+        <div class="tr-result-box" id="trResultBox">請輸入文字並按下「翻譯」</div>
+        <button id="trSpeakResultBtn" type="button">🔊 播放翻譯結果</button>
+      </div>
     </section>
 
     <footer>諾瓦材料科技股份有限公司<br>2026 員工旅遊管理系統 · 僅供本次活動使用</footer>
   </div>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav" id="bottomNav">
+    <button class="bottom-nav-btn" data-target="info" type="button"><span class="icon">📋</span>資訊</button>
+    <button class="bottom-nav-btn" data-target="itinerary" type="button"><span class="icon">📅</span>行程</button>
+    <button class="bottom-nav-btn bottom-nav-home active" data-target="home" type="button">
+      <span class="circle"><img src="data:image/png;base64,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" alt="首頁"></span><span class="home-label">首頁</span>
+    </button>
+    <button class="bottom-nav-btn" data-target="exchange" type="button"><span class="icon">💱</span>匯率</button>
+    <button class="bottom-nav-btn" data-target="translate" type="button"><span class="icon">🇰🇷</span>翻譯</button>
+  </nav>
 
 </div>
 
@@ -1066,7 +1384,6 @@ Object.values(BATCHES).forEach(b=>{
    ========================================================= */
 let currentUser = null;   // {name, batch, group, no}
 let isAdmin = false;
-let activeTab = 'room';
 let activeNight = 'night12';
 
 const NIGHTS = [
@@ -1074,6 +1391,34 @@ const NIGHTS = [
   {key:'night3', label:'第三晚（慶州）'},
   {key:'night4', label:'第四晚（蔚山／釜山樂天）'}
 ];
+
+/* ---- 各航空公司經濟艙行李限制（一般經濟艙票價，實際依機票艙等為準） ---- */
+const AIRLINE_BAGGAGE = {
+  '長榮航空': {
+    checked:'2 件，每件 23 公斤（三邊合計不超過 158 公分）',
+    carry:'1 件 7 公斤（56×36×23 公分內，或三邊合計不超過 115 公分）'
+  },
+  '中華航空': {
+    checked:'2 件，每件 23 公斤（三邊合計不超過 158 公分）',
+    carry:'1 件 7 公斤（56×36×23 公分內）'
+  }
+};
+
+function renderBaggageInfo(){
+  const wrap = document.getElementById('packingBaggageInfo');
+  if(!wrap || !currentUser) return;
+  const batch = BATCHES[currentUser.batch];
+  const airline = batch.flightOut.airline;
+  const info = AIRLINE_BAGGAGE[airline];
+  wrap.innerHTML = `
+    <div class="baggage-info-card">
+      <div class="baggage-info-title">✈️ ${airline}（經濟艙）行李限制</div>
+      <div class="baggage-info-row"><span>託運行李</span><b>${info ? info.checked : '請依機票規定為準'}</b></div>
+      <div class="baggage-info-row"><span>手提行李</span><b>${info ? info.carry : '請依機票規定為準'}</b></div>
+      <div class="baggage-info-hint">實際額度依機票票價與艙等而定，如有疑問請以航空公司公告或機票內容為準。</div>
+    </div>
+  `;
+}
 
 const PACKING_CATEGORIES = [
   { id:'docs', title:'📋 必備證件與重要物品', items:[
@@ -1240,7 +1585,7 @@ async function saveAssembly(batchId){
   await storageSet(`meet:${batchId}:terminal`, term, true);
   await storageSet(`guide:${batchId}`, JSON.stringify({name:gName, phone:gPhone}), true);
   await renderAssemblyInfo();
-  if(currentUser && currentUser.batch===batchId){ renderTable(BATCHES[batchId]); }
+  if(currentUser && currentUser.batch===batchId){ renderRoomTable(BATCHES[batchId], activeNight); }
   showToast('✓ 已儲存並公開給所有人查看');
 }
 
@@ -1285,7 +1630,7 @@ async function login(name){
   await storageSet('lastUser', name, false);
   document.getElementById('login').classList.add('hidden');
   document.getElementById('dashboard').classList.remove('hidden');
-  switchDashPage('assembly');
+  switchDashPage('home');
   renderDashboard();
   applyAdminUI();
   window.scrollTo({top:0, behavior:'smooth'});
@@ -1296,7 +1641,7 @@ async function adminLogin(){
   await storageSet('lastUser', '__ADMIN__', false);
   document.getElementById('login').classList.add('hidden');
   document.getElementById('dashboard').classList.remove('hidden');
-  switchDashPage('assembly');
+  switchDashPage('home');
   renderDashboard();
   applyAdminUI();
   showToast('✓ 管理者登入成功，可編輯兩個梯次的內容');
@@ -1324,20 +1669,43 @@ document.getElementById('adminBatchSwitch').addEventListener('click', e=>{
 });
 
 /* =========================================================
-   FLAT PAGE NAV (dashboard tabs)
+   BOTTOM NAV / PAGE SWITCHING
    ========================================================= */
+// roster、rooms、roomInfoPage 是從首頁的框框點進去的「子頁面」，底部導覽列仍反白顯示「首頁」
+const NAV_PARENT_PAGE = { roster:'home', rooms:'home', roomInfoPage:'home' };
 function switchDashPage(target){
   document.querySelectorAll('.dash-page').forEach(sec=>{
     sec.classList.toggle('hidden', sec.id !== target);
   });
-  document.querySelectorAll('.dash-nav-btn').forEach(btn=>{
-    btn.classList.toggle('active', btn.dataset.target === target);
+  const navTarget = NAV_PARENT_PAGE[target] || target;
+  document.querySelectorAll('.bottom-nav-btn').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.target === navTarget);
   });
-  if(target === 'packing'){ renderPacking(); }
+  if(target === 'roster') renderRoster();
+  if(target === 'roomInfoPage') renderRoomTable(BATCHES[currentUser.batch], activeNight);
+  if(target === 'exchange'){ fetchExchangeRate(); renderFxHistory(); }
   document.getElementById('dashboard').scrollIntoView({behavior:'smooth', block:'start'});
 }
-document.querySelectorAll('.dash-nav-btn').forEach(btn=>{
+document.querySelectorAll('.bottom-nav-btn').forEach(btn=>{
   btn.addEventListener('click', ()=> switchDashPage(btn.dataset.target));
+});
+document.querySelectorAll('.back-to-home-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=> switchDashPage('home'));
+});
+document.getElementById('homeBatchBox').addEventListener('click', ()=> switchDashPage('roster'));
+document.getElementById('homeGroupBox').addEventListener('click', ()=> switchDashPage('rooms'));
+document.getElementById('homeRoomBox').addEventListener('click', ()=> switchDashPage('roomInfoPage'));
+
+/* ---- Info page 內部分頁：集合資訊/班機 vs 行李檢查 ---- */
+document.querySelectorAll('#infoTabSwitch button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#infoTabSwitch button').forEach(b=> b.classList.remove('active'));
+    btn.classList.add('active');
+    const isPacking = btn.dataset.infotab === 'packing';
+    document.getElementById('infoTab-brief').classList.toggle('hidden', isPacking);
+    document.getElementById('infoTab-packing').classList.toggle('hidden', !isPacking);
+    if(isPacking) renderPacking();
+  });
 });
 
 /* =========================================================
@@ -1345,10 +1713,11 @@ document.querySelectorAll('.dash-nav-btn').forEach(btn=>{
    ========================================================= */
 function renderDashboard(){
   const batch = BATCHES[currentUser.batch];
-  document.getElementById('whoName').textContent = `${currentUser.name}（${batch.label} · ${currentUser.group}）`;
-  document.getElementById('statBatch').textContent = batch.label;
-  document.getElementById('statDate').textContent = batch.dateRange;
+  document.getElementById('whoName').textContent = currentUser.name;
+  document.getElementById('heroDate').textContent = batch.dateRange;
   document.getElementById('statCount').textContent = batch.count + ' 人';
+  document.getElementById('homeBatchValue').textContent = batch.label;
+  document.getElementById('homeGroupValue').textContent = currentUser.group;
 
   const switcher = document.getElementById('adminBatchSwitch');
   if(currentUser.isAdminAccount){
@@ -1363,7 +1732,28 @@ function renderDashboard(){
   renderAssemblyInfo();
   renderTicket(batch);
   renderDays(batch);
-  renderTable(batch);
+  renderMealTable(batch);
+  renderRoster();
+}
+
+/* ---- 梯次名單（首頁「所屬梯次」框點進去） ---- */
+function renderRoster(){
+  if(!currentUser) return;
+  const listEl = document.getElementById('rosterList');
+  const titleEl = document.getElementById('rosterTitle');
+  if(!listEl) return;
+  const batch = BATCHES[currentUser.batch];
+  titleEl.textContent = `${batch.label} 名單`;
+  const flat = [];
+  batch.groups.forEach(([gname, members])=>{
+    members.forEach(([no,name])=> flat.push({no, name, group:gname}));
+  });
+  flat.sort((a,b)=> a.no - b.no);
+  listEl.innerHTML = flat.map(m=>`
+    <div class="roster-item ${m.name===currentUser.name?'me':''}">
+      <span><span class="r-no">${m.no}.</span>${m.name}${m.name===currentUser.name?'（你）':''}</span>
+    </div>
+  `).join('');
 }
 
 /* ---- Flight ticket ---- */
@@ -1547,6 +1937,7 @@ async function renderDays(batch){
           <div id="ftList-${batch.id}-${i}"></div>
           <div class="ft-add-form hidden" id="ftAddForm-${batch.id}-${i}">
             <input type="text" placeholder="連結名稱（例如：甘川洞文化村官方地圖）" id="ftName-${batch.id}-${i}">
+            <input type="text" placeholder="營業時間（選填，例如：09:00－18:00）" id="ftHours-${batch.id}-${i}">
             <textarea placeholder="備注（選填）" id="ftNote-${batch.id}-${i}"></textarea>
             <input type="text" placeholder="連結網址（選填）" id="ftUrl-${batch.id}-${i}">
             <input type="text" placeholder="Google map 連結（選填）" id="ftGoogle-${batch.id}-${i}">
@@ -1661,6 +2052,7 @@ async function renderFreetime(batchId, dayIdx){
         ${it.img ? `<div class="ft-img"><img src="${it.img}" alt="${it.name||''}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>` : ''}
         <div class="ft-body">
           <div class="ft-name">${it.name || ''}</div>
+          ${it.hours ? `<div class="ft-hours">🕒 營業時間：${it.hours}</div>` : ''}
           ${it.note ? `<div class="ft-note">${it.note}</div>` : ''}
           <div class="ft-btn-row">
             ${it.url ? `<a class="ft-link-btn" href="${it.url}" target="_blank" rel="noopener">🔗 更多資訊</a>` : ''}
@@ -1671,6 +2063,7 @@ async function renderFreetime(batchId, dayIdx){
           </div>
           <div class="ft-edit-panel admin-add hidden" id="ftEditPanel-${batchId}-${dayIdx}-${idx}">
             <input type="text" placeholder="連結名稱" id="ftEditName-${batchId}-${dayIdx}-${idx}" value="${it.name||''}">
+            <input type="text" placeholder="營業時間（選填）" id="ftEditHours-${batchId}-${dayIdx}-${idx}" value="${it.hours||''}">
             <textarea placeholder="備注（選填）" id="ftEditNote-${batchId}-${dayIdx}-${idx}">${it.note||''}</textarea>
             <input type="text" placeholder="連結網址（選填）" id="ftEditUrl-${batchId}-${dayIdx}-${idx}" value="${it.url||''}">
             <input type="text" placeholder="Google map 連結（選填）" id="ftEditGoogle-${batchId}-${dayIdx}-${idx}" value="${it.google||''}">
@@ -1731,6 +2124,7 @@ async function addFreetime(batchId, dayIdx){
   const google = document.getElementById(`ftGoogle-${batchId}-${dayIdx}`).value.trim();
   const naver = document.getElementById(`ftNaver-${batchId}-${dayIdx}`).value.trim();
   const note = document.getElementById(`ftNote-${batchId}-${dayIdx}`).value.trim();
+  const hours = document.getElementById(`ftHours-${batchId}-${dayIdx}`).value.trim();
   const imgInput = document.getElementById(`ftImg-${batchId}-${dayIdx}`);
   const imgFile = imgInput.files && imgInput.files[0];
   if(!name && !url) return;
@@ -1748,13 +2142,14 @@ async function addFreetime(batchId, dayIdx){
   const raw = await storageGet(key, true);
   let items = [];
   try{ items = raw ? JSON.parse(raw) : []; }catch(e){ items=[]; }
-  items.push({name, url, img, google, naver, note});
+  items.push({name, url, img, google, naver, note, hours});
   await storageSet(key, JSON.stringify(items), true);
   document.getElementById(`ftName-${batchId}-${dayIdx}`).value='';
   document.getElementById(`ftUrl-${batchId}-${dayIdx}`).value='';
   document.getElementById(`ftGoogle-${batchId}-${dayIdx}`).value='';
   document.getElementById(`ftNaver-${batchId}-${dayIdx}`).value='';
   document.getElementById(`ftNote-${batchId}-${dayIdx}`).value='';
+  document.getElementById(`ftHours-${batchId}-${dayIdx}`).value='';
   imgInput.value='';
   renderFreetime(batchId, dayIdx);
   showToast('✓ 已新增推薦行程（兩梯次都會看到）');
@@ -1779,6 +2174,7 @@ async function saveFreetimeEdit(batchId, dayIdx, idx){
   const url = document.getElementById(`ftEditUrl-${batchId}-${dayIdx}-${idx}`).value.trim();
   const google = document.getElementById(`ftEditGoogle-${batchId}-${dayIdx}-${idx}`).value.trim();
   const naver = document.getElementById(`ftEditNaver-${batchId}-${dayIdx}-${idx}`).value.trim();
+  const hours = document.getElementById(`ftEditHours-${batchId}-${dayIdx}-${idx}`).value.trim();
   const imgInput = document.getElementById(`ftEditImg-${batchId}-${dayIdx}-${idx}`);
   const imgFile = imgInput.files && imgInput.files[0];
   let img = items[idx].img || '';
@@ -1791,7 +2187,7 @@ async function saveFreetimeEdit(batchId, dayIdx, idx){
       return;
     }
   }
-  items[idx] = {name, note, url, google, naver, img};
+  items[idx] = {name, note, url, google, naver, img, hours};
   await storageSet(key, JSON.stringify(items), true);
   renderFreetime(batchId, dayIdx);
   showToast('✓ 已儲存修改（兩梯次都會看到）');
@@ -1851,20 +2247,7 @@ async function removeSpotPhoto(batchId, dayIdx, spotIdx, idx){
   renderSpotGallery(batchId, dayIdx, spotIdx);
 }
 
-/* ---- Room / Meal table ---- */
-async function renderTable(batch){
-  const nightSwitch = document.getElementById('nightTabSwitch');
-  const saveWrap = document.getElementById('roomSaveWrap');
-  if(activeTab==='room'){
-    nightSwitch.classList.remove('hidden');
-    await renderRoomTable(batch, activeNight);
-  } else {
-    nightSwitch.classList.add('hidden');
-    saveWrap.innerHTML='';
-    renderMealTable(batch);
-  }
-}
-
+/* ---- Room table（資訊頁「分房表」分頁） ---- */
 async function renderRoomTable(batch, nightKey){
   const key = `roomnums:${batch.id}:${nightKey}`;
   const [raw, guideRaw] = await Promise.all([
@@ -1929,16 +2312,20 @@ async function saveRoomNums(batch, nightKey){
 }
 
 function renderMealTable(batch){
-  const table = document.getElementById('roomTable');
-  let rows = `<thead><tr><th>用餐組別</th><th>編號</th><th>姓名</th></tr></thead><tbody>`;
-  batch.groups.forEach(([gname, members])=>{
-    members.forEach(([no,name], idx)=>{
+  const wrap = document.getElementById('mealGroups');
+  if(!wrap) return;
+  wrap.innerHTML = batch.groups.map(([gname, members])=>{
+    const hasMe = members.some(([no,name])=> name===currentUser.name);
+    const membersHtml = members.map(([no,name])=>{
       const meIn = name===currentUser.name;
-      rows += `<tr class="${meIn?'me':''} ${idx===0?'room-group-start':''}"><td>${idx===0?`<span class="pill">${gname}</span>`:''}</td><td class="num">${no}</td><td>${meIn?`<span class="pill me-pill">${name} · 你</span>`:name}</td></tr>`;
-    });
-  });
-  rows += '</tbody>';
-  table.innerHTML = rows;
+      return `<div class="meal-member ${meIn?'me':''}"><span class="m-no">${no}.</span>${name}${meIn?'（你）':''}</div>`;
+    }).join('');
+    return `
+      <div class="meal-group-card ${hasMe?'me':''}">
+        <div class="meal-group-title">${gname}</div>
+        ${membersHtml}
+      </div>`;
+  }).join('');
 }
 
 /* =========================================================
@@ -1964,6 +2351,7 @@ async function savePackingState(state){
 async function renderPacking(){
   const wrap = document.getElementById('packingList');
   if(!wrap || !currentUser) return;
+  renderBaggageInfo();
   const state = await getPackingState();
 
   let totalItems = 0, totalChecked = 0;
@@ -2079,24 +2467,12 @@ async function removePackingItem(catId, itemId){
   renderPacking();
 }
 
-document.getElementById('tabRoomBtn').addEventListener('click', ()=>{
-  activeTab='room';
-  document.getElementById('tabRoomBtn').classList.add('active');
-  document.getElementById('tabMealBtn').classList.remove('active');
-  renderTable(BATCHES[currentUser.batch]);
-});
-document.getElementById('tabMealBtn').addEventListener('click', ()=>{
-  activeTab='meal';
-  document.getElementById('tabMealBtn').classList.add('active');
-  document.getElementById('tabRoomBtn').classList.remove('active');
-  renderTable(BATCHES[currentUser.batch]);
-});
 document.querySelectorAll('#nightTabSwitch button').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     activeNight = btn.dataset.night;
     document.querySelectorAll('#nightTabSwitch button').forEach(x=>x.classList.remove('active'));
     btn.classList.add('active');
-    renderTable(BATCHES[currentUser.batch]);
+    renderRoomTable(BATCHES[currentUser.batch], activeNight);
   });
 });
 
@@ -2160,14 +2536,238 @@ function applyAdminUI(){
       (day.highlights||[]).forEach((spot,si)=> renderSpotGallery(currentUser.batch, i, si));
       renderFreetime(currentUser.batch, i);
     });
-    renderTable(BATCHES[currentUser.batch]);
+    renderRoomTable(BATCHES[currentUser.batch], activeNight);
+    renderMealTable(BATCHES[currentUser.batch]);
   }
 }
+
+/* =========================================================
+   匯率換算（韓幣 KRW → 台幣 TWD）
+   ========================================================= */
+let krwToTwdRate = null;
+
+async function fetchExchangeRate(){
+  const infoEl = document.getElementById('fxRateInfo');
+  if(!infoEl) return;
+  infoEl.textContent = '讀取匯率中…';
+  try{
+    const res = await fetch('https://open.er-api.com/v6/latest/KRW');
+    const data = await res.json();
+    if(data && data.rates && data.rates.TWD){
+      krwToTwdRate = data.rates.TWD;
+      const updated = data.time_last_update_utc ? new Date(data.time_last_update_utc) : new Date();
+      infoEl.textContent = `1 KRW ≈ ${krwToTwdRate.toFixed(4)} TWD （更新時間：${updated.toLocaleString('zh-TW',{hour12:false})}）`;
+      updateFxTopResult();
+    } else {
+      infoEl.textContent = '⚠️ 匯率讀取失敗，請稍後再試一次';
+    }
+  }catch(e){
+    infoEl.textContent = '⚠️ 匯率讀取失敗，請確認網路連線後點「重新整理匯率」';
+  }
+}
+
+function updateFxTopResult(){
+  const krwInput = document.getElementById('fxKrwInput');
+  const resultEl = document.getElementById('fxTwdResult');
+  if(!krwInput || !resultEl) return;
+  const krw = parseFloat(krwInput.value);
+  if(krwToTwdRate && !isNaN(krw)){
+    resultEl.textContent = (krw * krwToTwdRate).toLocaleString('zh-TW', {maximumFractionDigits:1}) + ' TWD';
+  } else {
+    resultEl.textContent = '--';
+  }
+}
+const fxKrwInputEl = document.getElementById('fxKrwInput');
+if(fxKrwInputEl) fxKrwInputEl.addEventListener('input', updateFxTopResult);
+const fxRefreshBtnEl = document.getElementById('fxRefreshBtn');
+if(fxRefreshBtnEl) fxRefreshBtnEl.addEventListener('click', fetchExchangeRate);
+
+/* ---- 換算計算機（雙向自動換算） ---- */
+let calcSyncing = false;
+function calcFromKrw(){
+  if(calcSyncing || !krwToTwdRate) return;
+  calcSyncing = true;
+  const krwEl = document.getElementById('calcKrwInput');
+  const twdEl = document.getElementById('calcTwdInput');
+  const krw = parseFloat(krwEl.value);
+  if(!isNaN(krw)) twdEl.value = (krw * krwToTwdRate).toFixed(1);
+  calcSyncing = false;
+}
+function calcFromTwd(){
+  if(calcSyncing || !krwToTwdRate) return;
+  calcSyncing = true;
+  const krwEl = document.getElementById('calcKrwInput');
+  const twdEl = document.getElementById('calcTwdInput');
+  const twd = parseFloat(twdEl.value);
+  if(!isNaN(twd)) krwEl.value = (twd / krwToTwdRate).toFixed(0);
+  calcSyncing = false;
+}
+const calcKrwInputEl = document.getElementById('calcKrwInput');
+if(calcKrwInputEl) calcKrwInputEl.addEventListener('input', calcFromKrw);
+const calcTwdInputEl = document.getElementById('calcTwdInput');
+if(calcTwdInputEl) calcTwdInputEl.addEventListener('input', calcFromTwd);
+
+/* ---- 最近 10 筆換算紀錄（僅存在自己裝置） ---- */
+async function getFxHistory(){
+  if(!currentUser) return [];
+  const raw = await storageGet(`fxhistory:${currentUser.name}`, false);
+  try{ return raw ? JSON.parse(raw) : []; }catch(e){ return []; }
+}
+async function saveFxHistoryList(list){
+  if(!currentUser) return;
+  await storageSet(`fxhistory:${currentUser.name}`, JSON.stringify(list), false);
+}
+async function renderFxHistory(){
+  const wrap = document.getElementById('calcHistoryList');
+  if(!wrap) return;
+  const list = await getFxHistory();
+  if(list.length === 0){
+    wrap.innerHTML = `<div class="fx-history-empty">尚無紀錄，換算後按「記錄這筆換算」即可保存最近 10 筆</div>`;
+    return;
+  }
+  wrap.innerHTML = list.map((it,idx)=>`
+    <div class="fx-history-item">
+      <span>${Number(it.krw).toLocaleString('zh-TW')} KRW ＝ ${Number(it.twd).toLocaleString('zh-TW',{maximumFractionDigits:1})} TWD</span>
+      <button class="fx-history-rm" data-idx="${idx}" type="button">✕</button>
+    </div>
+  `).join('');
+  wrap.querySelectorAll('.fx-history-rm').forEach(btn=>{
+    btn.addEventListener('click', async ()=>{
+      const list2 = await getFxHistory();
+      list2.splice(parseInt(btn.dataset.idx), 1);
+      await saveFxHistoryList(list2);
+      renderFxHistory();
+    });
+  });
+}
+const calcSaveBtnEl = document.getElementById('calcSaveBtn');
+if(calcSaveBtnEl) calcSaveBtnEl.addEventListener('click', async ()=>{
+  const krw = parseFloat(document.getElementById('calcKrwInput').value);
+  const twd = parseFloat(document.getElementById('calcTwdInput').value);
+  if(isNaN(krw) || isNaN(twd)){ showToast('請先輸入金額'); return; }
+  let list = await getFxHistory();
+  list.unshift({krw, twd, time:Date.now()});
+  list = list.slice(0, 10);
+  await saveFxHistoryList(list);
+  renderFxHistory();
+  showToast('✓ 已記錄這筆換算');
+});
+
+// 每 5 分鐘自動更新一次匯率（隨時保持最新）
+setInterval(()=>{
+  const exSec = document.getElementById('exchange');
+  if(exSec && !exSec.classList.contains('hidden')) fetchExchangeRate();
+}, 5 * 60 * 1000);
+
+/* =========================================================
+   翻譯模組（中文 ↔ 韓文，支援文字輸入、語音輸入、語音播放）
+   ========================================================= */
+function trLangPair(){
+  const sourceEl = document.getElementById('trSourceLang');
+  const targetEl = document.getElementById('trTargetLang');
+  if(!sourceEl || !targetEl) return {source:'zh-TW', target:'ko'};
+  const source = sourceEl.value;
+  const target = source === 'zh-TW' ? 'ko' : 'zh-TW';
+  targetEl.value = target;
+  return {source, target};
+}
+const trSourceLangEl = document.getElementById('trSourceLang');
+if(trSourceLangEl) trSourceLangEl.addEventListener('change', trLangPair);
+
+const trSwapBtnEl = document.getElementById('trSwapBtn');
+if(trSwapBtnEl) trSwapBtnEl.addEventListener('click', ()=>{
+  const sourceEl = document.getElementById('trSourceLang');
+  sourceEl.value = sourceEl.value === 'zh-TW' ? 'ko' : 'zh-TW';
+  trLangPair();
+  const inputEl = document.getElementById('trInputText');
+  const resultEl = document.getElementById('trResultBox');
+  const prevResult = resultEl.textContent.trim();
+  const isPlaceholder = prevResult === '' || prevResult === '請輸入文字並按下「翻譯」' || prevResult === '翻譯中…';
+  inputEl.value = isPlaceholder ? '' : prevResult;
+  resultEl.textContent = '請輸入文字並按下「翻譯」';
+});
+
+async function translateText(text, sl, tl){
+  const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${encodeURIComponent(sl)}&tl=${encodeURIComponent(tl)}&dt=t&q=${encodeURIComponent(text)}`;
+  const res = await fetch(url);
+  if(!res.ok) throw new Error('翻譯服務暫時無法使用');
+  const data = await res.json();
+  return data[0].map(seg=>seg[0]).join('');
+}
+
+const trTranslateBtnEl = document.getElementById('trTranslateBtn');
+if(trTranslateBtnEl) trTranslateBtnEl.addEventListener('click', async ()=>{
+  const text = document.getElementById('trInputText').value.trim();
+  const resultEl = document.getElementById('trResultBox');
+  if(!text){ showToast('請先輸入文字，或用麥克風說話'); return; }
+  const {source, target} = trLangPair();
+  resultEl.textContent = '翻譯中…';
+  try{
+    const translated = await translateText(text, source, target);
+    resultEl.textContent = translated;
+  }catch(e){
+    resultEl.textContent = '⚠️ 翻譯失敗，請檢查網路連線後再試一次';
+  }
+});
+
+function speakText(text, lang){
+  if(!text) { showToast('沒有可播放的文字'); return; }
+  if(!('speechSynthesis' in window)){ showToast('此瀏覽器不支援語音播放'); return; }
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = lang;
+  window.speechSynthesis.speak(utter);
+}
+const trSpeakInputBtnEl = document.getElementById('trSpeakInputBtn');
+if(trSpeakInputBtnEl) trSpeakInputBtnEl.addEventListener('click', ()=>{
+  const {source} = trLangPair();
+  speakText(document.getElementById('trInputText').value.trim(), source === 'ko' ? 'ko-KR' : 'zh-TW');
+});
+const trSpeakResultBtnEl = document.getElementById('trSpeakResultBtn');
+if(trSpeakResultBtnEl) trSpeakResultBtnEl.addEventListener('click', ()=>{
+  const {target} = trLangPair();
+  const text = document.getElementById('trResultBox').textContent.trim();
+  if(text === '請輸入文字並按下「翻譯」' || text === '翻譯中…') { showToast('請先完成翻譯'); return; }
+  speakText(text, target === 'ko' ? 'ko-KR' : 'zh-TW');
+});
+
+/* ---- 語音輸入（用唸的翻譯） ---- */
+let trRecognizer = null;
+const trMicBtnEl = document.getElementById('trMicBtn');
+if(trMicBtnEl) trMicBtnEl.addEventListener('click', ()=>{
+  const SpeechRecognitionCtor = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(!SpeechRecognitionCtor){ showToast('此瀏覽器不支援語音輸入，建議改用手機版 Chrome'); return; }
+  const micBtn = document.getElementById('trMicBtn');
+  if(trRecognizer){
+    trRecognizer.stop();
+    trRecognizer = null;
+    return;
+  }
+  const {source} = trLangPair();
+  trRecognizer = new SpeechRecognitionCtor();
+  trRecognizer.lang = source === 'ko' ? 'ko-KR' : 'zh-TW';
+  trRecognizer.interimResults = false;
+  trRecognizer.maxAlternatives = 1;
+  micBtn.classList.add('listening');
+  micBtn.textContent = '🎙️ 聆聽中…（再按一次停止）';
+  trRecognizer.onresult = (e)=>{
+    const transcript = e.results[0][0].transcript;
+    document.getElementById('trInputText').value = transcript;
+  };
+  trRecognizer.onerror = ()=>{ showToast('語音辨識失敗，請再試一次'); };
+  trRecognizer.onend = ()=>{
+    micBtn.classList.remove('listening');
+    micBtn.textContent = '🎤 語音輸入';
+    trRecognizer = null;
+  };
+  trRecognizer.start();
+});
 
 /* =========================================================
    INIT
    ========================================================= */
 (async function init(){
+  fetchExchangeRate();
   const last = await storageGet('lastUser', false);
   if(last === '__ADMIN__'){
     adminLogin();
