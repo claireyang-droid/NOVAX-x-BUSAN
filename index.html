@@ -699,7 +699,9 @@
     border-radius:10px;overflow:hidden;background:var(--celadon);
   }
   .ft-item .ft-img img{width:100%;height:100%;object-fit:cover;}
-  .ft-item .ft-body{flex:1;min-width:160px;display:flex;flex-direction:column;gap:8px;}
+  .ft-item .ft-body{flex:1;min-width:160px;display:flex;flex-direction:column;gap:6px;}
+  .ft-item .ft-name{font-size:16.5px;font-weight:700;color:var(--ink);}
+  .ft-item .ft-note{font-size:15px;color:rgba(15,36,56,0.65);line-height:1.55;white-space:pre-wrap;}
   .ft-item .ft-desc{font-size:16px;color:var(--ink);line-height:1.55;}
   .ft-item .ft-place{font-size:15px;color:rgba(15,36,56,0.5);}
   .ft-btn-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
@@ -709,6 +711,11 @@
     background:var(--ink);color:#fff;text-decoration:none;
   }
   .ft-link-btn:hover{background:var(--persimmon);}
+  .ft-edit-btn{
+    background:none;border:1px solid var(--persimmon);color:var(--persimmon);
+    border-radius:8px;font-size:15px;padding:4px 10px;font-weight:700;
+  }
+  .ft-edit-panel{margin-top:10px;width:100%;}
   .ft-rm{
     align-self:flex-start;
     background:none;border:1px solid var(--line);color:rgba(15,36,56,0.5);
@@ -1399,13 +1406,14 @@ async function renderDays(batch){
   const prefetchKeys = [];
   for(let i=0;i<ITINERARY.length;i++){
     const day = ITINERARY[i];
-    prefetchKeys.push(`dayedit:${batch.id}:day${i}`);
+    prefetchKeys.push(`dayedit:day${i}`);
+    prefetchKeys.push(`dayhotels:${batch.id}:day${i}`);
     const baseHotelsForFetch = (batch.hotelOverride && batch.hotelOverride[i]) ? batch.hotelOverride[i] : (day.hotels || []);
     for(let hIdx=0; hIdx<baseHotelsForFetch.length; hIdx++){
       prefetchKeys.push(`hotelmap:${batch.id}:day${i}:hotel${hIdx}`);
     }
     for(let si=0; si<(day.highlights||[]).length; si++){
-      prefetchKeys.push(`spotname:${batch.id}:day${i}:spot${si}`);
+      prefetchKeys.push(`spotname:day${i}:spot${si}`);
     }
   }
   await Promise.all(prefetchKeys.map(k=>storageGet(k, true)));
@@ -1418,17 +1426,21 @@ async function renderDays(batch){
 
     const baseHotels = (batch.hotelOverride && batch.hotelOverride[i]) ? batch.hotelOverride[i] : (day.hotels || []);
 
-    const overrideRaw = await storageGet(`dayedit:${batch.id}:day${i}`, true);
+    const overrideRaw = await storageGet(`dayedit:day${i}`, true);
     let override = {};
     try{ override = overrideRaw ? JSON.parse(overrideRaw) : {}; }catch(e){ override = {}; }
+
+    const hotelOverrideRaw = await storageGet(`dayhotels:${batch.id}:day${i}`, true);
+    let hotelOverride = {};
+    try{ hotelOverride = hotelOverrideRaw ? JSON.parse(hotelOverrideRaw) : {}; }catch(e){ hotelOverride = {}; }
 
     const effTitle = override.title || day.title;
     const effStops = (override.stops && override.stops.length) ? override.stops : day.stops;
     const effBreakfast = override.breakfast || day.breakfast;
     const effLunch = override.lunch || day.lunch;
     const effDinner = override.dinner || day.dinner;
-    const effHotels = (override.hotels && override.hotels.length === baseHotels.length && baseHotels.length>0)
-      ? override.hotels : baseHotels;
+    const effHotels = (hotelOverride.hotels && hotelOverride.hotels.length === baseHotels.length && baseHotels.length>0)
+      ? hotelOverride.hotels : baseHotels;
 
     const stopsHtml = effStops.map((s,idx)=>{
       const arrow = idx < effStops.length-1 ? '<span class="stop-arrow">→</span>' : '';
@@ -1469,7 +1481,7 @@ async function renderDays(batch){
     const spotBlocks = [];
     for(let si=0; si<(day.highlights||[]).length; si++){
       const defaultSpotName = day.highlights[si];
-      const spotNameRaw = await storageGet(`spotname:${batch.id}:day${i}:spot${si}`, true);
+      const spotNameRaw = await storageGet(`spotname:day${i}:spot${si}`, true);
       const spotName = spotNameRaw || defaultSpotName;
       spotBlocks.push(`
         <div class="spot-frame">
@@ -1535,7 +1547,10 @@ async function renderDays(batch){
           <div id="ftList-${batch.id}-${i}"></div>
           <div class="ft-add-form hidden" id="ftAddForm-${batch.id}-${i}">
             <input type="text" placeholder="連結名稱（例如：甘川洞文化村官方地圖）" id="ftName-${batch.id}-${i}">
-            <input type="text" placeholder="貼上連結網址" id="ftUrl-${batch.id}-${i}">
+            <textarea placeholder="備注（選填）" id="ftNote-${batch.id}-${i}"></textarea>
+            <input type="text" placeholder="連結網址（選填）" id="ftUrl-${batch.id}-${i}">
+            <input type="text" placeholder="Google map 連結（選填）" id="ftGoogle-${batch.id}-${i}">
+            <input type="text" placeholder="Naver map 連結（選填）" id="ftNaver-${batch.id}-${i}">
             <input type="file" accept="image/*" placeholder="上傳圖片（選填）" id="ftImg-${batch.id}-${i}">
             <button data-batch="${batch.id}" data-day="${i}" class="addFtBtn">新增推薦行程</button>
           </div>
@@ -1601,9 +1616,11 @@ async function saveDayEdit(batchId, dayIdx){
     });
   }
   const override = { title, stops, breakfast, lunch, dinner };
-  if(hotels) override.hotels = hotels;
-  await storageSet(`dayedit:${batchId}:day${dayIdx}`, JSON.stringify(override), true);
-  showToast('✓ 已儲存並公開給所有人查看');
+  await storageSet(`dayedit:day${dayIdx}`, JSON.stringify(override), true);
+  if(hotels){
+    await storageSet(`dayhotels:${batchId}:day${dayIdx}`, JSON.stringify({hotels}), true);
+  }
+  showToast('✓ 已儲存（行程文字兩梯次共用，飯店資訊僅套用本梯次）');
   await renderDays(BATCHES[batchId]);
 }
 
@@ -1622,7 +1639,7 @@ async function saveSpotName(batchId, dayIdx, spotIdx){
   const input = document.getElementById(`spotNameInput-${batchId}-${dayIdx}-${spotIdx}`);
   const newName = input.value.trim();
   if(!newName) return;
-  await storageSet(`spotname:${batchId}:day${dayIdx}:spot${spotIdx}`, newName, true);
+  await storageSet(`spotname:day${dayIdx}:spot${spotIdx}`, newName, true);
   const label = document.getElementById(`spotLabel-${batchId}-${dayIdx}-${spotIdx}`);
   if(label) label.textContent = `📍 ${newName}`;
   showToast('✓ 景點名稱已更新，所有人皆可看到');
@@ -1630,7 +1647,7 @@ async function saveSpotName(batchId, dayIdx, spotIdx){
 
 /* ---- Free-time recommendations ---- */
 async function renderFreetime(batchId, dayIdx){
-  const key = `freetime:${batchId}:day${dayIdx}`;
+  const key = `freetime:day${dayIdx}`;
   const raw = await storageGet(key, true);
   let items = [];
   try{ items = raw ? JSON.parse(raw) : []; }catch(e){ items=[]; }
@@ -1643,15 +1660,38 @@ async function renderFreetime(batchId, dayIdx){
       <div class="ft-item">
         ${it.img ? `<div class="ft-img"><img src="${it.img}" alt="${it.name||''}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>` : ''}
         <div class="ft-body">
+          <div class="ft-name">${it.name || ''}</div>
+          ${it.note ? `<div class="ft-note">${it.note}</div>` : ''}
           <div class="ft-btn-row">
-            ${it.url ? `<a class="ft-link-btn" href="${it.url}" target="_blank" rel="noopener">🔗 ${it.name || '前往連結'}</a>` : `<span class="ft-desc">${it.name||''}</span>`}
+            ${it.url ? `<a class="ft-link-btn" href="${it.url}" target="_blank" rel="noopener">🔗 更多資訊</a>` : ''}
+            ${it.google ? `<a class="map-btn" href="${it.google}" target="_blank" rel="noopener">📍 Google map</a>` : ''}
+            ${it.naver ? `<a class="map-btn naver-btn" href="${it.naver}" target="_blank" rel="noopener">📍 Naver map</a>` : ''}
+            ${isAdmin ? `<button class="ft-edit-btn" data-batch="${batchId}" data-day="${dayIdx}" data-idx="${idx}">✏️ 編輯</button>` : ''}
             ${isAdmin ? `<button class="ft-rm" data-batch="${batchId}" data-day="${dayIdx}" data-idx="${idx}">刪除</button>` : ''}
+          </div>
+          <div class="ft-edit-panel admin-add hidden" id="ftEditPanel-${batchId}-${dayIdx}-${idx}">
+            <input type="text" placeholder="連結名稱" id="ftEditName-${batchId}-${dayIdx}-${idx}" value="${it.name||''}">
+            <textarea placeholder="備注（選填）" id="ftEditNote-${batchId}-${dayIdx}-${idx}">${it.note||''}</textarea>
+            <input type="text" placeholder="連結網址（選填）" id="ftEditUrl-${batchId}-${dayIdx}-${idx}" value="${it.url||''}">
+            <input type="text" placeholder="Google map 連結（選填）" id="ftEditGoogle-${batchId}-${dayIdx}-${idx}" value="${it.google||''}">
+            <input type="text" placeholder="Naver map 連結（選填）" id="ftEditNaver-${batchId}-${dayIdx}-${idx}" value="${it.naver||''}">
+            <input type="file" accept="image/*" id="ftEditImg-${batchId}-${dayIdx}-${idx}">
+            <button data-batch="${batchId}" data-day="${dayIdx}" data-idx="${idx}" class="saveFtEditBtn">💾 儲存修改</button>
           </div>
         </div>
       </div>
     `).join('');
     listEl.querySelectorAll('.ft-rm').forEach(b=>{
       b.addEventListener('click', ()=>removeFreetime(b.dataset.batch, parseInt(b.dataset.day), parseInt(b.dataset.idx)));
+    });
+    listEl.querySelectorAll('.ft-edit-btn').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const panel = document.getElementById(`ftEditPanel-${b.dataset.batch}-${b.dataset.day}-${b.dataset.idx}`);
+        panel.classList.toggle('hidden');
+      });
+    });
+    listEl.querySelectorAll('.saveFtEditBtn').forEach(b=>{
+      b.addEventListener('click', ()=>saveFreetimeEdit(b.dataset.batch, parseInt(b.dataset.day), parseInt(b.dataset.idx)));
     });
   }
 }
@@ -1688,6 +1728,9 @@ function fileToCompressedDataURL(file, maxDim=1280, quality=0.72){
 async function addFreetime(batchId, dayIdx){
   const name = document.getElementById(`ftName-${batchId}-${dayIdx}`).value.trim();
   const url = document.getElementById(`ftUrl-${batchId}-${dayIdx}`).value.trim();
+  const google = document.getElementById(`ftGoogle-${batchId}-${dayIdx}`).value.trim();
+  const naver = document.getElementById(`ftNaver-${batchId}-${dayIdx}`).value.trim();
+  const note = document.getElementById(`ftNote-${batchId}-${dayIdx}`).value.trim();
   const imgInput = document.getElementById(`ftImg-${batchId}-${dayIdx}`);
   const imgFile = imgInput.files && imgInput.files[0];
   if(!name && !url) return;
@@ -1701,20 +1744,23 @@ async function addFreetime(batchId, dayIdx){
       return;
     }
   }
-  const key = `freetime:${batchId}:day${dayIdx}`;
+  const key = `freetime:day${dayIdx}`;
   const raw = await storageGet(key, true);
   let items = [];
   try{ items = raw ? JSON.parse(raw) : []; }catch(e){ items=[]; }
-  items.push({name, url, img});
+  items.push({name, url, img, google, naver, note});
   await storageSet(key, JSON.stringify(items), true);
   document.getElementById(`ftName-${batchId}-${dayIdx}`).value='';
   document.getElementById(`ftUrl-${batchId}-${dayIdx}`).value='';
+  document.getElementById(`ftGoogle-${batchId}-${dayIdx}`).value='';
+  document.getElementById(`ftNaver-${batchId}-${dayIdx}`).value='';
+  document.getElementById(`ftNote-${batchId}-${dayIdx}`).value='';
   imgInput.value='';
   renderFreetime(batchId, dayIdx);
-  showToast('✓ 已新增推薦行程');
+  showToast('✓ 已新增推薦行程（兩梯次都會看到）');
 }
 async function removeFreetime(batchId, dayIdx, idx){
-  const key = `freetime:${batchId}:day${dayIdx}`;
+  const key = `freetime:day${dayIdx}`;
   const raw = await storageGet(key, true);
   let items = [];
   try{ items = raw ? JSON.parse(raw) : []; }catch(e){ items=[]; }
@@ -1722,9 +1768,37 @@ async function removeFreetime(batchId, dayIdx, idx){
   await storageSet(key, JSON.stringify(items), true);
   renderFreetime(batchId, dayIdx);
 }
+async function saveFreetimeEdit(batchId, dayIdx, idx){
+  const key = `freetime:day${dayIdx}`;
+  const raw = await storageGet(key, true);
+  let items = [];
+  try{ items = raw ? JSON.parse(raw) : []; }catch(e){ items=[]; }
+  if(!items[idx]) return;
+  const name = document.getElementById(`ftEditName-${batchId}-${dayIdx}-${idx}`).value.trim();
+  const note = document.getElementById(`ftEditNote-${batchId}-${dayIdx}-${idx}`).value.trim();
+  const url = document.getElementById(`ftEditUrl-${batchId}-${dayIdx}-${idx}`).value.trim();
+  const google = document.getElementById(`ftEditGoogle-${batchId}-${dayIdx}-${idx}`).value.trim();
+  const naver = document.getElementById(`ftEditNaver-${batchId}-${dayIdx}-${idx}`).value.trim();
+  const imgInput = document.getElementById(`ftEditImg-${batchId}-${dayIdx}-${idx}`);
+  const imgFile = imgInput.files && imgInput.files[0];
+  let img = items[idx].img || '';
+  if(imgFile){
+    try{
+      showToast('圖片處理中…');
+      img = await fileToCompressedDataURL(imgFile);
+    }catch(e){
+      showToast('❌ ' + e.message);
+      return;
+    }
+  }
+  items[idx] = {name, note, url, google, naver, img};
+  await storageSet(key, JSON.stringify(items), true);
+  renderFreetime(batchId, dayIdx);
+  showToast('✓ 已儲存修改（兩梯次都會看到）');
+}
 
 async function renderSpotGallery(batchId, dayIdx, spotIdx){
-  const key = `photos:${batchId}:day${dayIdx}:spot${spotIdx}`;
+  const key = `photos:day${dayIdx}:spot${spotIdx}`;
   const raw = await storageGet(key, true);
   let photos = [];
   try{ photos = raw ? JSON.parse(raw) : []; }catch(e){ photos=[]; }
@@ -1757,7 +1831,7 @@ async function addSpotPhoto(batchId, dayIdx, spotIdx){
     showToast('❌ ' + e.message);
     return;
   }
-  const key = `photos:${batchId}:day${dayIdx}:spot${spotIdx}`;
+  const key = `photos:day${dayIdx}:spot${spotIdx}`;
   const raw = await storageGet(key, true);
   let photos = [];
   try{ photos = raw ? JSON.parse(raw) : []; }catch(e){ photos=[]; }
@@ -1768,7 +1842,7 @@ async function addSpotPhoto(batchId, dayIdx, spotIdx){
   showToast('✓ 照片已上傳');
 }
 async function removeSpotPhoto(batchId, dayIdx, spotIdx, idx){
-  const key = `photos:${batchId}:day${dayIdx}:spot${spotIdx}`;
+  const key = `photos:day${dayIdx}:spot${spotIdx}`;
   const raw = await storageGet(key, true);
   let photos = [];
   try{ photos = raw ? JSON.parse(raw) : []; }catch(e){ photos=[]; }
@@ -2078,6 +2152,7 @@ function applyAdminUI(){
   document.querySelectorAll('.admin-only-btn').forEach(el=> el.classList.toggle('hidden', !isAdmin));
   if(!isAdmin){
     document.querySelectorAll('[id^="dayEditPanel-"]').forEach(el=> el.classList.add('hidden'));
+    document.querySelectorAll('[id^="ftEditPanel-"]').forEach(el=> el.classList.add('hidden'));
   }
   renderAssemblyInfo();
   if(currentUser){
