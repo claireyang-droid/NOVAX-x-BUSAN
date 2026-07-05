@@ -1319,16 +1319,27 @@ async function renderDays(batch){
       hotelHtml = `<div class="hotel-row"><div class="h-icon">🏠</div><div class="h-info"><div class="h-tier">賦歸日</div><div class="h-name">溫暖的家（搭機返台）</div></div></div>`;
     }
 
-    const spotFramesHtml = (day.highlights||[]).map((spot,si)=>`
-      <div class="spot-frame">
-        <div class="spot-frame-label">📍 ${spot}</div>
-        <div class="gallery-grid" id="spotphotos-${batch.id}-${i}-${si}"></div>
-        <div class="admin-add hidden" id="spotAdd-${batch.id}-${i}-${si}">
-          <input type="file" accept="image/*" id="spotInput-${batch.id}-${i}-${si}">
-          <button data-batch="${batch.id}" data-day="${i}" data-spot="${si}" class="addSpotPhotoBtn">📤 上傳照片</button>
+    const spotBlocks = [];
+    for(let si=0; si<(day.highlights||[]).length; si++){
+      const defaultSpotName = day.highlights[si];
+      const spotNameRaw = await storageGet(`spotname:${batch.id}:day${i}:spot${si}`, true);
+      const spotName = spotNameRaw || defaultSpotName;
+      spotBlocks.push(`
+        <div class="spot-frame">
+          <div class="spot-frame-label" id="spotLabel-${batch.id}-${i}-${si}">📍 ${spotName}</div>
+          <div class="gallery-grid" id="spotphotos-${batch.id}-${i}-${si}"></div>
+          <div class="admin-add hidden" id="spotAdd-${batch.id}-${i}-${si}">
+            <input type="file" accept="image/*" id="spotInput-${batch.id}-${i}-${si}">
+            <button data-batch="${batch.id}" data-day="${i}" data-spot="${si}" class="addSpotPhotoBtn">📤 上傳照片</button>
+          </div>
+          <div class="spot-name-edit admin-add hidden" id="spotNameEdit-${batch.id}-${i}-${si}">
+            <input type="text" id="spotNameInput-${batch.id}-${i}-${si}" value="${spotName}" placeholder="景點名稱">
+            <button data-batch="${batch.id}" data-day="${i}" data-spot="${si}" class="saveSpotNameBtn">✏️ 改名並公開</button>
+          </div>
         </div>
-      </div>
-    `).join('');
+      `);
+    }
+    const spotFramesHtml = spotBlocks.join('');
 
     const hotelEditFieldsHtml = effHotels.map((h,hIdx)=>`
       <div class="day-edit-hotel-row">
@@ -1405,6 +1416,9 @@ async function renderDays(batch){
   document.querySelectorAll('.saveHotelMapBtn').forEach(btn=>{
     btn.addEventListener('click', ()=>saveHotelMap(btn.dataset.batch, parseInt(btn.dataset.day), parseInt(btn.dataset.hotel)));
   });
+  document.querySelectorAll('.saveSpotNameBtn').forEach(btn=>{
+    btn.addEventListener('click', ()=>saveSpotName(btn.dataset.batch, parseInt(btn.dataset.day), parseInt(btn.dataset.spot)));
+  });
   document.querySelectorAll('.day-edit-toggle').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       const panel = document.getElementById(`dayEditPanel-${btn.dataset.batch}-${btn.dataset.day}`);
@@ -1450,6 +1464,16 @@ async function saveHotelMap(batchId, dayIdx, hotelIdx){
   if(gLink && g) gLink.href = g;
   if(nLink && n) nLink.href = n;
   showToast('✓ 已儲存地圖連結，所有人皆可看到');
+}
+
+async function saveSpotName(batchId, dayIdx, spotIdx){
+  const input = document.getElementById(`spotNameInput-${batchId}-${dayIdx}-${spotIdx}`);
+  const newName = input.value.trim();
+  if(!newName) return;
+  await storageSet(`spotname:${batchId}:day${dayIdx}:spot${spotIdx}`, newName, true);
+  const label = document.getElementById(`spotLabel-${batchId}-${dayIdx}-${spotIdx}`);
+  if(label) label.textContent = `📍 ${newName}`;
+  showToast('✓ 景點名稱已更新，所有人皆可看到');
 }
 
 /* ---- Free-time recommendations ---- */
@@ -1758,6 +1782,7 @@ function applyAdminUI(){
   document.querySelectorAll('[id^="spotAdd-"]').forEach(el=> el.classList.toggle('hidden', !isAdmin));
   document.querySelectorAll('[id^="ftAddForm-"]').forEach(el=> el.classList.toggle('hidden', !isAdmin));
   document.querySelectorAll('[id^="hotelMapEdit-"]').forEach(el=> el.classList.toggle('hidden', !isAdmin));
+  document.querySelectorAll('[id^="spotNameEdit-"]').forEach(el=> el.classList.toggle('hidden', !isAdmin));
   document.querySelectorAll('.admin-only-btn').forEach(el=> el.classList.toggle('hidden', !isAdmin));
   if(!isAdmin){
     document.querySelectorAll('[id^="dayEditPanel-"]').forEach(el=> el.classList.add('hidden'));
