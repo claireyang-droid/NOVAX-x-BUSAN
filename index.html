@@ -56,6 +56,143 @@
   .hero.hero-minimal .route,
   .hero.hero-minimal .hero-date{display:none;}
   .hero.hero-minimal .hero-company{margin-bottom:1px;}
+
+  /* ---------- HERO HAMBURGER MENU ---------- */
+  .hero-menu-wrap{
+    position:fixed !important;
+    top:18px; left:18px;
+    z-index:200;
+    -webkit-transform:translateZ(0);
+    transform:translateZ(0);
+  }
+  .hero-menu-btn{
+    display:flex;
+    position:relative;
+    width:38px; height:34px;
+    background:rgba(8,20,34,0.55);
+    border:1px solid rgba(255,255,255,0.3);
+    border-radius:9px;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+  }
+  .hero-menu-btn span{
+    display:block;width:18px;height:2px;background:var(--porcelain);border-radius:2px;
+    transition:transform .2s ease, opacity .2s ease;
+  }
+  .hero-menu-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hero-menu-btn.open span:nth-child(2){opacity:0;}
+  .hero-menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .hero-menu-panel{
+    position:absolute;
+    top:44px; left:0;
+    width:220px;
+    background:#fff;
+    border-radius:14px;
+    box-shadow:0 20px 40px -12px rgba(8,20,34,0.45);
+    padding:8px;
+    text-align:left;
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    pointer-events:none;
+    transition:max-height .25s ease, opacity .2s ease, padding .25s ease;
+  }
+  .hero-menu-panel.open{
+    max-height:520px;
+    opacity:1;
+    padding:8px;
+    pointer-events:auto;
+  }
+  .hero-menu-item{
+    display:flex; align-items:center; gap:10px;
+    width:100%;
+    background:none; border:none;
+    padding:11px 12px;
+    border-radius:9px;
+    font-size:15.5px;
+    color:var(--ink);
+    text-align:left;
+  }
+  .hero-menu-item:hover, .hero-menu-item:active{background:var(--celadon);}
+  .hero-menu-item.active{background:var(--celadon);color:var(--persimmon);font-weight:700;}
+  .hero-menu-item .icon{font-size:18px;}
+  .hero-menu-parent{position:relative;}
+  .hero-menu-parent .menu-arrow{
+    margin-left:auto;font-size:13px;color:rgba(15,36,56,0.45);
+    transition:transform .2s ease;
+  }
+  .hero-menu-parent.open .menu-arrow{transform:rotate(180deg);}
+  .hero-menu-sub{
+    max-height:0;overflow:hidden;opacity:0;
+    transition:max-height .22s ease, opacity .18s ease;
+  }
+  .hero-menu-sub.open{max-height:220px;opacity:1;}
+  .hero-menu-subitem{
+    display:flex;align-items:center;gap:10px;
+    width:100%;background:none;border:none;
+    padding:10px 12px 10px 30px;
+    border-radius:9px;
+    font-size:14.5px;
+    color:var(--ink-2);
+    text-align:left;
+  }
+  .hero-menu-subitem:hover, .hero-menu-subitem:active{background:var(--celadon);}
+  .hero-menu-subitem .icon{font-size:15px;}
+
+  /* ---------- HERO 右上角使用者姓名／登出選單 ---------- */
+  .hero-user-wrap{
+    position:fixed !important;
+    top:18px; right:18px;
+    z-index:200;
+    text-align:right;
+    -webkit-transform:translateZ(0);
+    transform:translateZ(0);
+  }
+  .hero-user-btn{
+    display:inline-flex;
+    align-items:center;
+    background:rgba(8,20,34,0.55);
+    border:1px solid rgba(255,255,255,0.3);
+    border-radius:9px;
+    padding:8px 14px;
+    font-size:15px;
+    font-weight:700;
+    color:var(--persimmon);
+    max-width:34vw;
+  }
+  .hero-user-btn span{
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .hero-user-panel{
+    position:absolute;
+    top:44px; right:0;
+    width:150px;
+    background:#fff;
+    border-radius:14px;
+    box-shadow:0 20px 40px -12px rgba(8,20,34,0.45);
+    padding:8px;
+    text-align:left;
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    pointer-events:none;
+    transition:max-height .25s ease, opacity .2s ease, padding .25s ease;
+  }
+  .hero-user-panel.open{
+    max-height:120px;
+    opacity:1;
+    padding:8px;
+    pointer-events:auto;
+  }
+  .hero-user-logout{
+    display:flex;align-items:center;gap:8px;
+    width:100%;background:none;border:none;
+    padding:11px 12px;border-radius:9px;
+    font-size:15.5px;color:var(--ink);text-align:left;
+  }
+  .hero-user-logout:hover, .hero-user-logout:active{background:var(--celadon);}
   .hero-company-en{
     position:relative;
     display:none;
@@ -493,14 +630,14 @@
     border-radius:18px;
     box-shadow:var(--shadow);
     overflow:hidden;
-    margin-bottom:18px;
+    margin-bottom:12px;
   }
   .ticket-main{
     flex:1;
-    padding:24px;
+    padding:16px 18px;
     display:flex;
     flex-direction:column;
-    gap:14px;
+    gap:8px;
   }
   .ticket-route{
     display:flex;
@@ -508,8 +645,9 @@
     justify-content:space-between;
   }
   .ticket-city{text-align:center;}
-  .ticket-city .code{font-family:'Iansui','Fraunces',serif;font-size:30px;font-weight:700;color:var(--ink);}
-  .ticket-city .name{font-size:15px;color:rgba(15,36,56,0.55);margin-top:2px;}
+  .ticket-city .code{font-family:'Iansui','Fraunces',serif;font-size:32px;font-weight:700;color:var(--ink);}
+  .ticket-city .time{font-family:'Iansui','Fraunces',serif;font-size:19px;font-weight:700;color:var(--persimmon);margin-top:2px;}
+  .ticket-city .name{font-size:16px;color:rgba(15,36,56,0.55);margin-top:2px;}
   .ticket-plane{
     flex:1;
     display:flex;
@@ -520,16 +658,29 @@
     position:relative;
   }
   .ticket-plane .dash{flex:1;border-top:2px dashed var(--celadon-2);}
+  .ticket-divider{
+    position:relative;
+    height:1px;
+    border-top:1px dashed var(--line);
+    margin:2px 0;
+  }
+  .ticket-divider span{
+    position:absolute;
+    top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    background:#fff;
+    padding:0 10px;
+    font-size:15px;
+    line-height:1;
+  }
   .ticket-meta{
     display:flex;
-    flex-wrap:wrap;
-    gap:18px;
-    font-size:15.5px;
-    color:rgba(15,36,56,0.65);
-    border-top:1px dashed var(--line);
-    padding-top:12px;
+    flex-direction:column;
+    gap:4px;
+    padding-top:4px;
   }
-  .ticket-meta b{color:var(--ink);font-weight:700;}
+  .ticket-subinfo{font-size:15.5px;color:rgba(15,36,56,0.6);}
+  .ticket-subinfo b{color:var(--ink);font-weight:700;}
   .ticket-stub{
     width:96px;
     background:var(--celadon);
@@ -544,7 +695,7 @@
     font-family:'Iansui','Fraunces',serif;
     font-weight:700;
     letter-spacing:0.1em;
-    font-size:15.5px;
+    font-size:16px;
     color:var(--ink-2);
   }
   .ticket-stub::before,.ticket-stub::after{
@@ -557,7 +708,7 @@
   }
   .ticket-stub::before{top:-9px;}
   .ticket-stub::after{bottom:-9px;}
-  .ticket-label{font-size:14.5px;letter-spacing:0.15em;color:var(--persimmon);font-weight:700;text-transform:uppercase;margin-bottom:2px;}
+  .ticket-label{font-size:15px;letter-spacing:0.15em;color:var(--persimmon);font-weight:700;text-transform:uppercase;margin-bottom:2px;}
 
   /* ---------- ITINERARY TIMELINE ---------- */
   .day-card{
@@ -610,12 +761,19 @@
   .meal-box{
     border:1px solid var(--line);
     border-radius:12px;
-    padding:12px;
-    text-align:center;
+    padding:9px 14px;
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    text-align:left;
   }
-  .meal-box .m-label{font-size:14.5px;color:var(--persimmon);letter-spacing:0.12em;font-weight:700;margin-bottom:6px;}
-  .meal-box .m-value{font-size:15.5px;font-weight:500;}
-  @media (max-width:560px){.meal-grid{grid-template-columns:1fr;}}
+  .meal-box .m-label{
+    font-size:14px;color:var(--persimmon);letter-spacing:0.08em;font-weight:700;
+    white-space:nowrap;flex-shrink:0;
+    padding-right:8px;border-right:1px solid var(--line);
+  }
+  .meal-box .m-value{font-size:14.5px;font-weight:500;}
+  @media (max-width:560px){.meal-grid{grid-template-columns:1fr;gap:8px;}}
   .hotel-row{
     display:flex;
     flex-wrap:wrap;
@@ -630,6 +788,7 @@
   .hotel-row .h-info{flex:1;min-width:160px;}
   .hotel-row .h-tier{font-size:14.5px;color:rgba(15,36,56,0.5);}
   .hotel-row .h-name{font-weight:700;font-size:17px;}
+  .h-name-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
   .hotel-map-btns{display:flex;gap:8px;flex-wrap:wrap;}
   .hotel-map-edit{margin-bottom:18px;}
   .map-btn{
@@ -747,6 +906,26 @@
     font-size:16px;
   }
   .freetime-toggle:hover{background:var(--celadon-2);}
+  .hotel-rec-toggle{
+    display:inline-flex;align-items:center;gap:4px;
+    background:transparent;
+    color:var(--persimmon);
+    border:1.5px dashed var(--persimmon);
+    padding:3px 10px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:12px;
+    white-space:nowrap;
+    line-height:1.6;
+  }
+  .hotel-rec-toggle:hover{background:rgba(226,87,43,0.08);}
+  .hotel-rec-panel{
+    margin-top:16px;
+    border:1.5px dashed var(--persimmon);
+    border-radius:16px;
+    padding:18px;
+    background:var(--porcelain);
+  }
   .freetime-panel{
     margin-top:16px;
     border:1.5px dashed var(--celadon-2);
@@ -992,6 +1171,7 @@
   .home-box-static:hover{border-color:var(--line);}
   .home-box-label{font-size:14px;color:rgba(15,36,56,0.55);margin-bottom:6px;}
   .home-box-value{font-family:'Iansui','Fraunces',serif;font-weight:700;font-size:22px;color:var(--persimmon);margin-bottom:6px;}
+  .home-box-value-date{font-size:15.5px;line-height:1.5;}
   .home-box-hint{font-size:12.5px;color:rgba(15,36,56,0.4);}
   @media (max-width:420px){.home-box-value{font-size:19px;} .home-box-grid{gap:9px;}}
 
@@ -1185,6 +1365,41 @@
 <body>
 
 
+<!-- ============ 左上角漢堡選單（獨立於 hero 之外，避免被裁切） ============ -->
+<div class="hero-menu-wrap hidden" id="heroMenuWrap">
+  <button class="hero-menu-btn" id="heroMenuBtn" type="button" aria-label="選單"><span></span><span></span><span></span></button>
+  <div class="hero-menu-panel" id="heroMenuPanel">
+    <button class="hero-menu-item" data-target="home"><span class="icon">🏠</span>首頁</button>
+    <button class="hero-menu-item" data-target="roster"><span class="icon">🧑‍🤝‍🧑</span>梯次名單</button>
+    <div class="hero-menu-group">
+      <button class="hero-menu-item hero-menu-parent" id="heroMenuInfoToggle" type="button" data-target="info">
+        <span class="icon">📋</span>出發前必看資訊
+        <span class="menu-arrow">▾</span>
+      </button>
+      <div class="hero-menu-sub" id="heroMenuInfoSub">
+        <button class="hero-menu-subitem" data-target="info" data-infotab="brief"><span class="icon">📋</span>集合資訊</button>
+        <button class="hero-menu-subitem" data-target="info" data-infotab="flight"><span class="icon">✈️</span>班機時刻</button>
+        <button class="hero-menu-subitem" data-target="info" data-infotab="packing"><span class="icon">🎒</span>行李檢查</button>
+      </div>
+    </div>
+    <button class="hero-menu-item" data-target="itinerary"><span class="icon">📅</span>每日行程</button>
+    <button class="hero-menu-item" data-target="rooms"><span class="icon">🍽️</span>餐食分組表</button>
+    <button class="hero-menu-item" data-target="roomInfoPage"><span class="icon">🛏️</span>住宿分房表</button>
+    <button class="hero-menu-item" data-target="exchange"><span class="icon">💱</span>韓幣 ↔ 台幣</button>
+    <button class="hero-menu-item" data-target="translate"><span class="icon">🇰🇷</span>即時翻譯</button>
+  </div>
+</div>
+
+<!-- ============ 右上角使用者姓名／登出選單 ============ -->
+<div class="hero-user-wrap hidden" id="heroUserWrap">
+  <button class="hero-user-btn" id="heroUserBtn" type="button">
+    <span id="heroUserName"></span>
+  </button>
+  <div class="hero-user-panel" id="heroUserPanel">
+    <button class="hero-user-logout" id="heroUserLogoutBtn" type="button">🚪 登出</button>
+  </div>
+</div>
+
 <!-- ============ HERO ============ -->
 <div class="hero" id="hero">
   <div class="hero-hangul">부산 · 경주 · 울산</div>
@@ -1193,7 +1408,6 @@
   <div class="hero-company-en">NOVAX Material &amp; Technology Inc.</div>
   <h1 id="heroTitle">2026 年海外員工旅遊</h1>
   <div class="route">釜山 <span>×</span>慶州 <span>×</span>蔚山</div>
-  <div class="hero-date hidden" id="heroDate"></div>
 </div>
 
 <div class="wrap">
@@ -1247,8 +1461,8 @@
           <div class="home-box-hint">點我看分房表 ›</div>
         </button>
         <div class="home-box home-box-static">
-          <div class="home-box-label">梯次人數</div>
-          <div class="home-box-value" id="statCount"></div>
+          <div class="home-box-label">旅遊日期</div>
+          <div class="home-box-value home-box-value-date" id="statTravelDate"></div>
         </div>
       </div>
 
@@ -1783,6 +1997,8 @@ async function login(name){
   document.getElementById('heroTitle').classList.add('hidden');
   document.getElementById('heroEyebrow').classList.add('hidden');
   document.getElementById('hero').classList.add('hero-compact');
+  document.getElementById('heroMenuWrap').classList.remove('hidden');
+  document.getElementById('heroUserWrap').classList.remove('hidden');
   document.getElementById('dashboard').classList.remove('hidden');
   document.getElementById('bottomNav').classList.remove('hidden');
   switchDashPage('home');
@@ -1798,6 +2014,8 @@ async function adminLogin(){
   document.getElementById('heroTitle').classList.add('hidden');
   document.getElementById('heroEyebrow').classList.add('hidden');
   document.getElementById('hero').classList.add('hero-compact');
+  document.getElementById('heroMenuWrap').classList.remove('hidden');
+  document.getElementById('heroUserWrap').classList.remove('hidden');
   document.getElementById('dashboard').classList.remove('hidden');
   document.getElementById('bottomNav').classList.remove('hidden');
   switchDashPage('home');
@@ -1814,9 +2032,13 @@ function logout(){
   document.getElementById('heroEyebrow').classList.remove('hidden');
   document.getElementById('hero').classList.remove('hero-compact');
   document.getElementById('hero').classList.remove('hero-minimal');
+  document.getElementById('heroMenuWrap').classList.add('hidden');
+  document.getElementById('heroMenuPanel').classList.remove('open');
+  document.getElementById('heroMenuBtn').classList.remove('open');
+  document.getElementById('heroUserWrap').classList.add('hidden');
+  document.getElementById('heroUserPanel').classList.remove('open');
   document.getElementById('dashboard').classList.add('hidden');
   document.getElementById('bottomNav').classList.add('hidden');
-  document.getElementById('heroDate').classList.add('hidden');
   document.getElementById('searchInput').value='';
   document.getElementById('loginError').style.display = 'none';
   storageSet('lastUser', '', false);
@@ -1847,6 +2069,9 @@ function switchDashPage(target){
   document.querySelectorAll('.bottom-nav-btn').forEach(btn=>{
     btn.classList.toggle('active', btn.dataset.target === navTarget);
   });
+  document.querySelectorAll('.hero-menu-item').forEach(item=>{
+    item.classList.toggle('active', item.dataset.target === target);
+  });
   if(target === 'roster') renderRoster();
   if(target === 'roomInfoPage') renderRoomTable(BATCHES[currentUser.batch], activeNight);
   if(target === 'exchange'){ fetchExchangeRate(); renderFxHistory(); }
@@ -1861,6 +2086,74 @@ document.querySelectorAll('.back-to-home-btn').forEach(btn=>{
 document.getElementById('homeBatchBox').addEventListener('click', ()=> switchDashPage('roster'));
 document.getElementById('homeGroupBox').addEventListener('click', ()=> switchDashPage('rooms'));
 document.getElementById('homeRoomBox').addEventListener('click', ()=> switchDashPage('roomInfoPage'));
+
+/* ---- 左上角漢堡選單（收合式選單） ---- */
+const heroMenuBtnEl = document.getElementById('heroMenuBtn');
+const heroMenuPanelEl = document.getElementById('heroMenuPanel');
+if(heroMenuBtnEl && heroMenuPanelEl){
+  heroMenuBtnEl.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    heroMenuPanelEl.classList.toggle('open');
+    heroMenuBtnEl.classList.toggle('open');
+  });
+  heroMenuPanelEl.querySelectorAll('.hero-menu-item:not(.hero-menu-parent)').forEach(item=>{
+    item.addEventListener('click', ()=>{
+      switchDashPage(item.dataset.target);
+      heroMenuPanelEl.classList.remove('open');
+      heroMenuBtnEl.classList.remove('open');
+    });
+  });
+  /* 「出發前必看資訊」為可展開分類：點擊只展開／收合子選單，不直接跳轉 */
+  const heroMenuInfoToggleEl = document.getElementById('heroMenuInfoToggle');
+  const heroMenuInfoSubEl = document.getElementById('heroMenuInfoSub');
+  if(heroMenuInfoToggleEl && heroMenuInfoSubEl){
+    heroMenuInfoToggleEl.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      heroMenuInfoToggleEl.classList.toggle('open');
+      heroMenuInfoSubEl.classList.toggle('open');
+    });
+    heroMenuInfoSubEl.querySelectorAll('.hero-menu-subitem').forEach(sub=>{
+      sub.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        switchDashPage('info');
+        const infoTabBtn = document.querySelector(`#infoTabSwitch button[data-infotab="${sub.dataset.infotab}"]`);
+        if(infoTabBtn) infoTabBtn.click();
+        heroMenuPanelEl.classList.remove('open');
+        heroMenuBtnEl.classList.remove('open');
+        heroMenuInfoToggleEl.classList.remove('open');
+        heroMenuInfoSubEl.classList.remove('open');
+      });
+    });
+  }
+  document.addEventListener('click', (e)=>{
+    if(!heroMenuPanelEl.classList.contains('open')) return;
+    if(heroMenuPanelEl.contains(e.target) || heroMenuBtnEl.contains(e.target)) return;
+    heroMenuPanelEl.classList.remove('open');
+    heroMenuBtnEl.classList.remove('open');
+  });
+}
+
+/* ---- 右上角使用者姓名／登出選單 ---- */
+const heroUserBtnEl = document.getElementById('heroUserBtn');
+const heroUserPanelEl = document.getElementById('heroUserPanel');
+const heroUserLogoutBtnEl = document.getElementById('heroUserLogoutBtn');
+if(heroUserBtnEl && heroUserPanelEl){
+  heroUserBtnEl.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    heroUserPanelEl.classList.toggle('open');
+  });
+  if(heroUserLogoutBtnEl){
+    heroUserLogoutBtnEl.addEventListener('click', ()=>{
+      heroUserPanelEl.classList.remove('open');
+      logout();
+    });
+  }
+  document.addEventListener('click', (e)=>{
+    if(!heroUserPanelEl.classList.contains('open')) return;
+    if(heroUserPanelEl.contains(e.target) || heroUserBtnEl.contains(e.target)) return;
+    heroUserPanelEl.classList.remove('open');
+  });
+}
 
 /* ---- Info page 內部分頁：集合資訊 / 班機時刻 / 行李檢查 ---- */
 document.querySelectorAll('#infoTabSwitch button').forEach(btn=>{
@@ -1881,9 +2174,10 @@ document.querySelectorAll('#infoTabSwitch button').forEach(btn=>{
 function renderDashboard(){
   const batch = BATCHES[currentUser.batch];
   document.getElementById('whoName').textContent = currentUser.name;
-  document.getElementById('heroDate').textContent = batch.dateRange;
-  document.getElementById('heroDate').classList.remove('hidden');
-  document.getElementById('statCount').textContent = batch.count + ' 人';
+  document.getElementById('heroUserName').textContent = currentUser.name;
+  const startDisplay = batch.start.replace(/-/g, '/');
+  const endDisplay = batch.flightBack.date;
+  document.getElementById('statTravelDate').innerHTML = `${startDisplay}<br>－<br>${endDisplay}`;
   document.getElementById('homeBatchValue').textContent = batch.label;
   document.getElementById('homeGroupValue').textContent = currentUser.group;
 
@@ -1967,18 +2261,18 @@ function renderTicket(batch){
   legs.forEach(leg=>{
     const el = document.createElement('div');
     el.className='ticket';
+    const [depTime, arrTime] = leg.f.time.split('－').map(s=>s.trim());
     el.innerHTML = `
       <div class="ticket-main">
-        <div class="ticket-label">${leg.label} · ${leg.f.airline} ${leg.f.no}</div>
+        <div class="ticket-label">${leg.label} · ${leg.f.airline}</div>
         <div class="ticket-route">
-          <div class="ticket-city"><div class="code">${leg.from[0]}</div><div class="name">${leg.from[1]}</div></div>
+          <div class="ticket-city"><div class="code">${leg.from[0]}</div><div class="time">${depTime}</div><div class="name">${leg.from[1]}</div></div>
           <div class="ticket-plane"><div class="dash"></div><span>✈</span><div class="dash"></div></div>
-          <div class="ticket-city"><div class="code">${leg.to[0]}</div><div class="name">${leg.to[1]}</div></div>
+          <div class="ticket-city"><div class="code">${leg.to[0]}</div><div class="time">${arrTime}</div><div class="name">${leg.to[1]}</div></div>
         </div>
+        <div class="ticket-divider"><span>🕐</span></div>
         <div class="ticket-meta">
-          <div>日期　<b>${leg.f.date}</b></div>
-          <div>時間　<b>${leg.f.time}</b></div>
-          <div>航班　<b>${leg.f.no}</b></div>
+          <div class="ticket-subinfo">${leg.f.date}　・　航班 <b>${leg.f.no}</b></div>
         </div>
       </div>
       <div class="ticket-stub"><div class="vert">BOARDING</div></div>
@@ -2054,7 +2348,13 @@ async function renderDays(batch){
         hotelBlocks.push(`
           <div class="hotel-row">
             <div class="h-icon">🏨</div>
-            <div class="h-info"><div class="h-tier">${h.tier}</div><div class="h-name">${h.name}</div></div>
+            <div class="h-info">
+              <div class="h-tier">${h.tier}</div>
+              <div class="h-name-row">
+                <span class="h-name">${h.name}</span>
+                ${hIdx===0 ? `<button class="hotel-rec-toggle hidden" data-batch="${batch.id}" data-day="${i}">📍 附近推薦</button>` : ''}
+              </div>
+            </div>
             <div class="hotel-map-btns">
               <a id="hotelGoogleLink-${batch.id}-${i}-${hIdx}" class="map-btn" target="_blank" rel="noopener" href="${googleUrl}">📍 Google 地圖</a>
               <a id="hotelNaverLink-${batch.id}-${i}-${hIdx}" class="map-btn naver-btn" target="_blank" rel="noopener" href="${naverUrl}">📍 Naver 地圖</a>
@@ -2116,6 +2416,20 @@ async function renderDays(batch){
         </div>
         ${hotelHtml}
 
+        <div class="hotel-rec-panel hidden" id="hrPanel-${batch.id}-${i}">
+          <div id="hrList-${batch.id}-${i}"></div>
+          <div class="ft-add-form hidden" id="hrAddForm-${batch.id}-${i}">
+            <input type="text" placeholder="連結名稱（例如：飯店旁超商 / 站前商圈）" id="hrName-${batch.id}-${i}">
+            <input type="text" placeholder="營業時間（選填，例如：09:00－18:00）" id="hrHours-${batch.id}-${i}">
+            <textarea placeholder="備注（選填）" id="hrNote-${batch.id}-${i}"></textarea>
+            <input type="text" placeholder="連結網址（選填）" id="hrUrl-${batch.id}-${i}">
+            <input type="text" placeholder="Google 地圖連結（選填）" id="hrGoogle-${batch.id}-${i}">
+            <input type="text" placeholder="Naver 地圖連結（選填）" id="hrNaver-${batch.id}-${i}">
+            <input type="file" accept="image/*" placeholder="上傳圖片（選填）" id="hrImg-${batch.id}-${i}">
+            <button data-batch="${batch.id}" data-day="${i}" class="addHrBtn">新增附近推薦</button>
+          </div>
+        </div>
+
         <button class="day-edit-toggle admin-only-btn hidden" data-batch="${batch.id}" data-day="${i}">✏️ 編輯本日行程與餐食</button>
         <div class="day-edit-panel hidden" id="dayEditPanel-${batch.id}-${i}">
           <label class="day-edit-label">行程標題</label>
@@ -2146,7 +2460,6 @@ async function renderDays(batch){
             <input type="text" placeholder="Google 地圖連結（選填）" id="ftGoogle-${batch.id}-${i}">
             <input type="text" placeholder="Naver 地圖連結（選填）" id="ftNaver-${batch.id}-${i}">
             <input type="file" accept="image/*" placeholder="上傳圖片（選填）" id="ftImg-${batch.id}-${i}">
-            <label class="ft-scope-label"><input type="checkbox" id="ftScopeOwn-${batch.id}-${i}"> 僅本梯次限定（只有本梯次看得到，例如靠近本梯次飯店的景點）</label>
             <button data-batch="${batch.id}" data-day="${i}" class="addFtBtn">新增推薦行程</button>
           </div>
         </div>
@@ -2187,6 +2500,7 @@ async function renderDays(batch){
       galleryJobs.push(renderSpotGallery(batch.id, i, si));
     }
     galleryJobs.push(renderFreetime(batch.id, i));
+    galleryJobs.push(renderHotelRec(batch.id, i));
   }
   await Promise.all(galleryJobs);
   document.querySelectorAll('.addSpotPhotoBtn').forEach(btn=>{
@@ -2198,6 +2512,15 @@ async function renderDays(batch){
   document.querySelectorAll('.freetime-toggle').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       const panel = document.getElementById(`ftPanel-${btn.dataset.batch}-${btn.dataset.day}`);
+      panel.classList.toggle('hidden');
+    });
+  });
+  document.querySelectorAll('.addHrBtn').forEach(btn=>{
+    btn.addEventListener('click', ()=>addHotelRec(btn.dataset.batch, parseInt(btn.dataset.day)));
+  });
+  document.querySelectorAll('.hotel-rec-toggle').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const panel = document.getElementById(`hrPanel-${btn.dataset.batch}-${btn.dataset.day}`);
       panel.classList.toggle('hidden');
     });
   });
@@ -2367,8 +2690,7 @@ async function addFreetime(batchId, dayIdx){
   const hours = document.getElementById(`ftHours-${batchId}-${dayIdx}`).value.trim();
   const imgInput = document.getElementById(`ftImg-${batchId}-${dayIdx}`);
   const imgFile = imgInput.files && imgInput.files[0];
-  const scopeCheckbox = document.getElementById(`ftScopeOwn-${batchId}-${dayIdx}`);
-  const scope = (scopeCheckbox && scopeCheckbox.checked) ? 'own' : 'shared';
+  const scope = 'shared';
   if(!name && !url) return;
   let img = '';
   if(imgFile){
@@ -2391,9 +2713,8 @@ async function addFreetime(batchId, dayIdx){
   document.getElementById(`ftNote-${batchId}-${dayIdx}`).value='';
   document.getElementById(`ftHours-${batchId}-${dayIdx}`).value='';
   imgInput.value='';
-  if(scopeCheckbox) scopeCheckbox.checked = false;
   renderFreetime(batchId, dayIdx);
-  showToast(scope === 'own' ? '✓ 已新增推薦行程（僅本梯次看得到）' : '✓ 已新增推薦行程（兩梯次都會看到）');
+  showToast('✓ 已新增推薦行程（兩梯次都會看到）');
 }
 async function removeFreetime(batchId, dayIdx, scope, idx){
   const key = ftKey(batchId, dayIdx, scope);
@@ -2403,7 +2724,6 @@ async function removeFreetime(batchId, dayIdx, scope, idx){
   renderFreetime(batchId, dayIdx);
 }
 async function saveFreetimeEdit(batchId, dayIdx, scope, idx){
-  const key = ftKey(batchId, dayIdx, scope);
   const items = await ftGetItems(batchId, dayIdx, scope);
   if(!items[idx]) return;
   const name = document.getElementById(`ftEditName-${batchId}-${dayIdx}-${scope}-${idx}`).value.trim();
@@ -2414,6 +2734,7 @@ async function saveFreetimeEdit(batchId, dayIdx, scope, idx){
   const hours = document.getElementById(`ftEditHours-${batchId}-${dayIdx}-${scope}-${idx}`).value.trim();
   const imgInput = document.getElementById(`ftEditImg-${batchId}-${dayIdx}-${scope}-${idx}`);
   const imgFile = imgInput.files && imgInput.files[0];
+  const newScope = 'shared';
   let img = items[idx].img || '';
   if(imgFile){
     try{
@@ -2424,10 +2745,169 @@ async function saveFreetimeEdit(batchId, dayIdx, scope, idx){
       return;
     }
   }
-  items[idx] = {name, note, url, google, naver, img, hours};
-  await storageSet(key, JSON.stringify(items), true);
+  const updated = {name, note, url, google, naver, img, hours};
+  if(newScope === scope){
+    items[idx] = updated;
+    await storageSet(ftKey(batchId, dayIdx, scope), JSON.stringify(items), true);
+  } else {
+    // 舊資料原本僅本梯次限定，儲存修改時一併轉為兩梯次同步
+    items.splice(idx, 1);
+    await storageSet(ftKey(batchId, dayIdx, scope), JSON.stringify(items), true);
+    const targetItems = await ftGetItems(batchId, dayIdx, newScope);
+    targetItems.push(updated);
+    await storageSet(ftKey(batchId, dayIdx, newScope), JSON.stringify(targetItems), true);
+  }
   renderFreetime(batchId, dayIdx);
-  showToast(scope === 'own' ? '✓ 已儲存修改（僅本梯次看得到）' : '✓ 已儲存修改（兩梯次都會看到）');
+  showToast('✓ 已儲存修改（兩梯次都會看到）');
+}
+
+/* ---- Hotel-area recommendations (附近推薦：與「推薦自由行程」是各自獨立的功能) ----
+   規則：第一、二天兩梯次入住不同飯店，附近推薦各自獨立（own）；
+        第三天起兩梯次入住相同飯店，附近推薦自動同步（shared），不再由人工勾選。 */
+function hrAutoScope(dayIdx){
+  return dayIdx <= 1 ? 'own' : 'shared';
+}
+function hrKey(batchId, dayIdx, scope){
+  return scope === 'own' ? `hotelrec:${batchId}:day${dayIdx}` : `hotelrec:day${dayIdx}`;
+}
+async function hrGetItems(batchId, dayIdx, scope){
+  const raw = await storageGet(hrKey(batchId, dayIdx, scope), true);
+  try{ return raw ? JSON.parse(raw) : []; }catch(e){ return []; }
+}
+async function renderHotelRec(batchId, dayIdx){
+  const sharedItems = await hrGetItems(batchId, dayIdx, 'shared');
+  const ownItems = await hrGetItems(batchId, dayIdx, 'own');
+  const listEl = document.getElementById(`hrList-${batchId}-${dayIdx}`);
+  if(!listEl) return;
+  const combined = [
+    ...sharedItems.map((it,idx)=>({it, scope:'shared', idx})),
+    ...ownItems.map((it,idx)=>({it, scope:'own', idx}))
+  ];
+  const toggleBtn = document.querySelector(`.hotel-rec-toggle[data-batch="${batchId}"][data-day="${dayIdx}"]`);
+  if(toggleBtn) toggleBtn.classList.toggle('hidden', !(isAdmin || combined.length>0));
+  if(combined.length===0){
+    listEl.innerHTML = `<div class="freetime-empty">尚無附近推薦，敬請期待管理員刊登建議景點 📍</div>`;
+  } else {
+    listEl.innerHTML = combined.map(({it, scope, idx})=>`
+      <div class="ft-item">
+        <span class="ft-scope-tag ${scope}">${scope === 'own' ? '🏨 本梯次限定' : '🌐 兩梯次共用'}</span>
+        ${it.img ? `<div class="ft-img"><img src="${it.img}" alt="${it.name||''}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>` : ''}
+        <div class="ft-body">
+          <div class="ft-name">${it.name || ''}</div>
+          ${it.hours ? `<div class="ft-hours">🕒 營業時間：${it.hours}</div>` : ''}
+          ${it.note ? `<div class="ft-note">${it.note}</div>` : ''}
+          <div class="ft-btn-row">
+            ${it.url ? `<a class="ft-link-btn" href="${it.url}" target="_blank" rel="noopener">🔗 更多資訊</a>` : ''}
+            ${it.google ? `<a class="map-btn" href="${it.google}" target="_blank" rel="noopener">📍 Google 地圖</a>` : ''}
+            ${it.naver ? `<a class="map-btn naver-btn" href="${it.naver}" target="_blank" rel="noopener">📍 Naver 地圖</a>` : ''}
+            ${isAdmin ? `<button class="hr-edit-btn" data-batch="${batchId}" data-day="${dayIdx}" data-scope="${scope}" data-idx="${idx}">✏️ 編輯</button>` : ''}
+            ${isAdmin ? `<button class="hr-rm" data-batch="${batchId}" data-day="${dayIdx}" data-scope="${scope}" data-idx="${idx}">刪除</button>` : ''}
+          </div>
+          <div class="ft-edit-panel admin-add hidden" id="hrEditPanel-${batchId}-${dayIdx}-${scope}-${idx}">
+            <input type="text" placeholder="連結名稱" id="hrEditName-${batchId}-${dayIdx}-${scope}-${idx}" value="${it.name||''}">
+            <input type="text" placeholder="營業時間（選填）" id="hrEditHours-${batchId}-${dayIdx}-${scope}-${idx}" value="${it.hours||''}">
+            <textarea placeholder="備注（選填）" id="hrEditNote-${batchId}-${dayIdx}-${scope}-${idx}">${it.note||''}</textarea>
+            <input type="text" placeholder="連結網址（選填）" id="hrEditUrl-${batchId}-${dayIdx}-${scope}-${idx}" value="${it.url||''}">
+            <input type="text" placeholder="Google 地圖連結（選填）" id="hrEditGoogle-${batchId}-${dayIdx}-${scope}-${idx}" value="${it.google||''}">
+            <input type="text" placeholder="Naver 地圖連結（選填）" id="hrEditNaver-${batchId}-${dayIdx}-${scope}-${idx}" value="${it.naver||''}">
+            <input type="file" accept="image/*" id="hrEditImg-${batchId}-${dayIdx}-${scope}-${idx}">
+            <button data-batch="${batchId}" data-day="${dayIdx}" data-scope="${scope}" data-idx="${idx}" class="saveHrEditBtn">💾 儲存修改</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    listEl.querySelectorAll('.hr-rm').forEach(b=>{
+      b.addEventListener('click', ()=>removeHotelRec(b.dataset.batch, parseInt(b.dataset.day), b.dataset.scope, parseInt(b.dataset.idx)));
+    });
+    listEl.querySelectorAll('.hr-edit-btn').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const panel = document.getElementById(`hrEditPanel-${b.dataset.batch}-${b.dataset.day}-${b.dataset.scope}-${b.dataset.idx}`);
+        panel.classList.toggle('hidden');
+      });
+    });
+    listEl.querySelectorAll('.saveHrEditBtn').forEach(b=>{
+      b.addEventListener('click', ()=>saveHotelRecEdit(b.dataset.batch, parseInt(b.dataset.day), b.dataset.scope, parseInt(b.dataset.idx)));
+    });
+  }
+}
+async function addHotelRec(batchId, dayIdx){
+  const name = document.getElementById(`hrName-${batchId}-${dayIdx}`).value.trim();
+  const url = document.getElementById(`hrUrl-${batchId}-${dayIdx}`).value.trim();
+  const google = document.getElementById(`hrGoogle-${batchId}-${dayIdx}`).value.trim();
+  const naver = document.getElementById(`hrNaver-${batchId}-${dayIdx}`).value.trim();
+  const note = document.getElementById(`hrNote-${batchId}-${dayIdx}`).value.trim();
+  const hours = document.getElementById(`hrHours-${batchId}-${dayIdx}`).value.trim();
+  const imgInput = document.getElementById(`hrImg-${batchId}-${dayIdx}`);
+  const imgFile = imgInput.files && imgInput.files[0];
+  const scope = hrAutoScope(dayIdx);
+  if(!name && !url) return;
+  let img = '';
+  if(imgFile){
+    try{
+      showToast('圖片處理中…');
+      img = await fileToCompressedDataURL(imgFile);
+    }catch(e){
+      showToast('❌ ' + e.message);
+      return;
+    }
+  }
+  const key = hrKey(batchId, dayIdx, scope);
+  const items = await hrGetItems(batchId, dayIdx, scope);
+  items.push({name, url, img, google, naver, note, hours});
+  await storageSet(key, JSON.stringify(items), true);
+  document.getElementById(`hrName-${batchId}-${dayIdx}`).value='';
+  document.getElementById(`hrUrl-${batchId}-${dayIdx}`).value='';
+  document.getElementById(`hrGoogle-${batchId}-${dayIdx}`).value='';
+  document.getElementById(`hrNaver-${batchId}-${dayIdx}`).value='';
+  document.getElementById(`hrNote-${batchId}-${dayIdx}`).value='';
+  document.getElementById(`hrHours-${batchId}-${dayIdx}`).value='';
+  imgInput.value='';
+  renderHotelRec(batchId, dayIdx);
+  showToast(scope === 'own' ? '✓ 已新增附近推薦（本梯次獨立顯示）' : '✓ 已新增附近推薦（兩梯次自動同步）');
+}
+async function removeHotelRec(batchId, dayIdx, scope, idx){
+  const key = hrKey(batchId, dayIdx, scope);
+  const items = await hrGetItems(batchId, dayIdx, scope);
+  items.splice(idx,1);
+  await storageSet(key, JSON.stringify(items), true);
+  renderHotelRec(batchId, dayIdx);
+}
+async function saveHotelRecEdit(batchId, dayIdx, scope, idx){
+  const items = await hrGetItems(batchId, dayIdx, scope);
+  if(!items[idx]) return;
+  const name = document.getElementById(`hrEditName-${batchId}-${dayIdx}-${scope}-${idx}`).value.trim();
+  const note = document.getElementById(`hrEditNote-${batchId}-${dayIdx}-${scope}-${idx}`).value.trim();
+  const url = document.getElementById(`hrEditUrl-${batchId}-${dayIdx}-${scope}-${idx}`).value.trim();
+  const google = document.getElementById(`hrEditGoogle-${batchId}-${dayIdx}-${scope}-${idx}`).value.trim();
+  const naver = document.getElementById(`hrEditNaver-${batchId}-${dayIdx}-${scope}-${idx}`).value.trim();
+  const hours = document.getElementById(`hrEditHours-${batchId}-${dayIdx}-${scope}-${idx}`).value.trim();
+  const imgInput = document.getElementById(`hrEditImg-${batchId}-${dayIdx}-${scope}-${idx}`);
+  const imgFile = imgInput.files && imgInput.files[0];
+  const newScope = hrAutoScope(dayIdx);
+  let img = items[idx].img || '';
+  if(imgFile){
+    try{
+      showToast('圖片處理中…');
+      img = await fileToCompressedDataURL(imgFile);
+    }catch(e){
+      showToast('❌ ' + e.message);
+      return;
+    }
+  }
+  const updated = {name, note, url, google, naver, img, hours};
+  if(newScope === scope){
+    items[idx] = updated;
+    await storageSet(hrKey(batchId, dayIdx, scope), JSON.stringify(items), true);
+  } else {
+    // 舊資料範圍與目前天數規則不符時，儲存修改時一併校正
+    items.splice(idx, 1);
+    await storageSet(hrKey(batchId, dayIdx, scope), JSON.stringify(items), true);
+    const targetItems = await hrGetItems(batchId, dayIdx, newScope);
+    targetItems.push(updated);
+    await storageSet(hrKey(batchId, dayIdx, newScope), JSON.stringify(targetItems), true);
+  }
+  renderHotelRec(batchId, dayIdx);
+  showToast(newScope === 'own' ? '✓ 已儲存修改（本梯次獨立顯示）' : '✓ 已儲存修改（兩梯次自動同步）');
 }
 
 async function renderSpotGallery(batchId, dayIdx, spotIdx){
@@ -2760,18 +3240,21 @@ function applyAdminUI(){
   document.getElementById('adminModeTag').classList.toggle('hidden', !isAdmin);
   document.querySelectorAll('[id^="spotAdd-"]').forEach(el=> el.classList.toggle('hidden', !isAdmin));
   document.querySelectorAll('[id^="ftAddForm-"]').forEach(el=> el.classList.toggle('hidden', !isAdmin));
+  document.querySelectorAll('[id^="hrAddForm-"]').forEach(el=> el.classList.toggle('hidden', !isAdmin));
   document.querySelectorAll('[id^="hotelMapEdit-"]').forEach(el=> el.classList.toggle('hidden', !isAdmin));
   document.querySelectorAll('[id^="spotNameEdit-"]').forEach(el=> el.classList.toggle('hidden', !isAdmin));
   document.querySelectorAll('.admin-only-btn').forEach(el=> el.classList.toggle('hidden', !isAdmin));
   if(!isAdmin){
     document.querySelectorAll('[id^="dayEditPanel-"]').forEach(el=> el.classList.add('hidden'));
     document.querySelectorAll('[id^="ftEditPanel-"]').forEach(el=> el.classList.add('hidden'));
+    document.querySelectorAll('[id^="hrEditPanel-"]').forEach(el=> el.classList.add('hidden'));
   }
   renderAssemblyInfo();
   if(currentUser){
     ITINERARY.forEach((day,i)=>{
       (day.highlights||[]).forEach((spot,si)=> renderSpotGallery(currentUser.batch, i, si));
       renderFreetime(currentUser.batch, i);
+      renderHotelRec(currentUser.batch, i);
     });
     renderRoomTable(BATCHES[currentUser.batch], activeNight);
     renderMealTable(BATCHES[currentUser.batch]);
